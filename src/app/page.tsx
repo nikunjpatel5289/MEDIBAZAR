@@ -1,7 +1,8 @@
+import './main.css'
 import Container from "@/components/user-layout/Container";
 import PopulerProduct from "@/components/user-layout/PopulerProduct";
-import './main.css'
 import Blog from "@/components/user-layout/homeComponents/Blog";
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
                   <h2 className="sub-title">Effective Medicine, New Medicine Everyday</h2>
                   <h1>Welcome To MediBazar</h1>
                   <p>
-                    <a href="#" className="btn btn-primary px-5 py-3">Shop Now</a>
+                    <Link href="/products" className="btn btn-primary px-5 py-3">Shop Now</Link>
                   </p>
                 </div>
               </div>

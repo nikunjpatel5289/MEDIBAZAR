@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const PopulerProduct = () => {
   return (
     <div className="site-section">
@@ -11,10 +13,9 @@ const PopulerProduct = () => {
         <div className="row">
           <div className="col-sm-6 col-lg-4 text-center item mb-4">
             <span className="tag">Sale</span>
-            <a href="shop-single.html">
-              {" "}
+            <Link href="/productview/123">
               <img src="images/product_01.png" alt="Image" />
-            </a>
+            </Link>
             <h3 className="text-dark">
               <a href="shop-single.html">Bioderma</a>
             </h3>
@@ -81,9 +82,9 @@ const PopulerProduct = () => {
         </div>
         <div className="row mt-5">
           <div className="col-12 text-center">
-            <a href="shop.html" className="btn btn-primary px-4 py-3">
+            <Link href="/products" className="btn btn-primary px-4 py-3">
               View All Products
-            </a>
+            </Link>
           </div>
         </div>
       </div>
