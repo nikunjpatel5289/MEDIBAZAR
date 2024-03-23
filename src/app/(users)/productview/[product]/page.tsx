@@ -6,11 +6,11 @@ import Header from "@/components/user-layout/Header";
 import React, { useState } from "react";
 
 const page = () => {
-  const [val, setVal] = useState("0");
+  const [val, setVal] = useState(1);
 
-  const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => {
-    setVal(event.target.value);
-  };
+  const handleINC = () => setVal(val+1);
+  const handleDEC = () => setVal( val > 1 ? val-1 : val);
+  
     // const param = useParams();
   //   console.log(param.product);
   return (
@@ -44,15 +44,14 @@ const page = () => {
                 </p>
                 <div className="mt-4">
                   <div className="flex items-center border border-gray-300 rounded overflow-hidden w-40">
-                    <button className="px-3 py-2 bg-gray-200">-</button>
+                    <button className="px-3 py-2 bg-gray-200" onClick={handleDEC}>-</button>
                       <input
                         type="text"
-                        className="text-center w-full bg-gray-100"
+                        className="text-center w-full bg-gray-100 text-black"
                         value={val}
-                        onChange={handleChange}
-                        // disabled
+                        disabled
                       />
-                    <button className="px-3 py-2 bg-gray-200">+</button>
+                    <button className="px-3 py-2 bg-gray-200" onClick={handleINC}>+</button>
                   </div>
                 </div>
                 <div className="mt-4">
