@@ -1,4 +1,9 @@
-const Blog = () => {
+interface prop {
+ readonly title?: string,
+ readonly description?: string
+}
+
+const Blog = (prop: prop) => {
   return (
     <div
       className="site-section bg-secondary bg-image"
@@ -13,11 +18,8 @@ const Blog = () => {
               style={{ backgroundImage: `url("./images/bg_1.jpg")` }}
             >
               <div className="banner-1-inner align-self-center">
-                <h2>MediBazar Products</h2>
-                <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Molestiae ex ad minus rem odio voluptatem.
-                </p>
+                <h2>{prop?.title || "MediBazar Products"}</h2>
+                <p>{prop?.description || "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Molestiae ex ad minus rem odio voluptatem." }</p>
               </div>
             </a>
           </div>

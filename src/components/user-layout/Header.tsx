@@ -92,9 +92,9 @@ export default function Header() {
             </nav>
           </div>
           <div className="icons flex">
-            <a className="icons-btn d-inline-block js-search-open">
+            {/* <a className="icons-btn d-inline-block js-search-open">
               <span onClick={openSearch} className="icon-search"></span>
-            </a>
+            </a> */}
             <Link href="/cart" className="icons-btn d-inline-block bag">
               <span className="icon-shopping-bag"></span>
               {/* <span className="number">2</span> */}
@@ -107,7 +107,7 @@ export default function Header() {
             </a> */}
             {!logIn && (
               <Link href="/login" className="mt-2">
-                <span className="ms-4">LogIn</span>
+                <span className="ms-4">LogIn / Register</span>
               </Link>
             )}
             {logIn && (
