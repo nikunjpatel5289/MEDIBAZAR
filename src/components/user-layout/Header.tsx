@@ -106,9 +106,14 @@ export default function Header() {
               <span className="icon-menu"></span>
             </a> */}
             {!logIn && (
-              <Link href="/login" className="mt-2">
-                <span className="ms-4">LogIn / Register</span>
-              </Link>
+              <>
+                <Link href="/login" className="mt-2">
+                  <span className="ms-4">LogIn |</span>
+                </Link> 
+                <Link href="/signup" className="mt-2">
+                  <span className="ms-1">Register</span>
+                </Link>
+              </>
             )}
             {logIn && (
               <Link href="/profile">

@@ -64,7 +64,7 @@ const SideBar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" >
+                  <Link href="/admin/products/all" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" >
                     All Products
                   </Link>
                 </li>
