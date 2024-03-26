@@ -1,11 +1,13 @@
 import "@/app/main.css";
 import Header from "@/components/user-layout/Header";
+import Profile from "@/components/user-layout/userProfileComponent/Profile";
 
 const page = () => {
   return (
     <>
       <Header />
-      <main className="ms-64 w-full min-h-screen py-1 md:w-2/3 lg:w-3/4">
+      <Profile />
+      {/* <main className="ms-64 w-full min-h-screen py-1 md:w-2/3 lg:w-3/4">
         <div className="p-2 md:p-4">
           <div className="w-full px-6 pb-8 mt-8 sm:max-w-xl sm:rounded-lg">
             <h2 className="pl-6 text-2xl font-bold sm:text-xl">
@@ -49,7 +51,7 @@ const page = () => {
                       id="first_name"
                       className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
                       placeholder="Your first name"
-                      value="Jane"
+                      // value=""
                       required
                     />
                   </div>
@@ -66,7 +68,7 @@ const page = () => {
                       id="last_name"
                       className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
                       placeholder="Your last name"
-                      value="Ferguson"
+                      // value="Ferguson"
                       required
                     />
                   </div>
@@ -131,7 +133,7 @@ const page = () => {
             </div>
           </div>
         </div>
-      </main>
+      </main> */}
     </>
   );
 };

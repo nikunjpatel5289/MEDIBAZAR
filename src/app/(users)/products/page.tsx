@@ -1,12 +1,30 @@
-import '@/app/main.css'
-import Container from '@/components/user-layout/Container'
-import FilterSideBar from '@/components/user-layout/productComponent/FilterSideBar'
+import "@/app/main.css";
+import Container from "@/components/user-layout/Container";
+import ProductList from "@/components/user-layout/productComponent/ProductList";
+import SideFilterBar from "@/components/user-layout/productComponent/SideFilterBar";
+import TopFilterBar from "@/components/user-layout/productComponent/TopFilterBar";
+// import FilterSideBar from '@/components/user-layout/productComponent/FilterSideBar'
 
 const page = () => {
   return (
     <Container>
-         {/* <div className="site-section"> */}
-            <FilterSideBar>
+      <div className="bg-white">
+        <div>
+          <main className="mx-auto max-w-7xl px-0 sm:px-6 lg:px-8">
+            <TopFilterBar />
+            <section aria-labelledby="products-heading" className="pb-24 pt-6">
+              <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+                <SideFilterBar />
+                <div className="lg:col-span-3">
+                  <ProductList />
+                </div>
+              </div>
+            </section>
+          </main>
+        </div>
+      </div>
+      {/* <div className="site-section"> */}
+      {/* <FilterSideBar>
                 <div className="row">
                     <div className="col-sm-6 col-lg-4 text-center item mb-4">
                         <span className="tag">Sale</span>
@@ -92,10 +110,10 @@ const page = () => {
                         </div>
                     </div>
                 </div>
-            </FilterSideBar>
-        {/* </div> */}
+            </FilterSideBar> */}
+      {/* </div> */}
     </Container>
-  )
-}
+  );
+};
 
-export default page
+export default page;
