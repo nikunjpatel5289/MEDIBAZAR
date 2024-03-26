@@ -10,7 +10,7 @@ const page = () => {
       <div className="p-4 sm:ml-64">
         <div className="p-2 mt-14">
           <div className="text-start text-gray-600 font-sans text-4xl mb-6">
-            <span>Dashboard</span>
+            <span className="font-semibold">Dashboard</span>
           </div>
           
           <div className="grid grid-cols-3 grid-rows-1 gap-4">

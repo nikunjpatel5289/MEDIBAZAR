@@ -13,7 +13,7 @@ const PopulerProduct = () => {
         <div className="row">
           <div className="col-sm-6 col-lg-4 text-center item mb-4">
             <span className="tag">Sale</span>
-            <Link href="/productview/123">
+            <Link href="/products/123">
               <img src="images/product_01.png" alt="Image" />
             </Link>
             <h3 className="text-dark">

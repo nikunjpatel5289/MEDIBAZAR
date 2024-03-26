@@ -12,7 +12,7 @@ const page = () => {
   const handleDEC = () => setVal( val > 1 ? val-1 : val);
   
     // const param = useParams();
-  //   console.log(param.product);
+    // console.log(param.product);
   return (
     <>
       <Header />
