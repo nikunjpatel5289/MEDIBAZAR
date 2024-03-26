@@ -1,29 +1,29 @@
-"use client"
-import Footer from "@/components/user-layout/Footer"
-import Header from "@/components/user-layout/Header"
+"use client";
+import Footer from "@/components/user-layout/Footer";
+import Header from "@/components/user-layout/Header";
 import { useState } from "react";
 
 const page = () => {
-    const [val, setVal] = useState(1);
-    const handleINC = () => setVal(val+1);
-    const handleDEC = () => setVal( val > 1 ? val-1 : val);
-    
+  const [val, setVal] = useState(1);
+  const handleINC = () => setVal(val + 1);
+  const handleDEC = () => setVal(val > 1 ? val - 1 : val);
+
   return (
     <>
-    <Header />
+      <Header />
       <div className="site-section">
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="mr-auto">
-                <div className="border text-center">
-                  <img
-                    src="../images/product_07_large.png"
-                    alt="Image"
-                    height={"75%"}
-                    className="img-fluid p-5"
-                  />
-                </div>
+            <div className="mr-auto">
+              <div className="border text-center">
+                <img
+                  src="../images/product_07_large.png"
+                  alt="Image"
+                  height={"50%"}
+                  className="img-fluid p-5"
+                />
               </div>
+            </div>
             <div>
               <h2 className="text-black text-2xl">Ibuprofen Tablets, 200mg</h2>
               <p className="mt-4">
@@ -39,22 +39,26 @@ const page = () => {
               </p>
               <div className="mt-4">
                 <div className="flex items-center border border-gray-300 rounded overflow-hidden w-40">
-                  <button className="px-3 py-2 bg-gray-200" onClick={handleDEC}>-</button>
-                    <input
-                      type="text"
-                      className="text-center w-full bg-gray-100 text-black"
-                      value={val}
-                      disabled
-                    />
-                  <button className="px-3 py-2 bg-gray-200" onClick={handleINC}>+</button>
+                  <button className="px-3 py-2 bg-gray-200" onClick={handleDEC}>
+                    -
+                  </button>
+                  <input
+                    type="text"
+                    className="text-center w-full bg-gray-100 text-black"
+                    value={val}
+                    disabled
+                  />
+                  <button className="px-3 py-2 bg-gray-200" onClick={handleINC}>
+                    +
+                  </button>
                 </div>
               </div>
               <div className="mt-4">
-                <button className="buy-now inline-block px-4 py-3 btn-primary" >
+                <button className="buy-now inline-block px-4 py-3 btn-primary">
                   Add To Cart
                 </button>
               </div>
-              
+
               <div className="mt-5">
                 <div>
                   <div>
@@ -70,24 +74,24 @@ const page = () => {
                         <tr>
                           <td scope="row">OTC022401</td>
                           <td>
-                            Pain Management: Acetaminophen PM Extra-Strength Caplets, 500 mg,
-                            100/Bottle
+                            Pain Management: Acetaminophen PM Extra-Strength
+                            Caplets, 500 mg, 100/Bottle
                           </td>
                           <td>1 BT</td>
                         </tr>
                         <tr>
                           <td scope="row">OTC022401</td>
                           <td>
-                            Pain Management: Acetaminophen PM Extra-Strength Caplets, 500 mg,
-                            100/Bottle
+                            Pain Management: Acetaminophen PM Extra-Strength
+                            Caplets, 500 mg, 100/Bottle
                           </td>
                           <td>144/CS</td>
                         </tr>
                         <tr>
                           <td scope="row">OTC022401</td>
                           <td>
-                            Pain Management: Acetaminophen PM Extra-Strength Caplets, 500 mg,
-                            100/Bottle
+                            Pain Management: Acetaminophen PM Extra-Strength
+                            Caplets, 500 mg, 100/Bottle
                           </td>
                           <td>1 EA</td>
                         </tr>
@@ -123,9 +127,9 @@ const page = () => {
           </div>
         </div>
       </div>
-    <Footer />
-  </>
-  )
-}
+      <Footer />
+    </>
+  );
+};
 
-export default page
+export default page;

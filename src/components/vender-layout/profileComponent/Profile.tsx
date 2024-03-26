@@ -1,5 +1,3 @@
-import React from "react";
-
 const Profile = () => {
   return (
     <form className="font-[sans-serif] text-[#292828] max-w-4xl mx-auto px-2 my-6">
@@ -34,7 +32,7 @@ const Profile = () => {
             className="px-2 pt-5 pb-2 bg-white w-full text-sm border-b-2 border-gray-100 focus:border-[#333] outline-none"
           />
         </div>
-        {/* <div className="relative flex items-center">
+        <div className="relative flex items-center">
           <label className="text-[13px] absolute top-[-10px] left-0 font-semibold">
             Country
           </label>
@@ -43,7 +41,7 @@ const Profile = () => {
             placeholder="Enter country"
             className="px-2 pt-5 pb-2 bg-white w-full text-sm border-b-2 border-gray-100 focus:border-[#333] outline-none"
           />
-        </div> */}
+        </div>
         <div className="relative flex items-center sm:col-span-2">
           <label className="text-[13px] absolute top-[-10px] left-0 font-semibold">
             Email
@@ -60,7 +58,6 @@ const Profile = () => {
           </label>
           <input
             type="password"
-            autoComplete="new-password"
             placeholder="Enter password"
             className="px-2 pt-5 pb-2 bg-white w-full text-sm border-b-2 border-gray-100 focus:border-[#333] outline-none"
           />
@@ -71,7 +68,6 @@ const Profile = () => {
           </label>
           <input
             type="password"
-            autoComplete="new-password"
             placeholder="Enter Confirm-password"
             className="px-2 pt-5 pb-2 bg-white w-full text-sm border-b-2 border-gray-100 focus:border-[#333] outline-none"
           />
@@ -79,16 +75,48 @@ const Profile = () => {
 
         <div className="relative flex items-center">
           <label className="text-[13px] absolute top-[-10px] left-0 font-semibold">
-            Profile Image
+            Business Logo
           </label>
           <input
             type="file"
             className="mt-4 w-full text-black text-sm bg-gray-100 file:cursor-pointer cursor-pointer file:border-0 file:py-2 file:px-4 file:mr-4 file:bg-gray-800 file:hover:bg-gray-700 file:text-white rounded"
-            multiple={true}
           />
         </div>
 
-        <img className="w-20 h-20 rounded" src="#" alt="Large avatar"></img>
+        <img className="w-20 h-20 rounded" src="/docs/images/people/profile-picture-5.jpg" alt="Large avatar"></img>
+
+        <div className="relative flex items-center sm:col-span-2">
+          <label className="text-[13px] absolute top-[-10px] left-0 font-semibold">
+            Business Name
+          </label>
+          <input
+            type="text"
+            placeholder="Enter Business Name"
+            className="px-2 pt-5 pb-2 bg-white w-full text-sm border-b-2 border-gray-100 focus:border-[#333] outline-none"
+          />
+        </div>
+
+        <div className="relative flex items-center sm:col-span-2">
+          <label className="text-[13px] absolute top-[-10px] left-0 font-semibold">
+            GSTIN Number
+          </label>
+          <input
+            type="text"
+            placeholder="Enter GST Number"
+            className="px-2 pt-5 pb-2 bg-white w-full text-sm border-b-2 border-gray-100 focus:border-[#333] outline-none"
+          />
+        </div>
+
+        <div className="relative flex items-center sm:col-span-2">
+          <label className="text-[13px] absolute top-[-10px] left-0 font-semibold">
+            Industry
+          </label>
+          <input
+            type="text"
+            placeholder="Enter Indestury"
+            className="px-2 pt-5 pb-2 bg-white w-full text-sm border-b-2 border-gray-100 focus:border-[#333] outline-none"
+          />
+        </div>
       </div>
       <button
         type="button"

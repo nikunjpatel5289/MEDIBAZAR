@@ -22,12 +22,12 @@ const ContectUs = () => {
               <input type="email" className="form-control" id="c_email" name="c_email" placeholder="" />
             </div>
           </div>
-          <div className="form-group row">
+          {/* <div className="form-group row">
             <div className="col-md-12">
               <label htmlFor="c_subject" className="text-black">Subject </label>
               <input type="text" className="form-control" id="c_subject" name="c_subject" />
             </div>
-          </div>
+          </div> */}
 
           <div className="form-group row">
             <div className="col-md-12">

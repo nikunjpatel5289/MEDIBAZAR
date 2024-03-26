@@ -1,6 +1,6 @@
-import NavBar from "@/components/admin-layout/NavBar";
-import SideBar from "@/components/admin-layout/SideBar";
-import AllProduct from "@/components/admin-layout/productsComponent/AllProduct";
+import NavBar from "@/components/vender-layout/NavBar";
+import SideBar from "@/components/vender-layout/SideBar";
+import AllProduct from "@/components/vender-layout/productComponent/AllProduct";
 import React from "react";
 
 const page = () => {
