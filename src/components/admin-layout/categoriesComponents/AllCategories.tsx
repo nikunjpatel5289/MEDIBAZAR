@@ -6,7 +6,11 @@ const AllCategories = () => {
   const [showDel, setShowDel] = useState(false);
   return (
     <>
-      <div className={`${showDel ? "" : "hidden" } fixed inset-0 p-4 flex flex-wrap justify-center items-center w-full h-full z-[1000] before:fixed before:inset-0 before:w-full before:h-full before:bg-[rgba(0,0,0,0.5)] overflow-auto font-[sans-serif]`} >
+      <div
+        className={`${
+          showDel ? "" : "hidden"
+        } fixed inset-0 p-4 flex flex-wrap justify-center items-center w-full h-full z-[1000] before:fixed before:inset-0 before:w-full before:h-full before:bg-[rgba(0,0,0,0.5)] overflow-auto font-[sans-serif]`}
+      >
         <div className="w-full max-w-lg bg-white shadow-lg rounded-md p-6 relative">
           <div className="my-8 text-center">
             <svg
@@ -28,10 +32,17 @@ const AllCategories = () => {
             </h4>
           </div>
           <div className="text-center space-x-4">
-            <button type="button" onClick={() => setShowDel(!showDel)} className="px-6 py-2.5 rounded-md text-black text-sm font-semibold border-none outline-none bg-gray-200 hover:bg-gray-300 active:bg-gray-200" >
+            <button
+              type="button"
+              onClick={() => setShowDel(!showDel)}
+              className="px-6 py-2.5 rounded-md text-black text-sm font-semibold border-none outline-none bg-gray-200 hover:bg-gray-300 active:bg-gray-200"
+            >
               Cancel
             </button>
-            <button type="button" className="px-6 py-2.5 rounded-md text-white text-sm font-semibold border-none outline-none bg-red-600 hover:bg-red-700 active:bg-red-600" >
+            <button
+              type="button"
+              className="px-6 py-2.5 rounded-md text-white text-sm font-semibold border-none outline-none bg-red-600 hover:bg-red-700 active:bg-red-600"
+            >
               Delete
             </button>
           </div>
@@ -49,6 +60,9 @@ const AllCategories = () => {
                 Name
               </th>
               <th className="px-6 py-3  text-xs font-semibold text-gray-700">
+                Description
+              </th>
+              <th className="px-6 py-3  text-xs font-semibold text-gray-700">
                 Actions
               </th>
             </tr>
@@ -57,6 +71,32 @@ const AllCategories = () => {
             <tr className="">
               <td className="px-6 py-4 text-base">1</td>
               <td className="px-6 py-4 text-base">xyz</td>
+              <td className="px-6 py-3 text-sm">
+                <div className="flex items-center cursor-pointer">
+                  <div className="ml-4">
+                    <p className="text-xs text-gray-600 text-wrap h-16 overflow-y-scroll">
+                      gladys@example.com Lorem ipsum dolor sit amet consectetur
+                      adipisicing elit. Accusantium numquam non dolores dolorum,
+                      obcaecati molestiae, ab nostrum quod, aspernatur
+                      exercitationem consequuntur dignissimos enim ad porro
+                      harum voluptate maxime reiciendis repellat?s Lorem ipsum
+                      dolor sit amet consectetur adipisicing elit. Ex hic
+                      distinctio eum eveniet veritatis voluptatum voluptatem,
+                      inventore saepe similique, ipsam nobis adipisci quis
+                      fugiat in voluptates eius. Sed, non aliquam. Lorem ipsum
+                      dolor, sit amet consectetur adipisicing elit. Nisi commodi
+                      reprehenderit voluptate quia voluptatum debitis labore
+                      qui, exercitationem quod eum quibusdam culpa omnis cum
+                      animi cumque magni voluptatem quidem dolores? Impedit
+                      repudiandae, facere omnis distinctio quia similique
+                      eveniet accusantium asperiores corrupti quibusdam ipsam
+                      voluptates voluptatum commodi? Eaque, atque
+                      necessitatibus. Sequi, quas distinctio aliquid quia ipsam
+                      beatae ad accusamus inventore alias.
+                    </p>
+                  </div>
+                </div>
+              </td>
               <td className="px-6 py-4">
                 <Link
                   href={`/admin/categories/edit/${1223}`}
