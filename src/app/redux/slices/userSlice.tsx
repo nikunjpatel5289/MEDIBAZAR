@@ -52,6 +52,7 @@ const UserSlice = createSlice({
       })
       .addCase(userRegister.rejected, (state: any, action) => {
         state.status = "failed";
+        // console.log("In Redux",action.error);
         state.error = action.error.message;
       });
     //   .addCase(userLogin.pending, (state) => {

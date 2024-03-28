@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { userRegister } from "@/app/redux/slices/userSlice";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 interface FormValues {
   email: string;
@@ -14,9 +15,10 @@ interface FormValues {
 }
 
 const page = () => {
-  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
-  const { error } = useSelector((state: any) => state.user);
   const route = useRouter();
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+  const response = useSelector((state: any) => state.user);
+  const [err, seterr] = useState()
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Email is required"),
@@ -31,9 +33,14 @@ const page = () => {
   const handleSubmit = async (values: FormValues) => {
     try {
       dispatch(userRegister(values));
+
+      if (response.error) {
+        throw "Email Are Already Exist Try Again...";
+      }
+
       route.replace("/login");
-    } catch (err) {
-      //   console.log(error);
+    } catch (error : any) {
+      seterr(error)
     }
   };
 
@@ -62,6 +69,11 @@ const page = () => {
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                 Create your account
               </h1>
+              {err && (
+                <h1 className="text-xl font-bold leading-tight tracking-tight text-red-500 md:text-2xl">
+                  {err}
+                </h1>
+              )}
               <form
                 className="space-y-4 md:space-y-6"
                 onSubmit={formik.handleSubmit}
