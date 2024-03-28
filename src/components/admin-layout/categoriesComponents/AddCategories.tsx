@@ -13,6 +13,17 @@ const AddCategories = () => {
               className="px-2 pt-5 pb-2 bg-white w-full text-sm border-b-2 border-gray-100 focus:border-[#333] outline-none"
             />
           </div>
+          <div className="relative flex items-center sm:col-span-2">
+            <label className="text-[13px] absolute top-[-10px] left-0 font-semibold">
+              Category Description
+            </label>
+            <textarea
+              placeholder="Small Description..."
+              className="p-4 bg-white max-w-md mx-auto w-full block text-sm border border-gray-300 outline-[#007bff] rounded"
+              rows={3}
+              defaultValue={""}
+            />
+          </div>
         </div>
         <button
           type="button"
