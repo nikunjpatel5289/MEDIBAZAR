@@ -2,12 +2,22 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+// import { useSelector } from "react-redux";
 
 export default function Header() {
   const route = usePathname();
   const [logIn, setLogIn] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
+  const ISSERVER = typeof window === "undefined";
+
+  useEffect(() => {
+    const isData = localStorage.length > 0;
+
+    if (isData) {
+      setLogIn(!logIn);
+    }
+  }, []);
 
   const openSearch = () => {
     setSearchActive((prev) => !prev);
@@ -105,34 +115,37 @@ export default function Header() {
             >
               <span className="icon-menu"></span>
             </a> */}
+            {logIn && (
+              <>
+                <Link href="/profile">
+                  <div className="ms-3 relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                    <svg
+                      className="absolute w-12 h-12 text-gray-400 -left-1 cursor-pointer"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                        clipRule="evenodd"
+                      ></path>
+                    </svg>
+                  </div>
+                </Link>
+              </>
+            )}
             {!logIn && (
               <>
                 <Link href="/login" className="mt-2">
                   <span className="ms-4">LogIn |</span>
-                </Link> 
+                </Link>
                 <Link href="/signup" className="mt-2">
                   <span className="ms-1">Register</span>
                 </Link>
               </>
             )}
-            {logIn && (
-              <Link href="/profile">
-                <div className="ms-3 relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                  <svg
-                    className="absolute w-12 h-12 text-gray-400 -left-1 cursor-pointer"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                </div>
-              </Link>
-            )}
+            
           </div>
         </div>
       </div>

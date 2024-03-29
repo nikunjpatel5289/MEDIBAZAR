@@ -163,6 +163,16 @@ const page = () => {
                   </Link>{" "}
                   here
                 </p>
+                <p className="text-sm font-light text-gray-500 dark:text-gray-800">
+                  Create Vender Account?{" "}
+                  <Link
+                    href="/venderSignup"
+                    className="font-medium text-black hover:underline dark:text-primary-500"
+                  >
+                    Sign Up
+                  </Link>{" "}
+                  here
+                </p>
               </form>
             </div>
           </div>

@@ -8,6 +8,7 @@ import TopFilterBar from "@/components/user-layout/productComponent/TopFilterBar
 const page = () => {
   return (
     <Container>
+      
       <div className="bg-white">
         <div>
           <main className="mx-auto max-w-7xl px-0 sm:px-6 lg:px-8">
