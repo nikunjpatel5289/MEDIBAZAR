@@ -1,23 +1,29 @@
 "use client";
 
+import { userLogOut } from "@/app/redux/slices/userSlice";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-// import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 export default function Header() {
+  const reoute = useRouter();
   const route = usePathname();
   const [logIn, setLogIn] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
-  const ISSERVER = typeof window === "undefined";
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const isData = localStorage.length > 0;
-
-    if (isData) {
-      setLogIn(!logIn);
+    if (localStorage.getItem("token")) {
+      setLogIn(true);
     }
   }, []);
+
+  const handleLogOut = () => {
+    dispatch(userLogOut());
+    setLogIn(false);
+    reoute.replace("/login");
+  };
 
   const openSearch = () => {
     setSearchActive((prev) => !prev);
@@ -133,6 +139,9 @@ export default function Header() {
                     </svg>
                   </div>
                 </Link>
+                <button className="ms-2" type="button" onClick={handleLogOut}>
+                  Logout
+                </button>
               </>
             )}
             {!logIn && (
@@ -145,7 +154,6 @@ export default function Header() {
                 </Link>
               </>
             )}
-            
           </div>
         </div>
       </div>

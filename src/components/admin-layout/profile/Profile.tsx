@@ -1,6 +1,7 @@
-import React from "react";
+"use client"
 
 const Profile = () => {
+  
   return (
     <form className="font-[sans-serif] text-[#292828] max-w-4xl mx-auto px-2 my-6">
       <div className="grid sm:grid-cols-2 gap-10">

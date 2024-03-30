@@ -8,6 +8,7 @@ import { ThunkDispatch } from "@reduxjs/toolkit";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
+import { jwtDecode } from "jwt-decode";
 
 interface FormValues {
   email: string;
@@ -15,7 +16,7 @@ interface FormValues {
 }
 
 const page = () => {
-  const route = useRouter()
+  const route = useRouter();
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const response = useSelector((state: any) => state.user);
 
@@ -30,16 +31,20 @@ const page = () => {
     try {
       const data = await dispatch(userLogin(values));
 
-      // console.info(data);
-      
       if (data.payload === undefined) {
         throw "Invalid Creadincial To Login...";
       } else {
-        // const token = JSON.parse(localStorage.getItem("token") || "");
-        // console.log(token);
-        route.replace("/");
-      }
+        const token = JSON.parse(localStorage.getItem("token") || "");
+        const { role }: any = jwtDecode(token);
 
+        if (role === "admin") {
+          route.push("/admin");
+        } else if (role === "vender") {
+          route.replace("/vender");
+        } else {
+          route.replace("/");
+        }
+      }
     } catch (err: any) {
       toast(err);
     }
@@ -55,7 +60,7 @@ const page = () => {
   });
   return (
     <>
-    <ToastContainer />
+      <ToastContainer />
       <section className="bg-gray-50 dark:bg-gray-300 bg-gradient-to-r from-cyan-500 to-blue-500">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <Link

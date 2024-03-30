@@ -1,10 +1,19 @@
 "use client";
+import { userLogOut } from "@/app/redux/slices/userSlice";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 const SideBar = () => {
+  const dispatch = useDispatch();
+  const route = useRouter();
   const [shoeCategories, setShowCategories] = useState(false);
   const [showList, setShowList] = useState(false);
+  const handleLogOut = () => {
+    dispatch(userLogOut());
+    route.replace("/login");
+  };
   return (
     <aside
       id="logo-sidebar"
@@ -152,7 +161,9 @@ const SideBar = () => {
               href="/admin/contect"
               className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
-              <span className="flex-1 ms-3 whitespace-nowrap">User Contect Us</span>
+              <span className="flex-1 ms-3 whitespace-nowrap">
+                User Contect Us
+              </span>
             </Link>
           </li>
           <li>
@@ -180,12 +191,12 @@ const SideBar = () => {
             </Link>
           </li> */}
           <li>
-            <Link
-              href="#"
+            <button
+              onClick={handleLogOut}
               className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
               <span className="flex-1 ms-3 whitespace-nowrap">Log Out</span>
-            </Link>
+            </button>
           </li>
         </ul>
       </div>
