@@ -7,6 +7,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
 
 interface FormValues {
   firstName: string;
@@ -17,9 +18,11 @@ interface FormValues {
   address: string;
   city: string;
   state: string;
+  pincode : number;
 }
 
 const Profile = () => {
+  const route = useRouter()
   const [userDataVal, setUserDataVal] = useState<any>([]);
   const [err, setError] = useState<any>(null);
 
@@ -43,14 +46,14 @@ const Profile = () => {
             Authorization: "Bearer " + token,
           },
         };
-        // console.log(id);
+        // console.info(id);
         
         const userData = await axios.get(
           `http://127.0.0.1:3000/user/${id}`,
           config
         );
         const data = await userData.data;
-        // console.log(userData);
+        // console.info(userData);
           
         setUserDataVal(data.data);
         formik.values.firstName = data.data.firstName;
@@ -61,6 +64,8 @@ const Profile = () => {
         formik.initialValues.address = data.data.address;
         formik.initialValues.state = data.data.state;
         formik.initialValues.profile = data.data.profile;
+        formik.initialValues.pincode = data.data.pincode;
+
       } catch (error) {
         setError(error);
       }
@@ -87,8 +92,9 @@ const Profile = () => {
       formData.append("address", values.address);
       formData.append("city", values.city);
       formData.append("state", values.state);
-      formData.append("profile", values.profile as File);
+      formData.append("profile", values?.profile as File || undefined);
       formData.append("phone", Number(values.phone) as any);
+      formData.append("pincode", Number(values.pincode) as any);
 
       const token = JSON.parse(localStorage.getItem("token") || "");
       const { id }: any = jwtDecode(token);
@@ -110,7 +116,7 @@ const Profile = () => {
         toast("Your Profile Updated Succefully...");
       }
 
-      // route.replace("/login");
+      route.replace("/");
     } catch (error: any) {
       // console.info(error);
       toast(error.response.data);
@@ -128,6 +134,7 @@ const Profile = () => {
       address: "",
       city: "",
       state: "",
+      pincode: 0
     },
     validationSchema,
     onSubmit: handleSubmit,
@@ -265,6 +272,25 @@ const Profile = () => {
                       className="block p-2.5 w-full text-sm text-indigo-900 bg-indigo-50 rounded-lg border border-indigo-300 focus:ring-indigo-500 focus:border-indigo-500 "
                       placeholder="Address..."
                     ></textarea>
+                  </div>
+
+                  <div className="mb-2 sm:mb-6">
+                    <label
+                      htmlFor="pincode"
+                      className="block mb-2 text-sm font-medium text-indigo-900 dark:text-black"
+                    >
+                      Pincode No.
+                    </label>
+                    <input
+                      type="number"
+                      id="pincode"
+                      name="pincode"
+                      value={formik.values.pincode}
+                      onChange={formik.handleChange}
+                      className="bg-indigo-50 border border-indigo-300 text-indigo-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 "
+                      placeholder="494105"
+                      required
+                    />
                   </div>
 
                   <div className="flex flex-col items-center w-full mb-2 space-x-0 space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 sm:mb-6">
