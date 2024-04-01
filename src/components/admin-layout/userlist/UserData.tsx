@@ -1,67 +1,118 @@
 "use client";
-import { useState } from "react";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+import { useEffect, useState } from "react";
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 
-const UserData = () => {
-  const [active, setActive] = useState(true);
+interface prop {
+  search: string;
+  // limit: number;
+  // page:number;
+}
+
+const UserData = (prop: prop) => {
+  const [data, setData] = useState<any>([]);
+  let i = 1;
+
+  const getUserData = async () => {
+    try {
+      const token = JSON.parse(localStorage.getItem("token") || "");
+      // const { id }: any = jwtDecode(token);
+      let config = {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      };
+      // console.info(prop.page);
+
+      const response = await axios.get(
+        `http://127.0.0.1:3000/user?keyword=${prop.search}`,
+        config
+      );
+      // const response = await axios.get(
+      //   `http://127.0.0.1:3000/user?keyword=${prop.search}&page=${prop.page}&limit=${prop.limit}`,
+      //   config
+      // );
+
+      if (response) {
+        // console.info(response.data.data);
+        setData(response.data.data);
+      }
+    } catch (error: any) {
+      console.info(error.response.data);
+    }
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, [prop]);
+
+  const handeleActivation = async (userId: string) => {
+    try {
+      const token = JSON.parse(localStorage.getItem("token") || "");
+      const { id }: any = jwtDecode(token);
+      let config = {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      };
+      const response = await axios.patch(
+        `http://127.0.0.1:3000/user/deActive/${userId}`,
+        null,
+        config
+      );
+
+      if (response) {
+        // toast("User Data updated...");
+        getUserData();
+      }
+    } catch (error: any) {
+      // toast(error.response.data)
+      console.info(error.response.data);
+    }
+  };
 
   return (
     <>
       <tbody className="whitespace-nowrap">
-        <tr className="odd:bg-blue-50">
-          <td className="pl-6 w-8">
-            {/* <input id="checkbox1" type="checkbox" className="hidden peer" />
-              <label
-                htmlFor="checkbox1"
-                className="relative flex items-center justify-center p-0.5 peer-checked:before:hidden before:block before:absolute before:w-full before:h-full before:bg-white w-5 h-5 cursor-pointer bg-blue-500 border border-gray-400 rounded overflow-hidden"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-full fill-white"
-                  viewBox="0 0 520 520"
-                >
-                  <path
-                    d="M79.423 240.755a47.529 47.529 0 0 0-36.737 77.522l120.73 147.894a43.136 43.136 0 0 0 36.066 16.009c14.654-.787 27.884-8.626 36.319-21.515L486.588 56.773a6.13 6.13 0 0 1 .128-.2c2.353-3.613 1.59-10.773-3.267-15.271a13.321 13.321 0 0 0-19.362 1.343q-.135.166-.278.327L210.887 328.736a10.961 10.961 0 0 1-15.585.843l-83.94-76.386a47.319 47.319 0 0 0-31.939-12.438z"
-                    data-name="7-Check"
-                    data-original="#000000"
+        {data?.map((item: any) => {
+          return (
+            <tr className="odd:bg-blue-50" key={item._id}>
+              <td className="pl-6 w-8">{i++}</td>
+              <td className="px-6 py-3 text-sm">
+                <div className="flex items-center cursor-pointer">
+                  <div className="ml-4">
+                    <p className="text-sm text-black">
+                      {item.firstName} {item.lastName}
+                    </p>
+                    <p className="text-xs text-gray-400">{item.email}</p>
+                  </div>
+                </div>
+              </td>
+              <td className="px-6 py-3 text-sm">{item.role}</td>
+              <td className="px-6 py-4">
+                <div className="flex items-center">
+                  <div
+                    className={`h-2.5 w-2.5 rounded-full ${
+                      item.isActive ? `bg-green-500` : `bg-red-500`
+                    } me-2`}
+                  />{" "}
+                  {item.isActive ? "Active" : "De-Active"}
+                </div>
+              </td>
+              <td className="px-6 py-3">
+                <label className="relative cursor-pointer">
+                  <input
+                    type="checkbox"
+                    className="sr-only peer"
+                    onChange={() => handeleActivation(item._id)}
+                    checked={item.isActive ? true : false}
                   />
-                </svg>
-              </label> */}
-          </td>
-          <td className="px-6 py-3 text-sm">
-            <div className="flex items-center cursor-pointer">
-              <img
-                src="#"
-                className="w-9 h-9 rounded-full shrink-0"
-              />
-              <div className="ml-4">
-                <p className="text-sm text-black">Gladys Jones</p>
-                <p className="text-xs text-gray-400">gladys@example.com</p>
-              </div>
-            </div>
-          </td>
-          <td className="px-6 py-3 text-sm">Admin</td>
-          <td className="px-6 py-4">
-            <div className="flex items-center">
-              <div
-                className={`h-2.5 w-2.5 rounded-full ${
-                  active ? `bg-green-500` : `bg-red-500`
-                } me-2`}
-              />{" "}
-              {active ? "Active" : "De-Active"}
-            </div>
-          </td>
-          <td className="px-6 py-3">
-            <label className="relative cursor-pointer">
-              <input
-                type="checkbox"
-                className="sr-only peer"
-                onChange={() => setActive(!active)}
-                checked={active ? true : false}
-              />
-              <div className="w-11 h-6 flex items-center bg-red-500 rounded-full peer peer-checked:after:translate-x-full after:absolute after:left-[2px] peer-checked:after:border-white after:bg-white after:border after:border-gray-300 after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-500"></div>
-            </label>
-          </td>
-          {/* <td className="px-6 py-3">
+                  <div className="w-11 h-6 flex items-center bg-red-500 rounded-full peer peer-checked:after:translate-x-full after:absolute after:left-[2px] peer-checked:after:border-white after:bg-white after:border after:border-gray-300 after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-green-500"></div>
+                </label>
+              </td>
+              {/* <td className="px-6 py-3">
             <button className="mr-4" title="Edit">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +146,9 @@ const UserData = () => {
               </svg>
             </button>
           </td> */}
-        </tr>
+            </tr>
+          );
+        })}
       </tbody>
     </>
   );
