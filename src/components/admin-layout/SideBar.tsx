@@ -18,7 +18,7 @@ const SideBar = () => {
     <aside
       // id="logo-sidebar"
       className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
-      aria-label="Sidebar"
+      // aria-label="Sidebar"
     >
       <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
         <ul className="space-y-2 font-medium">
@@ -34,7 +34,7 @@ const SideBar = () => {
             <button
               type="button"
               className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-              aria-controls="dropdown-example"
+              // aria-controls="dropdown-example"
               data-collapse-toggle="dropdown-example"
               onClick={() => setShowCategories(!shoeCategories)}
             >
@@ -43,7 +43,7 @@ const SideBar = () => {
               </span>
               <svg
                 className="w-3 h-3"
-                aria-hidden="true"
+                // aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 10 6"
@@ -59,7 +59,7 @@ const SideBar = () => {
             </button>
             {shoeCategories && (
               <ul
-                id="dropdown-example"
+                // id="dropdown-example"
                 className={`${shoeCategories ? "" : "hidden"} py-2 space-y-2`}
               >
                 <li>

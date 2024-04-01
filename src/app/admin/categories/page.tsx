@@ -1,11 +1,65 @@
+"use client";
 import NavBar from "@/components/admin-layout/NavBar";
 import SideBar from "@/components/admin-layout/SideBar";
 import AddCategories from "@/components/admin-layout/categoriesComponents/AddCategories";
 import AllCategories from "@/components/admin-layout/categoriesComponents/AllCategories";
+import { useEffect, useState } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const page = () => {
+  const [catData, setCatData] = useState<any>();
+
+  const getTokenData = () => {
+    const token = JSON.parse(localStorage.getItem("token") || "");
+    let config = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+    return config;
+  };
+
+  const getCategoryData = async () => {
+    try {
+      const config = getTokenData();
+      const result = await axios.get("http://127.0.0.1:3000/category", config);
+
+      if (result) {
+        console.info(result.data.data);
+
+        setCatData(result.data.data);
+      }
+    } catch (error: any) {
+      console.info(error.response.data);
+    }
+  };
+
+  useEffect(() => {
+    getCategoryData();
+  }, []);
+
+  const handeRemoveCategory = async (id: string) => {
+    try {
+      const config = getTokenData()
+      const response = await axios.delete(`http://127.0.0.1:3000/category/${id}`, config)
+      
+      if(response.data.status) {
+        toast("Category Removed....")
+        getCategoryData()
+      }
+
+    } catch (error : any) {
+      toast(error.response.data.message)
+    }
+  }
+
   return (
     <>
+      <ToastContainer />
       <NavBar />
       <SideBar />
       <div className="p-4 sm:ml-64">
@@ -16,7 +70,7 @@ const page = () => {
         </div>
         <AddCategories />
         <hr />
-        <AllCategories />
+        <AllCategories catData={catData} removeCategory={handeRemoveCategory}/>
       </div>
     </>
   );
