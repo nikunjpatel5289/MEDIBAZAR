@@ -1,4 +1,4 @@
-const AddCategories = () => {
+const AddCategories = () => {  
   return (
     <>
       <form className="font-[sans-serif] text-[#292828] max-w-4xl mx-auto px-1 my-6">
