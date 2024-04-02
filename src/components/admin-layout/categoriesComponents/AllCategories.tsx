@@ -83,7 +83,7 @@ const AllCategories = ({ catData, removeCategory }: prop) => {
                     <div className="flex items-center cursor-pointer">
                       <div className="ml-4">
                         {/*text-xs text-wrap h-16 overflow-y-scroll */}
-                        <p className="text-sm text-gray-600 ">
+                        <p className="text-wrap h-16 overflow-y-scroll text-sm text-gray-600 ">
                           {item.categoryDescription}
                         </p>
                       </div>
@@ -91,7 +91,7 @@ const AllCategories = ({ catData, removeCategory }: prop) => {
                   </td>
                   <td className="px-6 py-4">
                     <Link
-                      href={`/admin/categories/edit/${1223}`}
+                      href={`/admin/categories/edit/${item._id}`}
                       className="text-blue-500 hover:text-blue-700 mr-4"
                     >
                       Edit
