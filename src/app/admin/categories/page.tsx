@@ -4,8 +4,6 @@ import SideBar from "@/components/admin-layout/SideBar";
 import AddCategories from "@/components/admin-layout/categoriesComponents/AddCategories";
 import AllCategories from "@/components/admin-layout/categoriesComponents/AllCategories";
 import { useEffect, useState } from "react";
-import { useFormik } from "formik";
-import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
@@ -29,12 +27,12 @@ const page = () => {
       const result = await axios.get("http://127.0.0.1:3000/category", config);
 
       if (result) {
-        console.info(result.data.data);
-
+        // console.info(result.data.data);
         setCatData(result.data.data);
       }
     } catch (error: any) {
-      console.info(error.response.data);
+      toast(error.response.data)
+      // console.info(error.response.data);
     }
   };
 
@@ -68,7 +66,7 @@ const page = () => {
             <span className="font-semibold">Add Categories</span>
           </div>
         </div>
-        <AddCategories />
+        <AddCategories getCategoryData={getCategoryData} getTokenData={getTokenData} toast={toast}/>
         <hr />
         <AllCategories catData={catData} removeCategory={handeRemoveCategory}/>
       </div>

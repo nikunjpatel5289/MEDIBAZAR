@@ -32,7 +32,7 @@ const page = () => {
       const data = await dispatch(userLogin(values));
       
       if (data.payload === undefined) {
-        throw "Invalid Creadincial To Login...";
+        throw "Invalid Creadincial...";
       } else {
         const token = JSON.parse(localStorage.getItem("token") || "");
         const { role }: any = jwtDecode(token);
