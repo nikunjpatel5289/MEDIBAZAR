@@ -1,62 +1,75 @@
 "use client";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AllProduct = () => {
-  const [showDel, setShowDel] = useState(false);
+  const [search, setSearch] = useState<string>("");
+  const [data, setData] = useState<any>([]);
+
+  const getTokenData = () => {
+    const token = JSON.parse(localStorage.getItem("token") || "");
+    const { id }: any = jwtDecode(token);
+    let config = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+    return { config, USERID: id };
+  };
+
+  const getOwnProduct = async () => {
+    try {
+      const { config, USERID } = getTokenData();
+      const resposen = await axios.get(
+        `http://127.0.0.1:3000/product/own/${USERID}?keyword=${search}`,
+        config
+      );
+      if (resposen) {
+        // console.info(resposen.data.data);
+        setData(resposen.data.data);
+      }
+    } catch (error: any) {
+      // console.info(error.response.data);
+      toast(error.response.data.message);
+    }
+  };
+
+  useEffect(() => {
+    getOwnProduct();
+  }, []);
+
+  const handleRemoveProduct = async (prodID: string) => {
+    try {
+      const { config } = getTokenData();
+      const reponse = await axios.delete(
+        `http://127.0.0.1:3000/product/${prodID}`,
+        config
+      );
+      if (reponse) {
+        toast("Product Removed...");
+        getOwnProduct();
+      }
+    } catch (error: any) {
+      toast(error.response.data.message);
+    }
+  };
   return (
     <>
-      <div
-        className={`${
-          showDel ? "" : "hidden"
-        } fixed inset-0 p-4 flex flex-wrap justify-center items-center w-full h-full z-[1000] before:fixed before:inset-0 before:w-full before:h-full before:bg-[rgba(0,0,0,0.5)] overflow-auto font-[sans-serif]`}
-      >
-        <div className="w-full max-w-lg bg-white shadow-lg rounded-md p-6 relative">
-          <div className="my-8 text-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-16 fill-red-500 inline"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1Zm1-3h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z"
-                data-original="#000000"
-              />
-              <path
-                d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Zm4 0v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z"
-                data-original="#000000"
-              />
-            </svg>
-            <h4 className="text-lg font-semibold mt-6">
-              Are you sure you want to delete this Product?
-            </h4>
-          </div>
-          <div className="text-center space-x-4">
-            <button
-              type="button"
-              onClick={() => setShowDel(!showDel)}
-              className="px-6 py-2.5 rounded-md text-black text-sm font-semibold border-none outline-none bg-gray-200 hover:bg-gray-300 active:bg-gray-200"
-            >
-              Cancel
-            </button>
-            <button
-              type="button"
-              className="px-6 py-2.5 rounded-md text-white text-sm font-semibold border-none outline-none bg-red-600 hover:bg-red-700 active:bg-red-600"
-            >
-              Delete
-            </button>
-          </div>
-        </div>
-      </div>
-
+      <ToastContainer />
       <div className="flex border border-black overflow-hidden max-w-md mx-auto font-[sans-serif]">
         <input
           type="search"
           placeholder="Search Something..."
+          onChange={(e) => setSearch(e.target.value)}
           className="w-full outline-none bg-white text-gray-600 text-sm px-4 py-3"
         />
         <button
           type="button"
+          onClick={getOwnProduct}
           className="flex items-center justify-center bg-black px-5 text-sm text-white"
         >
           Search
@@ -85,7 +98,60 @@ const AllProduct = () => {
             </tr>
           </thead>
           <tbody className="whitespace-nowrap">
-            <tr className="odd:bg-blue-50">
+            {data.map((item: any) => {
+              return (
+                <tr className="odd:bg-blue-50">
+                  <td className="px-6 py-3 text-sm">
+                    <div className="flex items-center cursor-pointer">
+                      <img
+                        src={item.images[0]}
+                        className="w-10 h-10 rounded-md shrink-0"
+                      />
+                      <div className="ml-4">
+                        <p className="text-lg text-black">{item.prodName}</p>
+                        {/* h-16 overflow-y-scroll */}
+                        <p className="text-xs text-gray-600 text-wrap ">
+                          {item.prodDescription}
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-6 py-3 text-sm">
+                    {item.categoryId.categoryName}
+                  </td>
+                  <td className="px-6 py-3 text-sm">{item.prodQty}</td>
+                  <td className="px-6 py-3 text-sm">Rs. {item.prodPrice}</td>
+                  <td className="px-6 py-3">
+                    <Link
+                      href={`/vender/product/edit/${item._id}`}
+                      className="text-blue-500 hover:text-blue-700 mr-4"
+                    >
+                      Edit
+                    </Link>
+                    <button
+                      className="mr-4"
+                      onClick={() => handleRemoveProduct(item._id)}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-5 fill-red-500 hover:fill-red-700"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1Zm1-3h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z"
+                          data-original="#000000"
+                        />
+                        <path
+                          d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Zm4 0v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z"
+                          data-original="#000000"
+                        />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+            {/* <tr className="odd:bg-blue-50">
               <td className="px-6 py-3 text-sm">
                 <div className="flex items-center cursor-pointer">
                   <img
@@ -130,7 +196,7 @@ const AllProduct = () => {
                 <button
                   className="mr-4"
                   title="Delete"
-                  onClick={() => setShowDel(!showDel)}
+                  // onClick={() => setShowDel(!showDel)}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -148,10 +214,10 @@ const AllProduct = () => {
                   </svg>
                 </button>
               </td>
-            </tr>
+            </tr> */}
           </tbody>
         </table>
-        <div className="md:flex mt-4 px-6">
+        {/* <div className="md:flex mt-4 px-6">
           <div className="flex items-center max-md:mt-4">
             <p className="text-sm text-gray-500">Display</p>
             <select className="text-sm text-gray-500 border border-gray-500 rounded h-7 mx-4 outline-none">
@@ -200,7 +266,7 @@ const AllProduct = () => {
               </li>
             </ul>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
