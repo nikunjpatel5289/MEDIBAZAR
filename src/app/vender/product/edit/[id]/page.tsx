@@ -1,12 +1,19 @@
+"use client";
 import NavBar from "@/components/vender-layout/NavBar";
 import SideBar from "@/components/vender-layout/SideBar";
+import VenderEditProduct from "@/components/vender-layout/productComponent/VenderEditProduct";
+// import EditProduct from "@/components/vender-layout/productComponent/EditProduct";
+import { useParams } from "next/navigation";
 
 const page = () => {
+  const param = useParams();
+
   return (
     <>
       <NavBar />
       <SideBar />
-      <div className="p-4 sm:ml-64">
+      <VenderEditProduct ID={param.id as string} />
+      {/* <div className="p-4 sm:ml-64">
         <div className="p-2 mt-14">
           <div className="text-start text-gray-600 font-sans text-4xl mb-4">
             <span className="font-semibold">Edit Products</span>
@@ -79,7 +86,7 @@ const page = () => {
               />
             </div>
             <br />
-            {/* Hear Run Map In Img Tag.. */}
+            
             <img className="w-20 h-20 rounded" src="/docs/images/people/profile-picture-5.jpg" alt="Previous Images"></img>
             <div className="relative flex items-center sm:col-span-2">
               <label className="text-[13px] absolute top-[-10px] left-0 font-semibold">
@@ -118,7 +125,7 @@ const page = () => {
             Save
           </button>
         </form>
-      </div>
+      </div> */}
     </>
   );
 };

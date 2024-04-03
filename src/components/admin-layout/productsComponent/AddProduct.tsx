@@ -73,7 +73,6 @@ const AddProduct = () => {
   const handleSubmit = async (values: FormValues) => {
     try {
       const { config, USERID } = getTokenData();
-      console.info(values.images);
       // if( values.prodFlavour?.match(/[a-zA-Z]+\s,\s[a-zA-Z]/gi)){
       //   console.log("MATCH");
       // }
@@ -88,13 +87,13 @@ const AddProduct = () => {
       formData.append("prodSaftyInfo", values.prodSaftyInfo);
       formData.append("prodQty", Number(values.prodQty) as any);
       formData.append("prodPrice", Number(values.prodPrice) as any);
-      formData.append("prodExpiryDate", Number(values.prodExpiryDate) as any);
+      formData.append("prodExpiryDate", new Date(values.prodExpiryDate) as any);
+      formData.append("prodSize", values.prodSize || "");
+      formData.append("prodFlavour", values.prodFlavour || "");
       formData.append("categoryId", values.categoryId);
       formData.append("userId", USERID);
 
-      // let FILE = []
       for (let i = 0; i < values.images.length; i++) {
-        // FILE.push(values.images[i])
         formData.append("images[]", values.images[i]);
       }
 
@@ -104,12 +103,23 @@ const AddProduct = () => {
         config
       );
 
-      // if(response) {
-      //   toast("Created")
-      // }
+      if (response) {
+        toast("Product Created...");
+        formik.values.prodName = "";
+        formik.values.prodDescription = "";
+        formik.values.prodBenifits = "";
+        formik.values.prodUse = "";
+        formik.values.prodSaftyInfo = "";
+        formik.values.prodQty = "" as any;
+        formik.values.prodPrice = "" as any;
+        formik.values.prodExpiryDate = "" as any;
+        formik.values.prodSize = "";
+        formik.values.prodFlavour = "";
+        formik.values.categoryId = "";
+      }
     } catch (error: any) {
-      console.log(error.response.data);
-      toast(error.response.data);
+      // console.log(error.response.data);
+      toast(error.response.data.message);
     }
   };
 
@@ -137,7 +147,7 @@ const AddProduct = () => {
         className="font-[sans-serif] text-[#292828] max-w-4xl mx-auto px-1 my-6"
         onSubmit={formik.handleSubmit}
         method="POST"
-        encType="multipart/formData"
+        encType="multipart/form-data"
       >
         <div className="grid sm:grid-cols-2 gap-10">
           <div className="relative flex items-center ">
