@@ -111,10 +111,7 @@ export default function Header() {
             {/* <a className="icons-btn d-inline-block js-search-open">
               <span onClick={openSearch} className="icon-search"></span>
             </a> */}
-            <Link href="/cart" className="icons-btn d-inline-block bag">
-              <span className="icon-shopping-bag"></span>
-              {/* <span className="number">2</span> */}
-            </Link>
+
             {/* <a
               href="#"
               className="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"
@@ -123,6 +120,10 @@ export default function Header() {
             </a> */}
             {logIn && (
               <>
+                <Link href="/cart" className="icons-btn d-inline-block bag">
+                  <span className="icon-shopping-bag"></span>
+                  {/* <span className="number">2</span> */}
+                </Link>
                 <Link href="/profile">
                   <div className="ms-3 relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                     <svg

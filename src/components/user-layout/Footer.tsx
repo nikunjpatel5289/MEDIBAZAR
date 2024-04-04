@@ -10,7 +10,7 @@ const Footer = () => {
               <div className="block-7">
                 <h3 className="footer-heading mb-4">About Us</h3>
                 <p>
-                A pharmacy store is a crucial component of healthcare infrastructure, providing essential medications and healthcare products to the community. These stores often employ knowledgeable pharmacists who offer advice on medication usage and potential interactions.
+                A pharmacy store is a crucial component of healthcare infrastructure, providing essential medications and healthcare products to the community. 
                 </p>
               </div>
             </div>

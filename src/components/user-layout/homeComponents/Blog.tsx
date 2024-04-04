@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 interface prop {
  readonly title?: string,
  readonly description?: string
@@ -12,8 +14,8 @@ const Blog = (prop: prop) => {
       <div className="container">
         <div className="row align-items-stretch">
           <div className="col-lg-6 mb-5 mb-lg-0">
-            <a
-              href="#"
+            <Link
+              href="/about"
               className="banner-1 h-100 d-flex"
               style={{ backgroundImage: `url("./images/bg_1.jpg")` }}
             >
@@ -21,11 +23,11 @@ const Blog = (prop: prop) => {
                 <h2>{prop?.title || "MediBazar Products"}</h2>
                 <p>{prop?.description || "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Molestiae ex ad minus rem odio voluptatem." }</p>
               </div>
-            </a>
+            </Link>
           </div>
           <div className="col-lg-6 mb-5 mb-lg-0">
-            <a
-              href="#"
+            <Link
+              href="/about"
               className="banner-1 h-100 d-flex"
               style={{ backgroundImage: `url("./images/bg_2.jpg")` }}
             >
@@ -36,7 +38,7 @@ const Blog = (prop: prop) => {
                   Molestiae ex ad minus rem odio voluptatem.
                 </p>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
