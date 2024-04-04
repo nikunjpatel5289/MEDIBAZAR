@@ -18,9 +18,13 @@ const AboutUs = () => {
                 <div className=" text-center">
                   <h1>About Us</h1>
                   <p className="text-cyan-300">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Rerum obcaecati natus iure voluptatum eveniet harum
-                    recusandae ducimus saepe.
+                    Welcome to Phermey Web, your premier destination for all
+                    your pharmaceutical needs. We offer a comprehensive range of
+                    medications, supplements, and healthcare products, sourced
+                    from trusted suppliers. Our user-friendly platform ensures a
+                    seamless shopping experience, backed by secure transactions
+                    and prompt delivery. Discover wellness with Phermey Web
+                    today!
                   </p>
                 </div>
               </div>
