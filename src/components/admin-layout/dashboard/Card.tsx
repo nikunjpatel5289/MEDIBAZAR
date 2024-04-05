@@ -1,26 +1,81 @@
+import Loder from "@/components/ExtraComponent/Loder";
 import Link from "next/link";
-import React from "react";
 
-const Card = () => {
+interface prop {
+  title: string;
+  totalCount: number;
+  extraTitle?: string;
+  extraTotalCount?: number;
+  link: string;
+}
+
+const Card = ({
+  title,
+  totalCount,
+  extraTitle,
+  extraTotalCount,
+  link,
+}: prop) => {
   return (
     <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <svg
-        className="w-7 h-7 text-gray-500 dark:text-gray-400 mb-3"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="currentColor"
-        viewBox="0 0 20 20"
-      >
-        <path d="M18 5h-.7c.229-.467.349-.98.351-1.5a3.5 3.5 0 0 0-3.5-3.5c-1.717 0-3.215 1.2-4.331 2.481C8.4.842 6.949 0 5.5 0A3.5 3.5 0 0 0 2 3.5c.003.52.123 1.033.351 1.5H2a2 2 0 0 0-2 2v3a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7a2 2 0 0 0-2-2ZM8.058 5H5.5a1.5 1.5 0 0 1 0-3c.9 0 2 .754 3.092 2.122-.219.337-.392.635-.534.878Zm6.1 0h-3.742c.933-1.368 2.371-3 3.739-3a1.5 1.5 0 0 1 0 3h.003ZM11 13H9v7h2v-7Zm-4 0H2v5a2 2 0 0 0 2 2h3v-7Zm6 0v7h3a2 2 0 0 0 2-2v-5h-5Z" />
-      </svg>
+      {title === "Total Product's" ? (
+        <svg
+          className="w-[38px] h-[38px] text-gray-800 dark:text-white"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path d="M12.013 6.175 7.006 9.369l5.007 3.194-5.007 3.193L2 12.545l5.006-3.193L2 6.175l5.006-3.194 5.007 3.194ZM6.981 17.806l5.006-3.193 5.006 3.193L11.987 21l-5.006-3.194Z" />
+          <path d="m12.013 12.545 5.006-3.194-5.006-3.176 4.98-3.194L22 6.175l-5.007 3.194L22 12.562l-5.007 3.194-4.98-3.211Z" />
+        </svg>
+      ) : (
+        <svg
+          className="w-[38px] h-[38px] text-gray-800 dark:text-white"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeWidth="2.2"
+            d="M16 19h4a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-2m-2.236-4a3 3 0 1 0 0-4M3 18v-1a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Zm8-10a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+          />
+        </svg>
+      )}
 
-      <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
-        Total User's
-      </h5>
+      <div className="flex justify-between">
+        <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+          {title}
+        </h5>
+        {totalCount != null ? (
+          <p className="mb-1 font-normal text-xl text-gray-500 dark:text-gray-400">
+            {totalCount}
+          </p>
+        ) : (
+          <Loder />
+        )}
+      </div>
 
-      <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">1273</p>
+      {extraTitle && extraTotalCount && (
+        <div className="flex justify-between">
+          <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+            {extraTitle}
+          </h5>
+          <p className="mb-1 font-normal text-xl text-gray-500 dark:text-gray-400">
+            {extraTotalCount}
+          </p>
+        </div>
+      )}
+
       <Link
-        href="/admin/users"
+        href={link}
         className="inline-flex font-medium items-center text-blue-600 hover:underline"
       >
         See All Deatails
