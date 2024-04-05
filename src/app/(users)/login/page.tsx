@@ -9,6 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import { jwtDecode } from "jwt-decode";
+import { useEffect } from "react";
 
 interface FormValues {
   email: string;
@@ -20,6 +21,10 @@ const page = () => {
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const response = useSelector((state: any) => state.user);
 
+  // useEffect(() => {
+  //   console.log("----------1111");
+  // }, []);
+
   const validationSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Email is required"),
     password: Yup.string()
@@ -30,13 +35,14 @@ const page = () => {
   const handleSubmit = async (values: FormValues) => {
     try {
       const data = await dispatch(userLogin(values));
-      
+
       if (data.payload === undefined) {
         throw "Invalid Creadincial...";
       } else {
         const token = JSON.parse(localStorage.getItem("token") || "");
         const { role }: any = jwtDecode(token);
-
+        // setCookie('token',token)
+        // setCookie('role',role)
         if (role === "admin") {
           route.push("/admin");
         } else if (role === "vender") {

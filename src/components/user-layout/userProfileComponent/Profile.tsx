@@ -23,7 +23,7 @@ interface FormValues {
 
 const Profile = () => {
   const route = useRouter()
-  const [userDataVal, setUserDataVal] = useState<any>([]);
+  const [userDataVal, setUserDataVal] = useState<Array<any>>([]);
   const [err, setError] = useState<any>(null);
 
   const validationSchema = Yup.object().shape({

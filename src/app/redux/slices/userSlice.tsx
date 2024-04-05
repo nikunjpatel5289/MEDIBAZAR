@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
+import { deleteCookie, setCookie } from "cookies-next";
 
 const initialState = {
   token: [],
@@ -50,7 +51,6 @@ export const userLogin = createAsyncThunk("userLogin", async (val: any) => {
     );
     localStorage.setItem("token", JSON.stringify(existingUser.data.token));
     // localStorage.setItem("user", JSON.stringify(existingUser.data.user));
-    
     const data = await existingUser.data;
     return data;
   } catch (error: any) {
@@ -63,10 +63,12 @@ const UserSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    userLogOut: (state:any) => {
+    userLogOut: (state: any) => {
       state.token = null;
       state.user = null;
-      localStorage.removeItem("token")
+      localStorage.removeItem("token");
+      deleteCookie("token");
+      deleteCookie("role");
     },
   },
   extraReducers: (builder) => {
@@ -98,9 +100,11 @@ const UserSlice = createSlice({
         state.status = "succeeded";
 
         // console.log("TOKEN",action.payload.token);
-        
+
         state.token = action.payload.token;
         state.user = action.payload.user;
+        setCookie("token", action.payload.token);
+        setCookie("role", action.payload.user.role);
       })
       .addCase(userLogin.rejected, (state: any, action) => {
         state.status = "failed";

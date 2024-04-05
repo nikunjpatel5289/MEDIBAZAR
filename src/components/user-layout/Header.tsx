@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { getCookie } from "cookies-next";
 
 export default function Header() {
   const reoute = useRouter();
@@ -12,10 +13,16 @@ export default function Header() {
   const [logIn, setLogIn] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
   const dispatch = useDispatch();
+  // const islogin = localStorage.getItem("token") || null;
 
   useEffect(() => {
+    // if (getCookie("token") != undefined) {
+    //   setLogIn(true);
+    // }
     if (localStorage.getItem("token")) {
       setLogIn(true);
+      // console.log('------------');
+
     }
   }, []);
 
@@ -118,7 +125,7 @@ export default function Header() {
             >
               <span className="icon-menu"></span>
             </a> */}
-            {logIn && (
+            {logIn && ( //islogin
               <>
                 <Link href="/cart" className="icons-btn d-inline-block bag">
                   <span className="icon-shopping-bag"></span>
@@ -140,12 +147,16 @@ export default function Header() {
                     </svg>
                   </div>
                 </Link>
-                <button className="ms-2" type="button" onClick={handleLogOut}>
+                <button
+                  className="ms-2 outline-none"
+                  type="button"
+                  onClick={handleLogOut}
+                >
                   Logout
                 </button>
               </>
             )}
-            {!logIn && (
+            {!logIn && ( //islogin
               <>
                 <Link href="/login" className="mt-2">
                   <span className="ms-4">LogIn |</span>
