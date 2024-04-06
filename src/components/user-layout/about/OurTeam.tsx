@@ -1,7 +1,9 @@
 
 const OurTeam = () => {
   return (
-    <div className="site-section bg-light custom-border-bottom" data-aos="fade">
+    <div className="site-section bg-light custom-border-bottom" 
+    // data-aos="fade"
+    >
     <div className="container">
       <div className="row justify-content-center mb-5">
         <div className="col-md-7 site-section-heading text-center pt-4">

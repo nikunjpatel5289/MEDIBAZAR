@@ -23,7 +23,7 @@ interface FormValues {
   prodFlavour?: string;
   prodQty: number;
   prodPrice: number;
-  prodExpiryDate: any;
+  prodExpiryDate?: any;
   categoryId: string;
 }
 
@@ -41,7 +41,8 @@ const EditProduct = ({ ID }: prop) => {
     prodSaftyInfo: Yup.string().required("product SaftyInfo is required"),
     prodQty: Yup.number().required("product Qty is required"),
     prodPrice: Yup.number().required("product Price is required"),
-    prodExpiryDate: Yup.date().required("product ExpiryDate is required"),
+    prodExpiryDate: Yup.date()
+    // prodExpiryDate: Yup.date().required("product ExpiryDate is required"),
   });
 
   const getTokenData = () => {
@@ -90,14 +91,18 @@ const EditProduct = ({ ID }: prop) => {
         formik.values.prodSize = resposne.data.data.prodSize.join(",");
         formik.values.prodFlavour = resposne.data.data.prodFlavour.join(",");
         formik.values.categoryId = resposne.data.data.categoryId;
-        formik.values.prodExpiryDate = new Date(
-          resposne.data.data.prodExpiryDate
-        )
-          .toISOString()
-          .split("T")[0];
+        if(resposne.data.data.prodExpiryDate) {
+          formik.values.prodExpiryDate = new Date(
+            resposne.data.data.prodExpiryDate
+          )
+            .toISOString()
+            .split("T")[0];
+        }
       }
     } catch (error: any) {
-      toast(error.response.data);
+      // console.log(error);
+      
+      toast(error.response);
       //   console.info(error);
     }
   };
@@ -118,7 +123,10 @@ const EditProduct = ({ ID }: prop) => {
       formData.append("prodSaftyInfo", values.prodSaftyInfo);
       formData.append("prodQty", Number(values.prodQty) as any);
       formData.append("prodPrice", Number(values.prodPrice) as any);
-      formData.append("prodExpiryDate", new Date(values.prodExpiryDate) as any);
+      if(values.prodExpiryDate !== undefined) {
+        formData.append("prodExpiryDate", values.prodExpiryDate as any);
+      }
+      // formData.append("prodExpiryDate", new Date(values.prodExpiryDate || "") as any);
       formData.append("prodSize", values.prodSize || "");
       formData.append("prodFlavour", values.prodFlavour || "");
       if (values.categoryId === undefined) {
@@ -132,13 +140,13 @@ const EditProduct = ({ ID }: prop) => {
           formData.append("images", values.images[i]);
         }
       // }
-      const response = await axios.patch(
+      const result = await axios.patch(
         `http://127.0.0.1:3000/product/${param.id}`,
         formData,
         config
       );
 
-      if (response) {
+      if (result) {
         route.replace("/admin/products/all");
       }
     } catch (error: any) {
@@ -420,7 +428,7 @@ const EditProduct = ({ ID }: prop) => {
                   "text-red-600"
                 }`}
               >
-                Product Expiery-Date *
+                Product Expiery-Date
               </label>
               <input
                 type="date"

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getCookie } from "cookies-next";
+import { getCookie, getCookies } from "cookies-next";
 
 export default function Header() {
   const reoute = useRouter();
@@ -13,18 +13,18 @@ export default function Header() {
   const [logIn, setLogIn] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
   const dispatch = useDispatch();
-  // const islogin = localStorage.getItem("token") || null;
+  const islogin = getCookie("token"); //typeof window !== 'undefined' && localStorage.getItem("token") || null;
 
-  useEffect(() => {
-    // if (getCookie("token") != undefined) {
-    //   setLogIn(true);
-    // }
-    if (localStorage.getItem("token")) {
-      setLogIn(true);
-      // console.log('------------');
+  // useEffect(() => {
+  //   // if (getCookie("token") != undefined) {
+  //   //   setLogIn(true);
+  //   // }
+  //   if (localStorage.getItem("token")) {
+  //     setLogIn(true);
+  //     // console.log('------------');
 
-    }
-  }, []);
+  //   }
+  // }, []);
 
   const handleLogOut = () => {
     dispatch(userLogOut());
@@ -40,10 +40,10 @@ export default function Header() {
     <div className="site-navbar py-2">
       <div className={`search-wrap ${searchActive && "active"}`}>
         <div className="container">
-          <a className="search-close js-search-close">
+          <Link href="#" className="search-close js-search-close">
             <span onClick={openSearch} className="icon-close2"></span>
-          </a>
-          <form action="#" method="post">
+          </Link>
+          <form>
             <input
               type="text"
               className="form-control"
@@ -125,7 +125,7 @@ export default function Header() {
             >
               <span className="icon-menu"></span>
             </a> */}
-            {logIn && ( //islogin
+            {islogin && ( //islogin
               <>
                 <Link href="/cart" className="icons-btn d-inline-block bag">
                   <span className="icon-shopping-bag"></span>
@@ -156,7 +156,7 @@ export default function Header() {
                 </button>
               </>
             )}
-            {!logIn && ( //islogin
+            {!islogin && ( //islogin
               <>
                 <Link href="/login" className="mt-2">
                   <span className="ms-4">LogIn |</span>

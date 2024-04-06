@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 interface prop {
- readonly title?: string,
- readonly description?: string
+  readonly title?: string;
+  readonly description?: string;
 }
 
 const Blog = (prop: prop) => {
@@ -21,7 +21,10 @@ const Blog = (prop: prop) => {
             >
               <div className="banner-1-inner align-self-center">
                 <h2>{prop?.title || "MediBazar Products"}</h2>
-                <p>{prop?.description || "Lorem, ipsum dolor sit amet consectetur adipisicing elit.Molestiae ex ad minus rem odio voluptatem." }</p>
+                <p>
+                  {prop?.description ||
+                    "A pharmacy store is a crucial component of healthcare infrastructure, providing essential medications and healthcare products to the community."}
+                </p>
               </div>
             </Link>
           </div>
@@ -34,8 +37,9 @@ const Blog = (prop: prop) => {
               <div className="banner-1-inner ml-auto  align-self-center">
                 <h2>Rated by Experts</h2>
                 <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Molestiae ex ad minus rem odio voluptatem.
+                  Expertly crafted, offering premium quality and reliability.
+                  Trusted by professionals worldwide for exceptional
+                  performance.
                 </p>
               </div>
             </Link>

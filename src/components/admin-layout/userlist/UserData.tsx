@@ -7,8 +7,8 @@ import { useEffect, useState } from "react";
 
 interface prop {
   search: string;
-  // limit: number;
-  // page:number;
+  limit: number;
+  page:number;
 }
 
 const UserData = (prop: prop) => {
@@ -26,14 +26,14 @@ const UserData = (prop: prop) => {
       };
       // console.info(prop.page);
 
-      const response = await axios.get(
-        `http://127.0.0.1:3000/user?keyword=${prop.search}`,
-        config
-      );
       // const response = await axios.get(
-      //   `http://127.0.0.1:3000/user?keyword=${prop.search}&page=${prop.page}&limit=${prop.limit}`,
+      //   `http://127.0.0.1:3000/user?keyword=${prop.search}`,
       //   config
       // );
+      const response = await axios.get(
+        `http://127.0.0.1:3000/user?keyword=${prop.search}&page=${prop.page}&limit=${prop.limit}`,
+        config
+      );
 
       if (response) {
         // console.info(response.data.data);

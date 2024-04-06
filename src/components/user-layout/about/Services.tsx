@@ -2,14 +2,14 @@ const Services = () => {
   return (
     <div
       className="site-section site-section-sm site-blocks-1 border-0"
-      data-aos="fade"
+      // data-aos="fade"
     >
       <div className="container">
         <div className="row">
           <div
             className="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4"
-            data-aos="fade-up"
-            data-aos-delay=""
+            // data-aos="fade-up"
+            // data-aos-delay=""
           >
             <div className="icon mr-4 align-self-start">
               <span className="icon-truck text-primary"></span>
@@ -24,8 +24,8 @@ const Services = () => {
           </div>
           <div
             className="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4"
-            data-aos="fade-up"
-            data-aos-delay="100"
+            // data-aos="fade-up"
+            // data-aos-delay="100"
           >
             <div className="icon mr-4 align-self-start">
               <span className="icon-refresh2 text-primary"></span>
@@ -41,8 +41,8 @@ const Services = () => {
           </div>
           <div
             className="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4"
-            data-aos="fade-up"
-            data-aos-delay="200"
+            // data-aos="fade-up"
+            // data-aos-delay="200"
           >
             <div className="icon mr-4 align-self-start">
               <span className="icon-help text-primary"></span>

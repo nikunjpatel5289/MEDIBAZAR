@@ -154,7 +154,7 @@ const Profile = () => {
             </label>
             <input
               type="text"
-              name="forstName"
+              name="firstName"
               placeholder="Enter first name"
               className="px-2 pt-5 pb-2 bg-white w-full text-sm border-b-2 border-gray-100 focus:border-[#333] outline-none"
               value={formik.values.firstName}
