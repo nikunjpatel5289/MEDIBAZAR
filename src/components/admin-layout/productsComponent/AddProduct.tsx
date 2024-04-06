@@ -18,7 +18,7 @@ interface FormValues {
   prodFlavour?: string;
   prodQty: number;
   prodPrice: number;
-  prodExpiryDate: Date;
+  prodExpiryDate?: any;
   categoryId: string;
 }
 
@@ -35,7 +35,7 @@ const AddProduct = () => {
     images: Yup.string().required("Product Image Are required..."),
     prodPrice: Yup.number().required("product Price is required"),
     prodExpiryDate: Yup.date()
-      .required("product ExpiryDate is required")
+      // .required("product ExpiryDate is required")
       .min(new Date(), "Date Must Br greatr then Tody Date..."),
     categoryId: Yup.string().required(),
   });
@@ -72,6 +72,8 @@ const AddProduct = () => {
 
   const handleSubmit = async (values: FormValues) => {
     try {
+      // console.log(values);
+      
       const { config, USERID } = getTokenData();
       // if( values.prodFlavour?.match(/[a-zA-Z]+\s,\s[a-zA-Z]/gi)){
       //   console.log("MATCH");
@@ -87,7 +89,9 @@ const AddProduct = () => {
       formData.append("prodSaftyInfo", values.prodSaftyInfo);
       formData.append("prodQty", Number(values.prodQty) as any);
       formData.append("prodPrice", Number(values.prodPrice) as any);
-      formData.append("prodExpiryDate", new Date(values.prodExpiryDate) as any);
+      if(values.prodExpiryDate !== undefined) {
+        formData.append("prodExpiryDate", values.prodExpiryDate || null as any);
+      }
       formData.append("prodSize", values.prodSize || "");
       formData.append("prodFlavour", values.prodFlavour || "");
       formData.append("categoryId", values.categoryId);
@@ -373,7 +377,7 @@ const AddProduct = () => {
                 "text-red-600"
               }`}
             >
-              Product Expiery-Date *
+              Product Expiery-Date
             </label>
             <input
               type="date"

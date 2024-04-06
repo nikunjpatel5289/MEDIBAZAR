@@ -4,8 +4,8 @@ import UserData from "./UserData";
 
 const UserList = () => {
   const [sercah, setSearch] = useState("");
-  // const [limit, setlimit] = useState(2);
-  // const [page, setPage] = useState(1);
+  const [limit, setlimit] = useState(2);
+  const [page, setPage] = useState(1);
   // console.info(page)
   return (
     <>
@@ -42,10 +42,10 @@ const UserList = () => {
               </th>
             </tr>
           </thead>
-          {/* <UserData search={sercah} limit={limit} page={page}/> */}
-          <UserData search={sercah} />
+          <UserData search={sercah} limit={limit} page={page}/>
+          {/* <UserData search={sercah} /> */}
         </table>
-        {/* <div className="md:flex mt-4 px-6">
+        <div className="md:flex mt-4 px-6">
           <p className="text-sm text-gray-400 flex-1">
             Showind 1 to 5 of 100 entries
           </p>
@@ -95,7 +95,7 @@ const UserList = () => {
               </li>
             </ul>
           </div>
-        </div> */}
+        </div>
       </div>
     </>
   );

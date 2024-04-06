@@ -11,7 +11,7 @@ const SideBar = () => {
   const route = useRouter();
   const handleLogOut = () => {
     dispatch(userLogOut());
-    route.replace("/login");
+    route.push("/login");
   };
   return (
     <>

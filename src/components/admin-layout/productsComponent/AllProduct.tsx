@@ -153,7 +153,7 @@ const AllProduct = () => {
             })}
           </tbody>
         </table>
-        {/* <div className="md:flex mt-4 px-6">
+        <div className="md:flex mt-4 px-6">
           <div className="flex items-center max-md:mt-4">
             <p className="text-sm text-gray-500">Display</p>
             <select className="text-sm text-gray-500 border border-gray-500 rounded h-7 mx-4 outline-none">
@@ -202,7 +202,7 @@ const AllProduct = () => {
               </li>
             </ul>
           </div>
-        </div> */}
+        </div>
       </div>
     </>
   );

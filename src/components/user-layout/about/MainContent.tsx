@@ -3,7 +3,7 @@ const MainContent = () => {
     <>
       <div
         className="site-section bg-light custom-border-bottom"
-        data-aos="fade"
+        // data-aos="fade"
       >
         <div className="container">
           <div className="row mb-5">
@@ -45,7 +45,7 @@ const MainContent = () => {
 
       <div
         className="site-section bg-light custom-border-bottom"
-        data-aos="fade"
+        // data-aos="fade"
       >
         <div className="container">
           <div className="row mb-5">

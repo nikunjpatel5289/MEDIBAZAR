@@ -9,7 +9,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import { jwtDecode } from "jwt-decode";
-import { useEffect } from "react";
 
 interface FormValues {
   email: string;
@@ -20,10 +19,6 @@ const page = () => {
   const route = useRouter();
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const response = useSelector((state: any) => state.user);
-
-  // useEffect(() => {
-  //   console.log("----------1111");
-  // }, []);
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Email is required"),
