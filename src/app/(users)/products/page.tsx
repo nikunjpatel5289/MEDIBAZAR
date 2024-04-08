@@ -1,23 +1,68 @@
+"use client";
+
 import "@/app/main.css";
 import Container from "@/components/user-layout/Container";
 import ProductList from "@/components/user-layout/productComponent/ProductList";
 import SideFilterBar from "@/components/user-layout/productComponent/SideFilterBar";
 import TopFilterBar from "@/components/user-layout/productComponent/TopFilterBar";
+import axios from "axios";
+import { useEffect, useState } from "react";
 // import FilterSideBar from '@/components/user-layout/productComponent/FilterSideBar'
 
 const page = () => {
+  const [data, setData] = useState<any>([]);
+  const [cat, setCat] = useState<any>("");
+  const [search, setSearch] = useState<any>("");
+  const [max, setMax] = useState<number>(0);
+  const [page, setPage] = useState<number>(1);
+
+  const handleSearchData = (data?: string) => {
+    setSearch(data);
+  };
+
+  const handelCateSearch = (data?: string) => {
+    setCat(data);
+  };
+
+  const handlePgination = (data: number) => {
+    setPage(data);
+  };
+
+  const handelGetProductData = async () => {
+    try {
+      const result = await axios.get(
+        `http://127.0.0.1:3000/product?cat=${cat}&keyword=${search}&page=${page}`
+      );
+      if (result) {
+        // console.info(result.data);
+
+        setData(result.data.data);
+        setMax(result.data.MAXCOUNT);
+      }
+    } catch (error: any) {
+      console.info(error.response.data);
+    }
+  };
+
+  useEffect(() => {
+    handelGetProductData();
+  }, [search, cat, page]);
+
   return (
     <Container>
-      
       <div className="bg-white">
         <div>
           <main className="mx-auto max-w-7xl px-0 sm:px-6 lg:px-8">
-            <TopFilterBar />
+            <TopFilterBar handleSearchData={handleSearchData} />
             <section aria-labelledby="products-heading" className="pb-24 pt-6">
               <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
-                <SideFilterBar />
+                <SideFilterBar handelCateSearch={handelCateSearch} />
                 <div className="lg:col-span-3">
-                  <ProductList />
+                  <ProductList
+                    data={data}
+                    MAXCOUNT={max}
+                    handlePgination={handlePgination}
+                  />
                 </div>
               </div>
             </section>

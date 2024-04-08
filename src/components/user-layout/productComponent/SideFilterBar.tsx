@@ -1,6 +1,27 @@
-import React from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-const SideFilterBar = () => {
+interface prop {
+  handelCateSearch: (data?: string) => void;
+}
+
+const SideFilterBar = ({ handelCateSearch }: prop) => {
+  const [catData, setCatData] = useState<Array<any>>([]);
+  const handelCategoryGet = async () => {
+    try {
+      const result = await axios.get("http://127.0.0.1:3000/category");
+      if (result) {
+        setCatData(result.data.data);
+      }
+    } catch (error: any) {
+      console.log(error.response.data);
+    }
+  };
+
+  useEffect(() => {
+    handelCategoryGet();
+  }, []);
+
   return (
     <form className="hidden lg:block">
       <h3 className="mb-3">Categories</h3>
@@ -8,24 +29,21 @@ const SideFilterBar = () => {
         role="list"
         className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900"
       >
-        <li>
-          <a href="#">Totes</a>
-        </li>
-        <li>
-          <a href="#">Backpacks</a>
-        </li>
-        <li>
-          <a href="#">Travel Bags</a>
-        </li>
-        <li>
-          <a href="#">Hip Bags</a>
-        </li>
-        <li>
-          <a href="#">Laptop Sleeves</a>
-        </li>
+        {catData.map((item: any) => {
+          return (
+            <li>
+              <span
+                onClick={() => handelCateSearch(item.id)}
+                className="hover:cursor-pointer hover:text-slate-500"
+              >
+                {item.categoryName}
+              </span>
+            </li>
+          );
+        })}
       </ul>
 
-      <div className="border-b border-gray-200 py-6">
+      {/* <div className="border-b border-gray-200 py-6">
         <h3 className="-my-3 flow-root">
           <span className="font-medium text-gray-900 mb-3">Color</span>
         </h3>
@@ -123,7 +141,7 @@ const SideFilterBar = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </form>
   );
 };

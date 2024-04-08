@@ -1,179 +1,95 @@
-import React from "react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
-const ProductList = () => {
-    return (
-        <>
-            <div className="row">
-                <div className="col-sm-6 col-lg-4 text-center item mb-4">
-                    <span className="tag">Sale</span>
-                    <a href="shop-single.html">
-                        {" "}
-                        <img src="images/product_01.png" alt="Image" />
-                    </a>
-                    <h3 className="text-dark">
-                        <a href="shop-single.html">Bioderma</a>
-                    </h3>
-                    <p className="price">
-                        <del>95.00</del> &mdash; $55.00
-                    </p>
-                </div>
-                <div className="col-sm-6 col-lg-4 text-center item mb-4">
-                    <a href="shop-single.html">
-                        {" "}
-                        <img src="images/product_02.png" alt="Image" />
-                    </a>
-                    <h3 className="text-dark">
-                        <a href="shop-single.html">Chanca Piedra</a>
-                    </h3>
-                    <p className="price">$70.00</p>
-                </div>
-                <div className="col-sm-6 col-lg-4 text-center item mb-4">
-                    <a href="shop-single.html">
-                        {" "}
-                        <img src="images/product_03.png" alt="Image" />
-                    </a>
-                    <h3 className="text-dark">
-                        <a href="shop-single.html">Umcka Cold Care</a>
-                    </h3>
-                    <p className="price">$120.00</p>
-                </div>
-                <div className="col-sm-6 col-lg-4 text-center item mb-4">
-                    <a href="shop-single.html">
-                        {" "}
-                        <img src="images/product_04.png" alt="Image" />
-                    </a>
-                    <h3 className="text-dark">
-                        <a href="shop-single.html">Cetyl Pure</a>
-                    </h3>
-                    <p className="price">
-                        <del>45.00</del> &mdash; $20.00
-                    </p>
-                </div>
-                <div className="col-sm-6 col-lg-4 text-center item mb-4">
-                    <a href="shop-single.html">
-                        {" "}
-                        <img src="images/product_05.png" alt="Image" />
-                    </a>
-                    <h3 className="text-dark">
-                        <a href="shop-single.html">CLA Core</a>
-                    </h3>
-                    <p className="price">$38.00</p>
-                </div>
-                <div className="col-sm-6 col-lg-4 text-center item mb-4">
-                    <span className="tag">Sale</span>
-                    <a href="shop-single.html">
-                        {" "}
-                        <img src="images/product_06.png" alt="Image" />
-                    </a>
-                    <h3 className="text-dark">
-                        <a href="shop-single.html">Poo Pourri</a>
-                    </h3>
-                    <p className="price">
-                        <del>$89</del> &mdash; $38.00
-                    </p>
-                </div>
+interface prop {
+  data: [any];
+  MAXCOUNT: number;
+  handlePgination: (data: number) => void;
+}
 
-                <div className="col-sm-6 col-lg-4 text-center item mb-4">
-                    <span className="tag">Sale</span>
-                    <a href="shop-single.html">
-                        {" "}
-                        <img src="images/product_01.png" alt="Image" />
-                    </a>
-                    <h3 className="text-dark">
-                        <a href="shop-single.html">Bioderma</a>
-                    </h3>
-                    <p className="price">
-                        <del>95.00</del> &mdash; $55.00
-                    </p>
-                </div>
-                <div className="col-sm-6 col-lg-4 text-center item mb-4">
-                    <a href="shop-single.html">
-                        {" "}
-                        <img src="images/product_02.png" alt="Image" />
-                    </a>
-                    <h3 className="text-dark">
-                        <a href="shop-single.html">Chanca Piedra</a>
-                    </h3>
-                    <p className="price">$70.00</p>
-                </div>
-                <div className="col-sm-6 col-lg-4 text-center item mb-4">
-                    <a href="shop-single.html">
-                        {" "}
-                        <img src="images/product_03.png" alt="Image" />
-                    </a>
-                    <h3 className="text-dark">
-                        <a href="shop-single.html">Umcka Cold Care</a>
-                    </h3>
-                    <p className="price">$120.00</p>
-                </div>
+const ProductList = ({ data, MAXCOUNT, handlePgination }: prop) => {
+  // console.log("DATA CHANGE", data, MAXCOUNT);
+  
+  const [cnt, setCnt] = useState<number>(1);
+  let ele: any = [];
 
-                <div className="col-sm-6 col-lg-4 text-center item mb-4">
-                    <a href="shop-single.html">
-                        {" "}
-                        <img src="images/product_04.png" alt="Image" />
-                    </a>
-                    <h3 className="text-dark">
-                        <a href="shop-single.html">Cetyl Pure</a>
-                    </h3>
-                    <p className="price">
-                        <del>45.00</del> &mdash; $20.00
-                    </p>
-                </div>
-                <div className="col-sm-6 col-lg-4 text-center item mb-4">
-                    <a href="shop-single.html">
-                        {" "}
-                        <img src="images/product_05.png" alt="Image" />
-                    </a>
-                    <h3 className="text-dark">
-                        <a href="shop-single.html">CLA Core</a>
-                    </h3>
-                    <p className="price">$38.00</p>
-                </div>
-                <div className="col-sm-6 col-lg-4 text-center item mb-4">
-                    <span className="tag">Sale</span>
-                    <a href="shop-single.html">
-                        {" "}
-                        <img src="images/product_06.png" alt="Image" />
-                    </a>
-                    <h3 className="text-dark">
-                        <a href="shop-single.html">Poo Pourri</a>
-                    </h3>
-                    <p className="price">
-                        <del>$89</del> &mdash; $38.00
-                    </p>
-                </div>
-            </div>
-            <div className="row mt-5">
-                <div className="col-md-12 text-center">
-                    <div className="site-block-27">
-                        <ul>
-                            <li>
-                                <a href="#">&lt;</a>
-                            </li>
-                            <li className="active">
-                                <span>1</span>
-                            </li>
-                            <li>
-                                <a href="#">2</a>
-                            </li>
-                            <li>
-                                <a href="#">3</a>
-                            </li>
-                            <li>
-                                <a href="#">4</a>
-                            </li>
-                            <li>
-                                <a href="#">5</a>
-                            </li>
-                            <li>
-                                <a href="#">&gt;</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </>
+  for (let i = 1; i <= MAXCOUNT; i++) {
+    ele.push(
+      <li className={cnt === i ? `active` : ""}>
+        <span>{i}</span>
+      </li>
     );
+  }
+
+  const increment = () => {
+    setCnt(cnt !== MAXCOUNT ? cnt + 1 : cnt);
+  };
+
+  const decrement = () => {
+    setCnt(cnt !== 1 ? cnt - 1 : cnt);
+  };
+
+  useEffect(() => {
+    window.scrollTo({top:0, left: 0, behavior:"smooth"})
+    handlePgination(cnt);
+  }, [cnt]);
+
+  return (
+    <>
+      <div className="row">
+        {data.map((item: any) => {
+          return (
+            <>
+              <div className="col-sm-6 col-lg-4 text-center item mb-4 shadow-md">
+                {/* <span className="tag">Sale</span> */}
+                <Link href={`/products/${item._id}`}>
+                  <img
+                    src={item.images[1]}
+                    className="ms-6 h-[230px]"
+                    width={"250px"}
+                    alt={item.prodName}
+                  />
+                  <h3 className="text-dark mt-3 text-sm">
+                    <span>{item.prodName}</span>
+                  </h3>
+                  <p className="price">
+                    {/* <del>95.00</del> &mdash; $55.00 */}
+                    Rs. {item.prodPrice}
+                  </p>
+                </Link>
+              </div>
+            </>
+          );
+        })}
+      </div>
+      <div className="row mt-4 float-end">
+        <div className="col-md-12 text-center">
+          <div className="site-block-27">
+            <ul>
+              <li>
+                <button
+                  onClick={() => decrement()}
+                  className="m-2 p-2 hover:cursor-pointer text-black text-xl bg-slate-400 rounded-lg hover:bg-slate-500"
+                >
+                  &lt;Previous
+                </button>
+              </li>
+              {ele}
+              <li>
+                {/* bg-slate-400 rounded-lg hover:bg-slate-500 */}
+                <button
+                  onClick={() => increment()}
+                  className="m-2 p-2 hover:cursor-pointer text-black text-xl bg-slate-400 rounded-lg hover:bg-slate-500"
+                >
+                  Next&gt;
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default ProductList;

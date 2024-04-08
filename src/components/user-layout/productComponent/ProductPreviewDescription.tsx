@@ -1,4 +1,13 @@
-const ProductPreviewDescription = () => {
+interface prop {
+  data: any;
+}
+const ProductPreviewDescription = ({ data }: prop) => {
+  const date = new Date(data.prodExpiryDate);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  const formattedDate = (data.prodExpiryDate !== undefined) ? `${year}-${month}-${day}` : "NO";
+
   return (
     <div className="mt-5">
       <div>
@@ -6,35 +15,26 @@ const ProductPreviewDescription = () => {
           <table className="table">
             <thead>
               <tr>
-                <th>Material</th>
+                <th>Information</th>
                 <th>Description</th>
-                <th>Packaging</th>
+                {/* <th>Packaging</th> */}
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td scope="row">OTC022401</td>
-                <td>
-                  Pain Management: Acetaminophen PM Extra-Strength Caplets, 500
-                  mg, 100/Bottle
-                </td>
-                <td>1 BT</td>
+                <td scope="row">Benefit</td>
+                <td>{data.prodBenifits}</td>
+                {/* <td>1 BT</td> */}
               </tr>
               <tr>
-                <td scope="row">OTC022401</td>
-                <td>
-                  Pain Management: Acetaminophen PM Extra-Strength Caplets, 500
-                  mg, 100/Bottle
-                </td>
-                <td>144/CS</td>
+                <td scope="row">Safet Information</td>
+                <td>{data.prodSaftyInfo}</td>
+                {/* <td>144/CS</td> */}
               </tr>
               <tr>
-                <td scope="row">OTC022401</td>
-                <td>
-                  Pain Management: Acetaminophen PM Extra-Strength Caplets, 500
-                  mg, 100/Bottle
-                </td>
-                <td>1 EA</td>
+                <td scope="row">Use Of It</td>
+                <td>{data.prodUse}</td>
+                {/* <td>1 EA</td> */}
               </tr>
             </tbody>
           </table>
@@ -44,21 +44,29 @@ const ProductPreviewDescription = () => {
           <table className="table">
             <tbody>
               <tr>
-                <td>HPIS CODE</td>
-                <td>999_200_40_0</td>
+                <td>Flavour</td>
+                <td>
+                  {data.prodFlavour?.map((item: string) =>
+                    item === "" ? "NO" : `${item} `
+                  )}
+                </td>
               </tr>
               <tr>
-                <td>HEALTHCARE PROVIDERS ONLY</td>
-                <td>No</td>
+                <td>Sizes</td>
+                <td>
+                  {data.prodSize?.map((item: string) =>
+                    item === "" ? "NO" : `${item} `
+                  )}
+                </td>
               </tr>
               <tr>
-                <td>LATEX FREE</td>
-                <td>Yes, No</td>
+                <td>Expiration Date</td>
+                <td>{formattedDate}</td>
               </tr>
-              <tr>
+              {/* <tr>
                 <td>MEDICATION ROUTE</td>
                 <td>Topical</td>
-              </tr>
+              </tr> */}
             </tbody>
           </table>
         </div>
