@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
 interface Image {
-  src: string | "";
-  alt: string | "prioductImages...";
+  src?: string | "";
+  alt?: string | "prioductImages...";
 }
 
 interface prop {
-  images: Image[];
+  images: any;
 }
 
 const Carosol = ({ images }: prop) => {
@@ -29,7 +29,7 @@ const Carosol = ({ images }: prop) => {
       data-ride="carousel"
     >
       <div className="carousel-inner">
-        {images.map((image, index) => (
+        {images?.map((image: any, index: any) => (
           <div
             key={index}
             className={`carousel-item ${index === activeIndex ? "active" : ""}`}
@@ -39,8 +39,8 @@ const Carosol = ({ images }: prop) => {
               className="d-block"
               height={"25%"}
               width={"750px"}
-              src={image?.src}
-              alt={image?.alt}
+              src={image}
+              // alt={image?.alt}
             />
           </div>
         ))}

@@ -3,20 +3,43 @@ import Carosol from "@/components/ExtraComponent/Carosol";
 import Footer from "@/components/user-layout/Footer";
 import Header from "@/components/user-layout/Header";
 import ProductPreviewDescription from "@/components/user-layout/productComponent/ProductPreviewDescription";
+import axios from "axios";
 import Link from "next/link";
-import { useState } from "react";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const page = () => {
+  const param = useParams();
+  const [data, setData] = useState<any>([]);
   const [val, setVal] = useState(1);
-  const handleINC = () => setVal(val + 1);
-  const handleDEC = () => setVal(val > 1 ? val - 1 : val);
+  // const handleINC = () => setVal(val + 1);
+  // const handleDEC = () => setVal(val > 1 ? val - 1 : val);
 
-  const images = [
-    { src: "../images/product_05.png", alt: "" },
-    { src: "../images/product_06.png", alt: "" },
-    { src: "../images/product_04.png", alt: "" },
-  ];
+  const handelGetProdData = async () => {
+    try {
+      const result = await axios.get(
+        `http://127.0.0.1:3000/product/${param.id}`
+      );
+      if (result) {
+        // console.info(result.data.data);
+        setData(result.data.data);
+      }
+    } catch (error: any) {
+      console.log(error.response.data);
+    }
+  };
 
+  // const images = [
+  //   {src:"../images/product_05.png", alt:""},
+  //    {src:"../images/product_06.png", alt:""},
+  //    {src:"../images/product_04.png", alt:""},
+  // ];
+
+  useEffect(() => {
+    handelGetProdData();
+  }, []);
+  // console.info("Found",data.images);
+  
   return (
     <>
       <Header />
@@ -26,7 +49,7 @@ const page = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="mr-auto">
               <div className="border text-center">
-                <Carosol images={images} />
+                <Carosol images={data.images} />
                 {/* <img
                   src="../images/product_07_large.png"
                   alt="Image"
@@ -36,19 +59,16 @@ const page = () => {
               </div>
             </div>
             <div>
-              <h2 className="text-black text-2xl">Ibuprofen Tablets, 200mg</h2>
+              {/* <h2 className="text-black text-2xl">{data.prodName}, 200mg</h2> */}
+              <h2 className="text-black text-2xl">{data.prodName}</h2>
               <p className="mt-4">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Pariatur, vitae, explicabo? Incidunt facere, natus soluta
-                dolores iusto! Molestiae expedita veritatis nesciunt doloremque
-                sint asperiores fuga voluptas, distinctio, aperiam, ratione
-                dolore.
+               {data.prodDescription}
               </p>
               <p className="mt-2">
-                <del className="text-gray-500">$95.00</del>{" "}
-                <strong className="text-primary text-lg">$55.00</strong>
+                {/* <del className="text-gray-500">$95.00</del>{" "} */}
+                <strong className="text-primary text-lg">Rs. {data.prodPrice}</strong>
               </p>
-              <div className="mt-4 flex items-center border border-gray-300 rounded overflow-hidden w-40">
+              {/* <div className="mt-4 flex items-center border border-gray-300 rounded overflow-hidden w-40">
                 <button className="px-3 py-2 bg-gray-200" onClick={handleDEC}>
                   -
                 </button>
@@ -64,13 +84,13 @@ const page = () => {
                 >
                   +
                 </button>
-              </div>
+              </div> */}
               <div className="mt-4">
                 <button className="inline-block px-4 py-3 btn-primary">
                   Add To Cart
                 </button>
               </div>
-              <ProductPreviewDescription />
+              <ProductPreviewDescription data={data}/>
             </div>
           </div>
         </div>
