@@ -7,6 +7,8 @@ import axios from "axios";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const page = () => {
   const param = useParams();
@@ -29,6 +31,38 @@ const page = () => {
     }
   };
 
+  const handelAddToCart = async () => {
+    try {
+      const token = localStorage.getItem("token") || "";
+      if (token === "") {
+        toast("Fist LogIn Then Add To Cart...");
+      } else {
+        const TOKEN = JSON.parse(token);
+        let config = {
+          headers: {
+            Authorization: "Bearer " + TOKEN,
+          },
+        };
+        const response = await axios.post(
+          "http://127.0.0.1:3000/cart",
+          {
+            products: [{ productId: param.id }],
+          },
+          config
+        );
+
+        if (response) {
+          toast("Product Added Into Cart...");
+        }
+        // console.info(JSON.parse(token));
+
+        // console.info("Cart ADDD");
+      }
+    } catch (error: any) {
+      console.info(error.response.data);
+    }
+  };
+
   // const images = [
   //   {src:"../images/product_05.png", alt:""},
   //    {src:"../images/product_06.png", alt:""},
@@ -39,10 +73,11 @@ const page = () => {
     handelGetProdData();
   }, []);
   // console.info("Found",data.images);
-  
+
   return (
     <>
       <Header />
+      <ToastContainer />
       {/* below Classs => site-section */}
       <div className="mt-8">
         <div className="container">
@@ -61,12 +96,12 @@ const page = () => {
             <div>
               {/* <h2 className="text-black text-2xl">{data.prodName}, 200mg</h2> */}
               <h2 className="text-black text-2xl">{data.prodName}</h2>
-              <p className="mt-4">
-               {data.prodDescription}
-              </p>
+              <p className="mt-4">{data.prodDescription}</p>
               <p className="mt-2">
                 {/* <del className="text-gray-500">$95.00</del>{" "} */}
-                <strong className="text-primary text-lg">Rs. {data.prodPrice}</strong>
+                <strong className="text-primary text-lg">
+                  Rs. {data.prodPrice}
+                </strong>
               </p>
               {/* <div className="mt-4 flex items-center border border-gray-300 rounded overflow-hidden w-40">
                 <button className="px-3 py-2 bg-gray-200" onClick={handleDEC}>
@@ -86,11 +121,15 @@ const page = () => {
                 </button>
               </div> */}
               <div className="mt-4">
-                <button className="inline-block px-4 py-3 btn-primary">
+                <button
+                  type="button"
+                  onClick={handelAddToCart}
+                  className="inline-block px-4 py-3 btn-primary"
+                >
                   Add To Cart
                 </button>
               </div>
-              <ProductPreviewDescription data={data}/>
+              <ProductPreviewDescription data={data} />
             </div>
           </div>
         </div>
