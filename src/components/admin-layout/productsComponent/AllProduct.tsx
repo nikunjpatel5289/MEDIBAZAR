@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 const AllProduct = () => {
   const [search, setSearch] = useState<string>("");
   const [data, setData] = useState<any>([]);
+  const [limit, setLimit] = useState<number>(5);
+  const [page, setPage] = useState(1);
 
   const getTokenData = () => {
     const token = JSON.parse(localStorage.getItem("token") || "");
@@ -25,7 +27,7 @@ const AllProduct = () => {
     try {
       const { config, USERID } = getTokenData();
       const resposen = await axios.get(
-        `http://127.0.0.1:3000/product/own/${USERID}?keyword=${search}`,
+        `http://127.0.0.1:3000/product/own/${USERID}?keyword=${search}&limit=${limit}&page=${page}`,
         config
       );
       if (resposen) {
@@ -40,7 +42,7 @@ const AllProduct = () => {
 
   useEffect(() => {
     getOwnProduct();
-  }, []);
+  }, [limit, page]);
 
   const handleRemoveProduct = async (prodID: string) => {
     try {
@@ -156,7 +158,10 @@ const AllProduct = () => {
         <div className="md:flex mt-4 px-6">
           <div className="flex items-center max-md:mt-4">
             <p className="text-sm text-gray-500">Display</p>
-            <select className="text-sm text-gray-500 border border-gray-500 rounded h-7 mx-4 outline-none">
+            <select
+              onChange={(e: any) => setLimit(e.target.value)}
+              className="text-sm text-gray-500 border border-gray-500 rounded h-7 mx-4 outline-none"
+            >
               <option>5</option>
               <option>10</option>
               <option>20</option>
@@ -164,7 +169,7 @@ const AllProduct = () => {
               <option>100</option>
             </select>
             <ul className="flex space-x-1 ml-2">
-              <li className="flex items-center justify-center cursor-pointer bg-gray-300 w-7 h-7 rounded">
+              <li className="flex items-center justify-center cursor-pointer bg-gray-300 w-24 h-7 rounded">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-3 fill-gray-500"
@@ -175,20 +180,16 @@ const AllProduct = () => {
                     data-original="#000000"
                   />
                 </svg>
+                <span
+                  onClick={() =>
+                    setPage((prev) => (prev > 1 ? prev - 1 : prev))
+                  }
+                >
+                  Previous
+                </span>
               </li>
-              <li className="flex items-center justify-center cursor-pointer text-sm w-7 h-7 rounded">
-                1
-              </li>
-              <li className="flex items-center justify-center cursor-pointer text-sm bg-black text-white w-7 h-7 rounded">
-                2
-              </li>
-              <li className="flex items-center justify-center cursor-pointer text-sm w-7 h-7 rounded">
-                3
-              </li>
-              <li className="flex items-center justify-center cursor-pointer text-sm w-7 h-7 rounded">
-                4
-              </li>
-              <li className="flex items-center justify-center cursor-pointer bg-gray-300 w-7 h-7 rounded">
+              <li className="flex items-center justify-center cursor-pointer bg-gray-300 w-20 h-7 rounded">
+                <span onClick={() => setPage((prev) => prev + 1)}>Next</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-3 fill-gray-500 rotate-180"
