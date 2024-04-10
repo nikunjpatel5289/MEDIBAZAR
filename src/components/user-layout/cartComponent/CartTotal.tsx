@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useState } from "react";
 
 interface prop {
@@ -81,9 +82,9 @@ const CartTotal = ({ total }: prop) => {
 
             <div className="row">
               <div className="col-md-12">
-                <button className="btn btn-primary btn-lg btn-block">
+                <Link href={"/checkout"} className="btn btn-primary btn-lg btn-block">
                   Proceed To Checkout
-                </button>
+                </Link>
               </div>
             </div>
           </div>
