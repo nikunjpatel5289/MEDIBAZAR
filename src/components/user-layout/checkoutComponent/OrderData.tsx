@@ -1,13 +1,13 @@
-"use client"
+// "use client"
 import { useState } from "react";
 
 const OrderData = () => {
     const [showBank, setShowBank] = useState(false);
-    const [showCheque, setShowCheque] = useState(false);
+    // const [showCheque, setShowCheque] = useState(false);
     const [showPaypal, setShowPaypal] = useState(false);
   return (
     <div className="col-md-6">
-    {/* <div className="row mb-5">
+    <div className="row mb-5">
         <div className="col-md-12">
             <h2 className="h3 mb-3 text-black">Coupon Code</h2>
             <div className="p-3 p-lg-5 border">
@@ -21,7 +21,7 @@ const OrderData = () => {
                 </div>
             </div>
         </div>
-    </div> */}
+    </div>
 
     <div className="row mb-5">
         <div className="col-md-12">
@@ -66,7 +66,7 @@ const OrderData = () => {
                             </div>
                         )}
                     </div>
-                    <div className="border mb-3">
+                    {/* <div className="border mb-3">
                         <h3 className="h6 mb-0">
                             <a className="d-block"  onClick={() => setShowCheque(!showCheque)} role="button"
                             aria-expanded={showCheque} aria-controls="collapsecheque">Cheque Payment</a>
@@ -77,11 +77,11 @@ const OrderData = () => {
                                     payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
                                 </div>
                             )}
-                    </div>
+                    </div> */}
                     <div className="border mb-4">
                         <h3 className="h6 mb-0">
                             <a className="d-bloc"  onClick={() => setShowPaypal(!showPaypal)} role="button"
-                            aria-expanded={showCheque} aria-controls="collapsepaypal">Paypal</a>
+                            aria-expanded={showPaypal} aria-controls="collapsepaypal">Paypal</a>
                         </h3>
                             {showPaypal && (
                                 <div className="py-2 px-4">

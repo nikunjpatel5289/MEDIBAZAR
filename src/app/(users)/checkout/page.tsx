@@ -1,3 +1,5 @@
+"use client"
+
 import "@/app/main.css";
 import Header from "@/components/user-layout/Header";
 import BillingData from "@/components/user-layout/checkoutComponent/BillingData";
