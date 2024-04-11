@@ -12,7 +12,7 @@ const Items = ({ data, handelInc, handelDec, handelRemoveProduct }: prop) => {
   return (
     <div className="row mb-5">
       {data.length < 1 ? (
-        <span className="text-center m-3">No Item In Cart...</span>
+        <span className="m-auto text-2xl">No Item In Cart Add Something...</span>
       ) : (
         <form className="col-md-12">
           <div className="site-blocks-table">

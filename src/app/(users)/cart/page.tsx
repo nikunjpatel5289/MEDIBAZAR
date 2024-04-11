@@ -38,7 +38,7 @@ const page = () => {
         setCdata(response.data.data.products);
       }
     } catch (error: any) {
-      console.info(error.response.data);
+      // console.info(error.response.data);
     }
   };
 
@@ -147,12 +147,14 @@ const page = () => {
             handelDec={handelDec}
             handelRemoveProduct={handelRemoveProduct}
           />
-          <CartTotal
-            total={total}
-            // finalTotal={finalTotal}
-            // copenCode={copenCode}
-            // handelApplyCoopenCode={handelApplyCoopenCode}
-          />
+          {cdata.length > 0 && (
+            <CartTotal
+              total={total}
+              // finalTotal={finalTotal}
+              // copenCode={copenCode}
+              // handelApplyCoopenCode={handelApplyCoopenCode}
+            />
+          )}
         </div>
       </div>
     </Container>
