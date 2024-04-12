@@ -11,7 +11,7 @@ export default function Header() {
   const reoute = useRouter();
   const route = usePathname();
   const [logIn, setLogIn] = useState(false);
-  const [searchActive, setSearchActive] = useState(false);
+  // const [searchActive, setSearchActive] = useState(false);
   const dispatch = useDispatch();
   const islogin = getCookie("token"); //typeof window !== 'undefined' && localStorage.getItem("token") || null;
 
@@ -32,13 +32,13 @@ export default function Header() {
     reoute.replace("/login");
   };
 
-  const openSearch = () => {
-    setSearchActive((prev) => !prev);
-  };
+  // const openSearch = () => {
+  //   setSearchActive((prev) => !prev);
+  // };
 
   return (
     <div className="site-navbar py-2">
-      <div className={`search-wrap ${searchActive && "active"}`}>
+      {/* <div className={`search-wrap ${searchActive && "active"}`}>
         <div className="container">
           <Link href="#" className="search-close js-search-close">
             <span onClick={openSearch} className="icon-close2"></span>
@@ -51,7 +51,7 @@ export default function Header() {
             />
           </form>
         </div>
-      </div>
+      </div> */}
 
       <div className="container">
         <div className="d-flex align-items-center justify-content-between">
@@ -127,9 +127,11 @@ export default function Header() {
             </a> */}
             {islogin && ( //islogin
               <>
-                <Link href="/cart" className="icons-btn d-inline-block bag">
-                  <span className="icon-shopping-bag"></span>
-                  {/* <span className="number">2</span> */}
+                <Link href={{ pathname: "/cart" }}>
+                  <div className="icons-btn d-inline-block bag">
+                    <span className="icon-shopping-bag"></span>
+                    {/* <span className="number">2</span> */}
+                  </div>
                 </Link>
                 <Link href="/profile">
                   <div className="ms-3 relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
@@ -158,12 +160,21 @@ export default function Header() {
             )}
             {!islogin && ( //islogin
               <>
-                <Link href="/login" className="mt-2">
+                <Link href={{ pathname: "/login", query: { param: "value" } }}>
+                  {/* <span className="ms-4">LogIn |</span> */}LogIn |
+                </Link>
+                <Link
+                  className="ms-1"
+                  href={{ pathname: "/signup", query: { param: "value" } }}
+                >
+                  {/* <span className="ms-1">Register</span> */}Register
+                </Link>
+                {/* <Link href="/login" className="mt-2">
                   <span className="ms-4">LogIn |</span>
                 </Link>
                 <Link href="/signup" className="mt-2">
                   <span className="ms-1">Register</span>
-                </Link>
+                </Link> */}
               </>
             )}
           </div>

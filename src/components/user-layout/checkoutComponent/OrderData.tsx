@@ -80,9 +80,9 @@ const OrderData = ({data,handelApplyCoopenCode,subtotal,finalTotal,copenCode}:pr
                     </table>
                     <div className="border mb-3">
                         <h3 className="h6 mb-0">
-                            <a className="d-block" onClick={() => setShowBank(!showBank)} aria-expanded={showBank} aria-controls="collapsebank" role="button" >
+                            <div className="d-block ms-6 mt-4" onClick={() => setShowBank(!showBank)} aria-expanded={showBank} aria-controls="collapsebank" role="button" >
                                 Direct Bank Transfer
-                            </a>
+                            </div>
                         </h3>
                         {showBank && (
                             <div className="py-2 px-4">
@@ -93,8 +93,8 @@ const OrderData = ({data,handelApplyCoopenCode,subtotal,finalTotal,copenCode}:pr
                     </div>
                     <div className="border mb-4">
                         <h3 className="h6 mb-0">
-                            <a className="d-bloc"  onClick={() => setShowPaypal(!showPaypal)} role="button"
-                            aria-expanded={showPaypal} aria-controls="collapsepaypal">Paypal</a>
+                            <div className="d-bloc ms-6 mt-4"  onClick={() => setShowPaypal(!showPaypal)} role="button"
+                            aria-expanded={showPaypal} aria-controls="collapsepaypal">Paypal</div>
                         </h3>
                             {showPaypal && (
                                 <div className="py-2 px-4">

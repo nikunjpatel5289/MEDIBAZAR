@@ -37,7 +37,8 @@ const Footer = () => {
                     304 LaNet. Software Soluction PVL.TD
                   </li>
                   <li className="phone">
-                    <a href="tel://23923929210">+91 159 357 426</a>
+                    <span>+91 159 357 426</span>
+                    {/* <a href="tel://23923929210">+91 159 357 426</a> */}
                   </li>
                   <li className="email">MediBazar@gmail.com</li>
                 </ul>

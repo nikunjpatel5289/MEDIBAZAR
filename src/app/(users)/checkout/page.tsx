@@ -8,6 +8,8 @@ import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface FormValues {
   name: string;
@@ -15,6 +17,7 @@ interface FormValues {
   // email: string;
   address: string;
   country: string;
+  city: string;
   state: string;
   zip: number;
 }
@@ -24,6 +27,7 @@ const page = () => {
   const [subtotal, setSubTotal] = useState<number>(0);
   const [finalTotal, setFinalTotal] = useState<number>(0);
   const [copenCode, setCoopenCode] = useState<number>(0);
+  const [copenName, setCopenName] = useState<string>("");
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Name is required"),
@@ -66,6 +70,11 @@ const page = () => {
 
   const handelApplyCoopenCode = async (code: string) => {
     try {
+      if (code === "" || undefined) {
+        toast("Enter Promocde First...");
+        return;
+      }
+      setCopenName(code);
       // console.info(code);
       const result = await axios.post("http://127.0.0.1:3000/promo/apply", {
         promcodename: code,
@@ -83,13 +92,40 @@ const page = () => {
         }
       }
     } catch (error: any) {
-      console.info(error.response.data.message);
+      toast(error.response.data.message);
+      // console.info(error.response.data.message);
     }
   };
 
   const handleSubmit = async (values: FormValues) => {
     try {
+      const token = JSON.parse(localStorage.getItem("token") || "");
+      let config = {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      };
       console.info("Call", values);
+      const response = await axios.post(
+        "http://127.0.0.1:3000/order",
+        {
+          name: values.name,
+          address: values.address,
+          phone: Number(values.phone),
+          city: values.city,
+          state: values.state,
+          country: values.country,
+          zip: Number(values.zip),
+          orderTotal: Number(finalTotal),
+          promoCode: copenName,
+          promoCodeAmount: copenCode === 0 ? 0 : Number(copenCode),
+        },
+        config
+      );
+      if (response.data.url) {
+        window.location= response.data.url;
+        // console.info(response.data);
+      }
     } catch (error: any) {
       console.info(error);
       // toast("Somthig Wrong Try Again...");
@@ -104,6 +140,7 @@ const page = () => {
       country: "",
       state: "",
       zip: "" as any,
+      city: "",
     },
     validationSchema,
     onSubmit: handleSubmit,
@@ -116,10 +153,11 @@ const page = () => {
   return (
     <>
       <Header />
+      <ToastContainer />
       <div className="site-section">
         <div className="container">
           <div className="row">
-            <BillingData formik={formik}/>
+            <BillingData formik={formik} />
             <OrderData
               data={cartData}
               handelApplyCoopenCode={handelApplyCoopenCode}
