@@ -14,7 +14,7 @@ export default function FilterSideBar ({children} : Readonly<{ children: React.R
       <div className="bg-white">
         <div>
           <main className="mx-auto max-w-7xl px-0 sm:px-6 lg:px-8">
-            <TopFilterBar />
+            {/* <TopFilterBar /> */}
 
             <section aria-labelledby="products-heading" className="pb-24 pt-6">
               {/* <h2 id="products-heading" className="sr-only">
@@ -147,7 +147,7 @@ export default function FilterSideBar ({children} : Readonly<{ children: React.R
                     </div>
                   </div>
                 </form> */}
-                <SideFilterBar />
+                {/* <SideFilterBar /> */}
                 <div className="lg:col-span-3">
                     {children}
                 </div>

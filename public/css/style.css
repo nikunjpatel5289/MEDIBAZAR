@@ -1039,20 +1039,20 @@ a {
 .banner-wrap {
   background: #74d12b;
   border-radius: 4px; }
-  .banner-wrap a {
+  .banner-wrap div {
     padding: 30px;
     display: block;
     text-align: center; }
-    .banner-wrap a h5 {
+    .banner-wrap div h5 {
       font-size: 2rem;
       font-style: italic;
       margin-bottom: 10px; }
-    .banner-wrap a h5, .banner-wrap a p {
+    .banner-wrap div h5, .banner-wrap div p {
       color: #fff; }
-    .banner-wrap a p {
+    .banner-wrap div p {
       color: #fff;
       font-size: 1.4rem; }
-      .banner-wrap a p strong {
+      .banner-wrap div p strong {
         font-size: .9rem;
         display: block; }
 
