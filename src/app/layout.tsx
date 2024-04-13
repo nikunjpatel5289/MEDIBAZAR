@@ -3,7 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-
+import { PersistGate } from "redux-persist/es/integration/react";
+import { persister } from "./redux/store";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
@@ -15,7 +16,11 @@ export default function RootLayout({
         <title>MediBazar</title>
       </head>
       <body className={inter.className}>
-        <Provider store={store}>{children}</Provider>
+        <Provider store={store}>
+        <PersistGate persistor={persister}>
+          {children}
+        </PersistGate>
+        </Provider>
 
         <script src="./js/jquery-3.3.1.min.js"></script>
         <script src="./js/jquery-ui.js"></script>
