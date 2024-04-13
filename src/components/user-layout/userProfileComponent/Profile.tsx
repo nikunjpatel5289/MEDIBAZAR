@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface FormValues {
   firstName: string;
@@ -143,6 +144,13 @@ const Profile = () => {
   return (
     <>
       <ToastContainer />
+      <div className="float-end mx-3">
+        <Link href={'/orderhistory'}
+              className="mt-6 flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:w-auto">
+            Your Order History
+          {/* <span className="sr-only">for order</span> */}
+        </Link>
+      </div>
       <main className="ms-64 w-full min-h-screen py-1 md:w-2/3 lg:w-3/4">
         <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
           <div className="p-2 md:p-4">

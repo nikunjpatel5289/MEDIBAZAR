@@ -4,17 +4,18 @@ import { userLogOut } from "@/app/redux/slices/userSlice";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getCookie, getCookies } from "cookies-next";
 
 export default function Header() {
+  const response = useSelector((state: any) => state.user);
   const reoute = useRouter();
   const route = usePathname();
   const [logIn, setLogIn] = useState(false);
   // const [searchActive, setSearchActive] = useState(false);
   const dispatch = useDispatch();
   const islogin = getCookie("token"); //typeof window !== 'undefined' && localStorage.getItem("token") || null;
-
+  // console.info(response);
   // useEffect(() => {
   //   // if (getCookie("token") != undefined) {
   //   //   setLogIn(true);
@@ -27,6 +28,8 @@ export default function Header() {
   // }, []);
 
   const handleLogOut = () => {
+   
+    
     dispatch(userLogOut());
     setLogIn(false);
     reoute.replace("/login");
