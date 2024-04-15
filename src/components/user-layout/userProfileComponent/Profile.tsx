@@ -144,7 +144,7 @@ const Profile = () => {
   return (
     <>
       <ToastContainer />
-      <div className="float-end mx-3">
+      <div className="float-end mt-8 mr-[175px]">
         <Link href={'/orderhistory'}
               className="mt-6 flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:w-auto">
             Your Order History
