@@ -17,10 +17,12 @@ const page = () => {
   const [page, setPage] = useState<number>(1);
 
   const handleSearchData = (data?: string) => {
+    setPage(1)
     setSearch(data);
   };
 
   const handelCateSearch = (data?: string) => {
+    setPage(1)
     setCat(data);
   };
 

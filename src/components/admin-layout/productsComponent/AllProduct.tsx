@@ -169,7 +169,11 @@ const AllProduct = () => {
               <option>100</option>
             </select>
             <ul className="flex space-x-1 ml-2">
-              <li className="flex items-center justify-center cursor-pointer bg-gray-300 w-24 h-7 rounded">
+              <li
+                className={`flex items-center justify-center ${
+                  page > 1 ? "cursor-pointer bg-gray-300 " : "bg-gray-100"
+                }w-20 h-7 rounded`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-3 fill-gray-500"
@@ -185,11 +189,25 @@ const AllProduct = () => {
                     setPage((prev) => (prev > 1 ? prev - 1 : prev))
                   }
                 >
-                  Previous
+                  Prev
                 </span>
               </li>
-              <li className="flex items-center justify-center cursor-pointer bg-gray-300 w-20 h-7 rounded">
-                <span onClick={() => setPage((prev) => prev + 1)}>Next</span>
+              <li
+                className={`${
+                  data.length < limit
+                    ? "bg-gray-100"
+                    : "cursor-pointer  bg-gray-300"
+                } flex items-center justify-center w-20 h-7 rounded`}
+              >
+                <span
+                  onClick={() =>
+                    data.length < limit
+                      ? setPage(page)
+                      : setPage((prev) => prev + 1)
+                  }
+                >
+                  Next
+                </span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-3 fill-gray-500 rotate-180"

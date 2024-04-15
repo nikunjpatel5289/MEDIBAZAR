@@ -126,7 +126,7 @@ export default function Header() {
             >
               <span className="icon-menu"></span>
             </a> */}
-            {response.token  && ( //islogin && ( //islogin
+            {islogin && ( //response.token && ( //islogin
               <>
                 <Link href={{ pathname: "/cart" }}>
                   <div className="icons-btn d-inline-block bag mt-1">
