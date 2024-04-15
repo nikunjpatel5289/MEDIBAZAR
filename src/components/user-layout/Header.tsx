@@ -15,7 +15,7 @@ export default function Header() {
   // const [searchActive, setSearchActive] = useState(false);
   const dispatch = useDispatch();
   const islogin = getCookie("token"); //typeof window !== 'undefined' && localStorage.getItem("token") || null;
-  // console.info(response);
+  // console.info(response.user.profile);
   // useEffect(() => {
   //   // if (getCookie("token") != undefined) {
   //   //   setLogIn(true);
@@ -27,12 +27,10 @@ export default function Header() {
   //   }
   // }, []);
 
-  const handleLogOut = () => {
-   
-    
+  const handleLogOut = () => { 
     dispatch(userLogOut());
-    setLogIn(false);
     reoute.replace("/login");
+    setLogIn(false);
   };
 
   // const openSearch = () => {
@@ -128,16 +126,17 @@ export default function Header() {
             >
               <span className="icon-menu"></span>
             </a> */}
-            {islogin && ( //islogin
+            {response.token  && ( //islogin && ( //islogin
               <>
                 <Link href={{ pathname: "/cart" }}>
-                  <div className="icons-btn d-inline-block bag">
+                  <div className="icons-btn d-inline-block bag mt-1">
                     <span className="icon-shopping-bag"></span>
                     {/* <span className="number">2</span> */}
                   </div>
                 </Link>
                 <Link href="/profile">
-                  <div className="ms-3 relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                <img className="inline-block size-[45px] m-0 rounded-full" src={response.user.profile ? response.user.profile : 'http://res.cloudinary.com/dwqckx7cr/image/upload/v1712302912/Users/nupt0uiro3u8q0moiesj.jpg' } alt="User Profile" />
+                  {/* <div className="ms-3 relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                     <svg
                       className="absolute w-12 h-12 text-gray-400 -left-1 cursor-pointer"
                       fill="currentColor"
@@ -150,15 +149,15 @@ export default function Header() {
                         clipRule="evenodd"
                       ></path>
                     </svg>
-                  </div>
+                  </div> */}
                 </Link>
-                <button
-                  className="ms-2 outline-none"
-                  type="button"
+                <span
+                  className="ms-2 mt-[11px] cursor-pointer border-none outline-none"
+                  // type="button"
                   onClick={handleLogOut}
                 >
                   Logout
-                </button>
+                </span>
               </>
             )}
             {!islogin && ( //islogin

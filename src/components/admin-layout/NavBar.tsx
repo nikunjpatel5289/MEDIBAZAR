@@ -1,8 +1,10 @@
 // "use client";
 import Link from "next/link";
+// import { useSelector } from "react-redux";
 // import { useState } from "react";
 
 const NavBar = () => {
+  // const response = useSelector((state :any) => state.user)
   // const [showList, setShowList] = useState(false);
   return (
     // bg-white  border-gray-200 <= This code Effect Color Change
@@ -57,7 +59,7 @@ const NavBar = () => {
                   {/* <span className="sr-only">Open user menu</span> */}
                   <img
                     className="w-8 h-8 rounded-full"
-                    src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                    src={ "https://flowbite.com/docs/images/people/profile-picture-5.jpg"} //response.user.profile ? response.user.profile :
                     alt="user photo"
                   />
                 </Link>

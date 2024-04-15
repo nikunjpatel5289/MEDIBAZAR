@@ -61,8 +61,14 @@ const AddCategories = ({ getCategoryData, getTokenData, toast }: prop) => {
       >
         <div className="grid sm:grid-cols-2 gap-10">
           <div className="relative flex items-center ">
-            <label className="text-[13px] absolute top-[-10px] left-0 font-semibold">
-              Category name
+            <label
+              className={`text-[13px] absolute top-[-10px] left-0 font-semibold ${
+                formik.touched.categoryName &&
+                formik.errors.categoryName &&
+                "text-red-600"
+              }`}
+            >
+              Category name *
             </label>
             <input
               type="text"
@@ -74,8 +80,12 @@ const AddCategories = ({ getCategoryData, getTokenData, toast }: prop) => {
             />
           </div>
           <div className="relative flex items-center sm:col-span-2">
-            <label className="text-[13px] absolute top-[-10px] left-0 font-semibold">
-              Category Description
+            <label className={`text-[13px] absolute top-[-10px] left-0 font-semibold ${
+               formik.touched.categoryDescription &&
+               formik.errors.categoryDescription &&
+               "text-red-600"
+            }`}>
+              Category Description *
             </label>
             <textarea
               placeholder="Small Description..."
