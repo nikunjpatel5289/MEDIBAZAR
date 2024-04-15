@@ -3,6 +3,7 @@ import Carosol from "@/components/ExtraComponent/Carosol";
 import Footer from "@/components/user-layout/Footer";
 import Header from "@/components/user-layout/Header";
 import ProductPreviewDescription from "@/components/user-layout/productComponent/ProductPreviewDescription";
+import ProductReview from "@/components/user-layout/productComponent/ProductReview";
 import axios from "axios";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -134,7 +135,7 @@ const page = () => {
           </div>
         </div>
       </div>
-
+      <ProductReview />        
       {/* <div className="mt-8">
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

@@ -3,9 +3,9 @@ import Link from "next/link";
 
 interface prop {
   title: string;
-  totalCount: number;
+  totalCount: any;
   extraTitle?: string;
-  extraTotalCount?: number;
+  extraTotalCount?: any;
   link: string;
 }
 
