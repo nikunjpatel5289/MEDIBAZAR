@@ -44,6 +44,30 @@ const History = () => {
     }
   };
 
+  const handelDownloadInvoice = async (id: string) => {
+    try {
+      if (id !== "") {
+        const response = await axios.get(`http://127.0.0.1:3000/order/${id}`);
+        if (response) {
+          // console.info(response.data.url);
+          const URL = response.data.url;
+          // const url = window.URL.createObjectURL(new Blob([URL]));
+          const link = document.createElement("a");
+          link.href = URL;
+          link.target = "_blank"
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          // window.URL.revokeObjectURL(url);
+        }
+      } else {
+        console.info("this Invoice Id Not Found....");
+      }
+    } catch (error: any) {
+      console.info(error);
+    }
+  };
+
   useEffect(() => {
     getOrederData();
   }, []);
@@ -199,13 +223,18 @@ const History = () => {
                                   </dd>
                                 </div>
                               </dl>
-                              {/* <Link
-                                        href={order.invoiceHref}
-                                        className="mt-6 flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:w-auto"
-                                        >
-                                        View Invoice
-                                        <span className="sr-only">for order {order.number}</span>
-                                        </Link> */}
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  handelDownloadInvoice(item.invoiceId)
+                                }
+                                className="mb-6 flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:w-auto"
+                              >
+                                Download Invoice
+                                {/* <span className="sr-only">
+                                  for order 
+                                </span> */}
+                              </button>
                             </div>
 
                             <table className="mt-4 w-full text-gray-500 sm:mt-6">
