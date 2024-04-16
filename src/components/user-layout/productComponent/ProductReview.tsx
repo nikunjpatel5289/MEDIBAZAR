@@ -1,11 +1,15 @@
 import axios, { HttpStatusCode } from "axios";
 import { useParams } from "next/navigation";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ProductReviewDisplay from "./ProductReviewDisplay";
 
 const ProductReview = () => {
   const param = useParams();
+  const userToken = useSelector((state: any) => state.user);
+  const [reviews,setReviews] = useState<any>([])
   const [rating, setRating] = useState<number>(0);
   const [comment, setComment] = useState<string>("");
   const [error, setError] = useState<boolean>(false);
@@ -13,6 +17,18 @@ const ProductReview = () => {
   const handleStarClick = (starIndex: number) => {
     setRating(starIndex + 1);
   };
+
+  const handelReviewGet = async () => {
+    try {
+      const result = await axios.get(`http://127.0.0.1:3000/review/${param.id}`)
+
+      if(result) {
+        setReviews(result.data.data)
+      }
+    } catch (error: any) {
+        console.info(error.response.data);
+    }
+  }
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -22,10 +38,10 @@ const ProductReview = () => {
       setError(false);
       //   console.info(rating, "<- Rating Comment ->", comment, " Parma->", param.id);
       try {
-        const token = JSON.parse(localStorage.getItem("token") || "");
-        if (token === "") {
+        if (userToken.token === null) {
           toast("Login Your Self Then Give Review...");
         } else {
+          const token = JSON.parse(localStorage.getItem("token") || "");
           let config = {
             headers: {
               Authorization: "Bearer " + token,
@@ -48,9 +64,9 @@ const ProductReview = () => {
             toast("Your Review Has Recoderd Thankyou...");
           }
         }
-      } catch (error: any) {
-        // console.info(error.response.data);
+      } catch (error : any) {
         toast(error.response.data.message);
+        // toast("Somthig Wrong Try again Letter...");
       }
     }
   };
@@ -103,6 +119,7 @@ const ProductReview = () => {
           Share Your Review
         </button>
       </form>
+      <ProductReviewDisplay handelReviewGet={handelReviewGet} data={reviews}/>
     </>
   );
 };

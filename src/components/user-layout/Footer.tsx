@@ -9,8 +9,10 @@ const Footer = () => {
             <div className="col-md-6 col-lg-3 mb-4 mb-lg-0">
               <div className="block-7">
                 <h3 className="footer-heading mb-4">About Us</h3>
-                <p>
-                A pharmacy store is a crucial component of healthcare infrastructure, providing essential medications and healthcare products to the community. 
+                <p className="text-gray-700">
+                  A pharmacy store is a crucial component of healthcare
+                  infrastructure, providing essential medications and healthcare
+                  products to the community.
                 </p>
               </div>
             </div>
@@ -45,19 +47,14 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="row pt-5 mt-5 text-center">
+          <div className="row pt-5 mt-5 text-center text-black">
             <div className="col-md-12">
               <p>
                 Copyright &copy;
                 {/* <script>document.write(new Date().getFullYear());</script>  */}
-                All
-                rights reserved |
-                <i className="icon-heart" aria-hidden="true"></i> by 
-                <Link
-                  href="/"
-                  target="_blank"
-                  className="text-primary ms-1"
-                >
+                All rights reserved |
+                <i className="ms-1 icon-heart" aria-hidden="true"></i> by
+                <Link href="/" target="_blank" className="text-orange-600 ms-1">
                   MediBazar
                 </Link>
               </p>
