@@ -105,7 +105,7 @@ const page = () => {
           Authorization: "Bearer " + token,
         },
       };
-      console.info("Call", values);
+      // console.info("Call", values);
       const response = await axios.post(
         "http://127.0.0.1:3000/order",
         {

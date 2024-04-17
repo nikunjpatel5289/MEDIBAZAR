@@ -25,12 +25,16 @@ const page = () => {
         "http://127.0.0.1:3000/user/dashData",
         config
       );
+
+      setData(result.data.data);
+
       const OTOTAL = await axios.get(
         "http://127.0.0.1:3000/order/dashboardOrderTotal",
         config
       );
+      // console.info(result.data.data);
+      // console.info(OTOTAL.data);
 
-      setData(result.data.data);
       setOrderToala(OTOTAL.data);
     } catch (error: any) {
       console.log(error.response.data);
@@ -50,10 +54,22 @@ const page = () => {
           </div>
 
           <div className="grid grid-cols-3 grid-rows-1 gap-4">
-            <Card title="Total Reveniew" link="/vender" count={12}/>
-            <Card title="Users" link="/vender/users" count={data ? data.totalUser : null}/>
-            <Card title="Total Product" link="/vender/product/all" count={data ? data.totalOurProduct : null} />
-            <Card title="Total Sales" count={orderTotal ? `Rs. ${orderTotal.total}` : null} link="/vender/order"/>
+            <Card title="Total Reveniew" link="/vender" count={12} />
+            <Card
+              title="Users"
+              link="/vender/users"
+              count={data ? data.totalUser : null}
+            />
+            <Card
+              title="Total Product"
+              link="/vender/product/all"
+              count={data ? data.totalOurProduct : null}
+            />
+            <Card
+              title="Total Sales"
+              count={orderTotal.total > 0 ? `Rs. ${orderTotal.total}` : null}
+              link="/vender/order"
+            />
           </div>
 
           {/* Other Components */}
