@@ -73,9 +73,9 @@ const InHouseOrder = () => {
                   <th className="px-6 py-4 text-left text-sm font-semibold text-black">
                     Payment Status
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-black">
+                  {/* <th className="px-6 py-4 text-left text-sm font-semibold text-black">
                     Options
-                  </th>
+                  </th> */}
                 </tr>
               </thead>
               <tbody className="whitespace-nowrap">
@@ -103,8 +103,8 @@ const InHouseOrder = () => {
                           {item.paymentStatus}
                         </span>
                       </td>
-                      <td className="px-6 py-4">
-                        {/* <svg
+                      {/* <td className="px-6 py-4">
+                        <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="w-7 h-7 cursor-pointer fill-gray-400"
                         viewBox="0 0 24 24"
@@ -112,8 +112,8 @@ const InHouseOrder = () => {
                         <circle cx={12} cy={12} r={2} data-original="#000000" />
                         <circle cx={4} cy={12} r={2} data-original="#000000" />
                         <circle cx={20} cy={12} r={2} data-original="#000000" />
-                        </svg> */}
-                      </td>
+                        </svg>
+                      </td> */}
                     </tr>
                   );
                 })}

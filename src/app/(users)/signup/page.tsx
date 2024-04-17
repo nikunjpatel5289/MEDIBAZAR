@@ -42,9 +42,9 @@ const page = () => {
       
       dispatch(userRegister(values));
 
-      if (response.error) {
-        throw "Email Are Already Exist Try Again...";
-      }
+      // if (response.error) {
+      //   throw "Email Are Already Exist Try Again...";
+      // }
 
       route.replace("/login");
     } catch (error: any) {
