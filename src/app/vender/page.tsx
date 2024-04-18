@@ -6,7 +6,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const page = () => {
-  const [data, setData] = useState<any>();
+  const [data, setData] = useState<any>([]);
   const [orderTotal, setOrderToala] = useState<any>([]);
 
   const tokenData = () => {
@@ -26,15 +26,14 @@ const page = () => {
         config
       );
 
-      setData(result.data.data);
-
       const OTOTAL = await axios.get(
         "http://127.0.0.1:3000/order/dashboardOrderTotal",
         config
       );
-      // console.info(result.data.data);
-      // console.info(OTOTAL.data);
+      // console.info(result.data.data['totalOurProduct']);
+      // console.info(OTOTAL.data.total);
 
+      setData(result.data.data);
       setOrderToala(OTOTAL.data);
     } catch (error: any) {
       console.log(error.response.data);
@@ -54,20 +53,21 @@ const page = () => {
           </div>
 
           <div className="grid grid-cols-3 grid-rows-1 gap-4">
-            <Card title="Total Reveniew" link="/vender" count={12} />
+            {/* <Card title="Total Reveniew" link="/vender" count={12} /> */}
+            <Card
+              title="Total Product"
+              count={data ? data.totalOurProduct : null}
+              link="/vender/product/all"
+            />
             <Card
               title="Users"
               link="/vender/users"
               count={data ? data.totalUser : null}
             />
-            <Card
-              title="Total Product"
-              link="/vender/product/all"
-              count={data ? data.totalOurProduct : null}
-            />
+            
             <Card
               title="Total Sales"
-              count={orderTotal.total > 0 ? `Rs. ${orderTotal.total}` : null}
+              count={orderTotal.total >= 0 ? `Rs. ${orderTotal.total}` : null}
               link="/vender/order"
             />
           </div>
