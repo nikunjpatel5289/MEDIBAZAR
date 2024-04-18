@@ -44,7 +44,7 @@ const ProductList = ({ data, MAXCOUNT, handlePgination }: prop) => {
                 {/* <span className="tag">Sale</span> */}
                 <Link href={`/products/${item._id}`}>
                   <img
-                    src={item.images[1]}
+                    src={item.images[0]}
                     className="ms-6 h-[230px]"
                     width={"250px"}
                     alt={item.prodName}

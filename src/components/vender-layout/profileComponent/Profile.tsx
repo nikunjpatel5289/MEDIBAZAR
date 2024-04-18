@@ -213,6 +213,20 @@ const Profile = () => {
               onChange={formik.handleChange}
             />
           </div>
+          {/* <br /> */}
+          <div className="relative flex items-center">
+            <label className="text-[13px] absolute top-[-10px] left-0 font-semibold">
+              Pincode
+            </label>
+            <input
+              type="number"
+              name="pincode"
+              placeholder="Enter Pincode"
+              className="px-2 pt-5 pb-2 bg-white w-full text-sm border-b-2 border-gray-100 focus:border-[#333] outline-none"
+              value={formik.values.pincode}
+              onChange={formik.handleChange}
+            />
+          </div>
           <div className="relative flex items-center">
             <label className="text-[13px] absolute top-[-10px] left-0 font-semibold">
               City
@@ -239,7 +253,7 @@ const Profile = () => {
               onChange={formik.handleChange}
             />
           </div>
-
+          <br />
           <div className="relative flex items-center">
             <label className="text-[13px] absolute top-[-10px] left-0 font-semibold">
               Business Logo

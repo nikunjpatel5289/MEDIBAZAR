@@ -38,6 +38,11 @@ const InHouseOrder = () => {
       console.info(error.response.data.message);
     }
   };
+
+  const handelLimitchane = (val: number) => {
+    setlimit(val)
+    setPage(1)
+  }
   useEffect(() => {
     getOrderData();
   }, [limit, page]);
@@ -127,7 +132,7 @@ const InHouseOrder = () => {
             <div className="flex items-center max-md:mt-4">
               <p className="text-sm text-gray-400">Display</p>
               <select
-                onChange={(e: any) => setlimit(e.target.value)}
+                onChange={(e: any) => handelLimitchane(e.target.value)}
                 className="text-sm text-gray-400 border border-gray-400 rounded h-7 mx-4 outline-none"
               >
                 <option>5</option>

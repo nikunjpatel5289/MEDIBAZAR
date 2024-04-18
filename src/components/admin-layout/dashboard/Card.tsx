@@ -51,7 +51,7 @@ const Card = ({
       )}
 
       <div className="flex justify-between">
-        <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+        <h5 className="my-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
           {title}
         </h5>
         {totalCount != null ? (
