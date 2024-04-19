@@ -2,6 +2,7 @@
 import Loder from "@/components/ExtraComponent/Loder";
 import NewLoder from "@/components/ExtraComponent/NewLoder";
 import axios from "axios";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const InHouseOrder = () => {
@@ -69,9 +70,9 @@ const InHouseOrder = () => {
                   <th className="px-6 py-4 text-left text-sm font-semibold text-black">
                     Customer
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-black">
+                  {/* <th className="px-6 py-4 text-left text-sm font-semibold text-black">
                     Amount
-                  </th>
+                  </th> */}
                   <th className="px-6 py-4 text-left text-sm font-semibold text-black">
                     Delivery Status
                   </th>
@@ -93,7 +94,7 @@ const InHouseOrder = () => {
                         {item.orderProducts.length}
                       </td>
                       <td className="px-6 py-4 text-sm">{item.name}</td>
-                      <td className="px-6 py-4 text-sm">{item.totalPrice}</td>
+                      {/* <td className="px-6 py-4 text-sm">{item.totalPrice}</td> */}
                       <td className="px-6 py-4 text-sm">
                         <div className="flex items-center cursor-pointer">
                           <div className="ml-2">
@@ -108,17 +109,23 @@ const InHouseOrder = () => {
                           {item.paymentStatus}
                         </span>
                       </td>
-                      {/* <td className="px-6 py-4">
-                        <svg
+                      <td className="px-6 py-4">
+                      <Link
+                        href={`/admin/order/${item.paymentId}`}
+                        className="bg-white hover:cursor-pointer hover:bg-gray-100 text-gray-800 font-semibold py-1 px-2 border border-gray-400 rounded shadow"
+                      >
+                        Invoice
+                      </Link>
+                      {/* <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="w-7 h-7 cursor-pointer fill-gray-400"
                         viewBox="0 0 24 24"
-                        >
+                      >
                         <circle cx={12} cy={12} r={2} data-original="#000000" />
                         <circle cx={4} cy={12} r={2} data-original="#000000" />
                         <circle cx={20} cy={12} r={2} data-original="#000000" />
-                        </svg>
-                      </td> */}
+                      </svg> */}
+                    </td>
                     </tr>
                   );
                 })}
