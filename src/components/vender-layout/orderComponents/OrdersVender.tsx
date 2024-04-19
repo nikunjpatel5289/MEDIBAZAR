@@ -61,9 +61,9 @@ const OrdersVender = () => {
                 <th className="px-6 py-4 text-left text-sm font-semibold text-black">
                   Customer
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-black">
+                {/* <th className="px-6 py-4 text-left text-sm font-semibold text-black">
                   Amount
-                </th>
+                </th> */}
                 <th className="px-6 py-4 text-left text-sm font-semibold text-black">
                   Delivery Status
                 </th>
@@ -85,7 +85,7 @@ const OrdersVender = () => {
                       {item.orderProducts.length}
                     </td>
                     <td className="px-6 py-4 text-sm">{item.name}</td>
-                    <td className="px-6 py-4 text-sm">{item.totalPrice}</td>
+                    {/* <td className="px-6 py-4 text-sm">{item.totalPrice}</td> */}
                     <td className="px-6 py-4 text-sm">
                       <div className="flex items-center cursor-pointer">
                         <div className="ml-2">

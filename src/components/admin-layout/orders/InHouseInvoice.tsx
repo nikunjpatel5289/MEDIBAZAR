@@ -1,12 +1,10 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-
+import React, { useEffect, useState } from "react";
 interface prop {
   PAYID: string;
 }
 
-const InvoiceShow = ({ PAYID }: prop) => {
-  // console.info("INSIDE",PAYID);
+const InHouseInvoice = ({ PAYID }: prop) => {
   const [data, setData] = useState<any>([]);
   const date = new Date(data.orderDate);
   const year = date.getFullYear();
@@ -35,18 +33,14 @@ const InvoiceShow = ({ PAYID }: prop) => {
       );
 
       if (result) {
-        // console.info(result.data.data[0]);
-        // console.info("<<<checking",result.data.data[0].orderProducts.map((itemss:any)=>console.log("<<<item",itemss)))
         setData(result.data.data[0]);
       }
     } catch (error: any) {
       console.info(error.response);
     }
   };
-  //   console.info("<<DATA<<<<",data);
 
   useEffect(() => {
-    // console.info("call");
     getInvoiceData();
   }, []);
 
@@ -62,14 +56,7 @@ const InvoiceShow = ({ PAYID }: prop) => {
                 </h1>
               </div>
               <div className="text-end">
-                {/* <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-neutral-200">
-                  Invoice Number
-                </h2>
-                <span className="mt-1 block text-gray-500 dark:text-neutral-500">
-                  3682303
-                </span> */}
                 <address className="mt-4 not-italic text-gray-800 dark:text-neutral-200">
-                  {/* {data.address} */}
                   17 Uttran Gam
                   <br />
                   Patel street
@@ -88,13 +75,10 @@ const InvoiceShow = ({ PAYID }: prop) => {
                 </h3>
                 <address className="mt-2 not-italic text-gray-500 dark:text-neutral-500">
                   {data.address}
-                  {/* 280 Suzanne Throughway */}
                   <br />
                   {data.city}, {data.state}
-                  {/* Breannabury, OR 45801, */}
                   <br />
                   {data.country}
-                  {/* United States */}
                   <br />
                 </address>
               </div>
@@ -106,7 +90,6 @@ const InvoiceShow = ({ PAYID }: prop) => {
                     </dt>
                     <dd className="col-span-2 text-gray-500 dark:text-neutral-500">
                       {formattedDate}
-                      {/* 03/10/2018 */}
                     </dd>
                   </dl>
                 </div>
@@ -161,7 +144,7 @@ const InvoiceShow = ({ PAYID }: prop) => {
                             Amount
                           </h5>
                           <p className="sm:text-end text-gray-800 dark:text-neutral-200">
-                            Rs.{item.prodPrice}
+                            Rs. {item.prodPrice}
                           </p>
                         </div>
                       </>
@@ -198,10 +181,6 @@ const InvoiceShow = ({ PAYID }: prop) => {
               <h4 className="text-lg font-semibold text-gray-800 dark:text-neutral-200">
                 Thank you!
               </h4>
-              <p className="text-gray-500 dark:text-neutral-500">
-                If you have any questions concerning this Order Invoice, use the
-                following contact information:
-              </p>
               <div className="mt-2">
                 <p className="block text-sm font-medium text-gray-800 dark:text-neutral-200">
                   MediBazar@gmail.com
@@ -221,4 +200,4 @@ const InvoiceShow = ({ PAYID }: prop) => {
   );
 };
 
-export default InvoiceShow;
+export default InHouseInvoice;

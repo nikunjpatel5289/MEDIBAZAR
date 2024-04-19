@@ -10,6 +10,7 @@ const SideBar = () => {
   const route = useRouter();
   const [shoeCategories, setShowCategories] = useState(false);
   const [showList, setShowList] = useState(false);
+  const [order, setShowOrder] = useState(false);
   const handleLogOut = () => {
     dispatch(userLogOut());
     route.replace("/login");
@@ -142,14 +143,65 @@ const SideBar = () => {
               <span className="flex-1 ms-3 whitespace-nowrap">Products</span>
             </Link>
           </li> */}
-          <li>
+           <li>
+            <button
+              type="button"
+              className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+              // aria-controls="dropdown-example"
+              data-collapse-toggle="dropdown-example"
+              onClick={() => setShowOrder(!order)}
+            >
+              <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">
+                Sales
+              </span>
+              <svg
+                className="w-3 h-3"
+                // aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 10 6"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="m1 1 4 4 4-4"
+                />
+              </svg>
+            </button>
+            {order && (
+              <ul
+                // id="dropdown-example"
+                className={`${order ? "" : "hidden"} py-2 space-y-2`}
+              >
+                <li>
+                  <Link
+                    href="/admin/order"
+                    className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  >
+                    Inhouse Orders
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#"
+                    className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  >
+                    All Orders
+                  </Link>
+                </li>
+              </ul>
+            )}
+          </li>
+          {/* <li>
             <Link
               href="/admin/order"
               className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
               <span className="flex-1 ms-3 whitespace-nowrap">Sales</span>
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link
               href="/admin/venders"
