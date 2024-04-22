@@ -2,12 +2,14 @@
 import NavBar from "@/components/vender-layout/NavBar";
 import SideBar from "@/components/vender-layout/SideBar";
 import Card from "@/components/vender-layout/dashboardComponent/Card";
+import VenderChart from "@/components/vender-layout/dashboardComponent/VenderChart";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
 const page = () => {
   const [data, setData] = useState<any>([]);
   const [orderTotal, setOrderToala] = useState<any>([]);
+  const [salseData, setSalseData] = useState<any>([]);
 
   const tokenData = () => {
     const token = JSON.parse(localStorage.getItem("token") || "");
@@ -30,11 +32,17 @@ const page = () => {
         "http://127.0.0.1:3000/order/dashboardOrderTotal",
         config
       );
+
+      const CHARTDATA = await axios.get(
+        "http://127.0.0.1:3000/order/MonthChartDate",
+        config
+      );
       // console.info(result.data.data['totalOurProduct']);
       // console.info(OTOTAL.data.total);
 
       setData(result.data.data);
       setOrderToala(OTOTAL.data);
+      setSalseData(CHARTDATA.data);
     } catch (error: any) {
       console.log(error.response.data);
     }
@@ -64,14 +72,16 @@ const page = () => {
               link="/vender/users"
               count={data ? data.totalUser : null}
             />
-            
+
             <Card
               title="Total Sales"
               count={orderTotal.total >= 0 ? `Rs. ${orderTotal.total}` : null}
               link="/vender/order"
             />
           </div>
-
+          <div className="grid grid-cols-2 grid-rows-1 gap-4">
+            <VenderChart val={salseData}/>
+          </div>
           {/* Other Components */}
         </div>
       </div>

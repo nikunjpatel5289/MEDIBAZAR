@@ -160,9 +160,15 @@ const Users = () => {
                   </div>
                 </li>
 
-                <li className="cursor-pointer bg-gray-300 w-20 rounded">
+                <li className={`${ data.length < limit ? "bg-gray-100": "bg-gray-300 cursor-pointer" } w-20 rounded`}>
                   <div className="flex items-center justify-center mt-[2px]">
-                    <span onClick={() => setPage((prev) => prev + 1)}>
+                    <span
+                      onClick={() =>
+                        data.length < limit
+                          ? setPage(page)
+                          : setPage((prev) => prev + 1)
+                      }
+                    >
                       Next
                     </span>
                     <svg
