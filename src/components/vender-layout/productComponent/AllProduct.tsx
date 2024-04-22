@@ -40,6 +40,11 @@ const AllProduct = () => {
     }
   };
 
+  const handellimitChane = (val : any) => {
+    setLimit(val)
+    setPage(1)
+  }
+
   useEffect(() => {
     getOwnProduct();
   }, [limit, page]);
@@ -232,7 +237,7 @@ const AllProduct = () => {
               <div className="flex items-center max-md:mt-4">
                 <p className="text-sm text-gray-500">Display</p>
                 <select
-                  onChange={(e: any) => setLimit(e.target.value)}
+                  onChange={(e: any) => handellimitChane(e.target.value)}
                   className="text-sm text-gray-500 border border-gray-500 rounded h-7 mx-4 outline-none"
                 >
                   <option>5</option>
