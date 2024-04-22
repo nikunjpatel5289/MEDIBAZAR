@@ -93,7 +93,7 @@ const Profile = () => {
         },
       };
 
-      console.info(formData);
+      // console.info(formData);
 
       const response = await axios.patch(
         `http://127.0.0.1:3000/user/${id}`,
@@ -102,7 +102,7 @@ const Profile = () => {
       );
 
       if (response.status === 200) {
-        toast("Your Profile Updated Succefully Changes Maay see Letter...");
+        toast("Your Profile Updated Succefully Changes May see Letter...");
       }
 
       // route.replace("/");

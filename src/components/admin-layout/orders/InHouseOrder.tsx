@@ -70,9 +70,9 @@ const InHouseOrder = () => {
                   <th className="px-6 py-4 text-left text-sm font-semibold text-black">
                     Customer
                   </th>
-                  {/* <th className="px-6 py-4 text-left text-sm font-semibold text-black">
-                    Amount
-                  </th> */}
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-black">
+                    Order Date
+                  </th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-black">
                     Delivery Status
                   </th>
@@ -86,6 +86,11 @@ const InHouseOrder = () => {
               </thead>
               <tbody className="whitespace-nowrap">
                 {orderData.map((item: any, index: number) => {
+                   const date = new Date(item.orderDate);
+                   const year = date.getFullYear();
+                   const month = String(date.getMonth() + 1).padStart(2, "0");
+                   const day = String(date.getDate()).padStart(2, "0");
+                   const formattedDate = `${day}/${month}/${year}`;
                   return (
                     <tr className="odd:bg-blue-50" key={index}>
                       <td className="px-6 py-4 text-sm">{i++}</td>
@@ -94,7 +99,7 @@ const InHouseOrder = () => {
                         {item.orderProducts.length}
                       </td>
                       <td className="px-6 py-4 text-sm">{item.name}</td>
-                      {/* <td className="px-6 py-4 text-sm">{item.totalPrice}</td> */}
+                      <td className="px-6 py-4 text-sm">{formattedDate}</td>
                       <td className="px-6 py-4 text-sm">
                         <div className="flex items-center cursor-pointer">
                           <div className="ml-2">

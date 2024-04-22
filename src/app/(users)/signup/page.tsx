@@ -59,7 +59,7 @@ const page = () => {
       confirmPassword: "",
       firstName: "",
       lastName: "",
-      phone: 0
+      phone: "" as any
     },
     validationSchema,
     onSubmit: handleSubmit,

@@ -1,6 +1,8 @@
 import NavBar from "@/components/admin-layout/NavBar";
 import SideBar from "@/components/admin-layout/SideBar";
 import Cards from "@/components/admin-layout/dashboard/Cards";
+import DayChart from "@/components/admin-layout/dashboard/DayChart";
+import MonthChart from "@/components/admin-layout/dashboard/MonthChart";
 
 const page = () => {
   return (
@@ -15,6 +17,10 @@ const page = () => {
 
           <div className="grid grid-cols-3 grid-rows-1 gap-4">
             <Cards />
+          </div>
+          <div className="grid grid-cols-2 grid-rows-1 gap-4">
+            <MonthChart />
+            <DayChart />
           </div>
           {/* <div className="grid grid-cols-1 mt-4 h-auto">
             <div className="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-600">
