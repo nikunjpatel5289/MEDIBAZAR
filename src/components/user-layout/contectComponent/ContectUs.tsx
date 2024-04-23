@@ -135,11 +135,11 @@ const ContectUs = () => {
                 )}
               </div>
             </div>
-            <div className="form-group row">
+            <div className="form-group row justify-center">
               <div className="col-lg-12">
                 <button
                   type="submit"
-                  className="btn btn-primary btn-lg btn-block"
+                  className="btn btn-dark btn-lg btn-block"
                 >
                   Send Message
                 </button>

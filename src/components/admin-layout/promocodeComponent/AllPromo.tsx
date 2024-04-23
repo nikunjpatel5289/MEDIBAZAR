@@ -69,7 +69,7 @@ const AllPromo = () => {
   return (
     <>
       <ToastContainer />
-      <table className="min-w-full bg-gray-200 font-[sans-serif] mt-5">
+      <table className="min-w-full bg-gray-200 font-[sans-serif] mt-5 rounded-xl">
         <thead className="whitespace-nowrap">
           <tr>
             <th className="px-6 py-3 text-left text-sm font-semibold text-black">
@@ -114,7 +114,7 @@ const AllPromo = () => {
             const endDate = `${day1}/${month1}/${year1}`;
 
             return (
-              <tr className="odd:bg-blue-50" key={item._id}>
+              <tr className="odd:bg-gray-50" key={item._id}>
                 <td className="px-6 py-3 text-sm">{i++}</td>
                 <td className="px-6 py-3 text-sm">
                   <div className="flex items-center cursor-pointer">

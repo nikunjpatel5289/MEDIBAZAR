@@ -32,8 +32,7 @@ export default function Home() {
                   <div className="h-100">
                     <h5>Free <br /> Shipping</h5>
                     <p>
-                      Amet sit amet dolor 
-                      <strong>Lorem, ipsum dolor sit amet consectetur adipisicing.</strong>
+                      <strong>Attracting customers with convenient, no-cost shipping options, enhancing online shopping experiences.</strong>
                     </p>
                   </div>
                 </div>
@@ -41,10 +40,9 @@ export default function Home() {
               <div className="col-md-6 col-lg-4 mb-4 mb-lg-0">
                 <div className="banner-wrap h-100">
                   <div className="h-100">
-                    <h5>Season <br /> Sale 50% Off</h5>
+                    <h5>Season <br /> Sale 10% Off</h5>
                     <p>
-                      Amet sit amet dolor
-                      <strong>Lorem, ipsum dolor sit amet consectetur adipisicing.</strong>
+                      <strong>SPOOKY15 Use This Code To get 10% off Any order Amount...</strong>
                     </p>
                   </div>
                 </div>
@@ -54,7 +52,6 @@ export default function Home() {
                   <div className="h-100">
                     <h5>Buy <br /> A Gift Card</h5>
                     <p>
-                      Amet sit amet dolor
                       <strong>Lorem, ipsum dolor sit amet consectetur adipisicing.</strong>
                     </p>
                   </div>

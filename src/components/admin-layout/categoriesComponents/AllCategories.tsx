@@ -56,8 +56,8 @@ const AllCategories = ({ catData, removeCategory }: prop) => {
       </div> */}
 
       <div className="overflow-x-auto text-center mx-44">
-        <table className="mt-6 min-w-[600px] bg-gray-200 font-[sans-serif]">
-          <thead className="bg-gray-100 whitespace-nowrap">
+        <table className="mt-6 min-w-[600px] rounded-xl bg-gray-200 font-[sans-serif]">
+          <thead className=" whitespace-nowrap">
             <tr>
               <th className="px-6 py-3  text-xs font-semibold text-gray-700">
                 Index
@@ -76,7 +76,7 @@ const AllCategories = ({ catData, removeCategory }: prop) => {
           <tbody className="whitespace-nowrap">
             {catData?.map((item: any) => {
               return (
-                <tr className="" key={item._id}>
+                <tr className="odd:bg-gray-50" key={item._id}>
                   <td className="px-6 py-4 text-base">{i++}</td>
                   <td className="px-6 py-4 text-base">{item.categoryName}</td>
                   <td className="px-6 py-3 text-sm">

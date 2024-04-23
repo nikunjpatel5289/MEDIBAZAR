@@ -81,7 +81,7 @@ const Contect = () => {
       </div>
       <div className="overflow-x-auto py-8">
         <ToastContainer />
-        <table className="min-w-full bg-gray-200 font-[sans-serif]">
+        <table className="min-w-full rounded-xl bg-gray-200 font-[sans-serif]">
           <thead className="whitespace-nowrap">
             <tr>
               <th className="px-6 py-4 text-left text-sm font-semibold text-black">
@@ -106,7 +106,7 @@ const Contect = () => {
               const day = String(date.getDate()).padStart(2, "0");
               const formattedDate = `${year}/${month}/${day}`;
               return (
-                <tr className="odd:bg-blue-50">
+                <tr className="odd:bg-gray-50">
                   <td className="px-6 py-3 text-sm">{i++}</td>
                   <td className="px-6 py-3 text-sm">
                     <div className="flex items-center cursor-pointer">

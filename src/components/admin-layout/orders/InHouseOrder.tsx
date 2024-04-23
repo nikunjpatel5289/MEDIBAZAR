@@ -11,6 +11,7 @@ const InHouseOrder = () => {
   const [limit, setlimit] = useState(5);
   const [page, setPage] = useState(1);
   const [loder, setLoder] = useState<boolean>(false);
+  // const [asc,setAsc] = useState<number>(1)
 
   const tokenData = () => {
     const token = JSON.parse(localStorage.getItem("token") || "");
@@ -24,7 +25,7 @@ const InHouseOrder = () => {
 
   const getOrderData = async () => {
     try {
-    //   setLoder(true);
+      //   setLoder(true);
       const config = tokenData();
       const result = await axios.get(
         `http://127.0.0.1:3000/order/dashboardOrderData?limit=${limit}&page=${page}`,
@@ -41,9 +42,9 @@ const InHouseOrder = () => {
   };
 
   const handelLimitchane = (val: number) => {
-    setlimit(val)
-    setPage(1)
-  }
+    setlimit(val);
+    setPage(1);
+  };
   useEffect(() => {
     getOrderData();
   }, [limit, page]);
@@ -55,7 +56,7 @@ const InHouseOrder = () => {
       ) : (
         <>
           <div className="overflow-x-auto">
-            <table className="min-w-full bg-white font-[sans-serif]">
+            <table className="min-w-full bg-gray-200 font-[sans-serif] rounded-xl">
               <thead className="whitespace-nowrap">
                 <tr>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-black">
@@ -72,6 +73,17 @@ const InHouseOrder = () => {
                   </th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-black">
                     Order Date
+                    {/* <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-3 h-3 fill-gray-400 inline cursor-pointer ml-2"
+                      viewBox="0 0 401.998 401.998"
+                      onClick={getOrderData}
+                    >
+                      <path
+                        d="M73.092 164.452h255.813c4.949 0 9.233-1.807 12.848-5.424 3.613-3.616 5.427-7.898 5.427-12.847s-1.813-9.229-5.427-12.85L213.846 5.424C210.232 1.812 205.951 0 200.999 0s-9.233 1.812-12.85 5.424L60.242 133.331c-3.617 3.617-5.424 7.901-5.424 12.85 0 4.948 1.807 9.231 5.424 12.847 3.621 3.617 7.902 5.424 12.85 5.424zm255.813 73.097H73.092c-4.952 0-9.233 1.808-12.85 5.421-3.617 3.617-5.424 7.898-5.424 12.847s1.807 9.233 5.424 12.848L188.149 396.57c3.621 3.617 7.902 5.428 12.85 5.428s9.233-1.811 12.847-5.428l127.907-127.906c3.613-3.614 5.427-7.898 5.427-12.848 0-4.948-1.813-9.229-5.427-12.847-3.614-3.616-7.899-5.42-12.848-5.42z"
+                        data-original="#000000"
+                      />
+                    </svg> */}
                   </th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-black">
                     Delivery Status
@@ -86,13 +98,13 @@ const InHouseOrder = () => {
               </thead>
               <tbody className="whitespace-nowrap">
                 {orderData.map((item: any, index: number) => {
-                   const date = new Date(item.orderDate);
-                   const year = date.getFullYear();
-                   const month = String(date.getMonth() + 1).padStart(2, "0");
-                   const day = String(date.getDate()).padStart(2, "0");
-                   const formattedDate = `${day}/${month}/${year}`;
+                  const date = new Date(item.orderDate);
+                  const year = date.getFullYear();
+                  const month = String(date.getMonth() + 1).padStart(2, "0");
+                  const day = String(date.getDate()).padStart(2, "0");
+                  const formattedDate = `${day}/${month}/${year}`;
                   return (
-                    <tr className="odd:bg-blue-50" key={index}>
+                    <tr className="odd:bg-gray-50" key={index}>
                       <td className="px-6 py-4 text-sm">{i++}</td>
                       <td className="px-6 py-4 text-sm">{item.paymentId}</td>
                       <td className="px-6 py-4 text-sm">
@@ -115,13 +127,13 @@ const InHouseOrder = () => {
                         </span>
                       </td>
                       <td className="px-6 py-4">
-                      <Link
-                        href={`/admin/order/${item.paymentId}`}
-                        className="bg-white hover:cursor-pointer hover:bg-gray-100 text-gray-800 font-semibold py-1 px-2 border border-gray-400 rounded shadow"
-                      >
-                        Invoice
-                      </Link>
-                      {/* <svg
+                        <Link
+                          href={`/admin/order/${item.paymentId}`}
+                          className="bg-white hover:cursor-pointer hover:bg-gray-100 text-gray-800 font-semibold py-1 px-2 border border-gray-400 rounded shadow"
+                        >
+                          Invoice
+                        </Link>
+                        {/* <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="w-7 h-7 cursor-pointer fill-gray-400"
                         viewBox="0 0 24 24"
@@ -130,7 +142,7 @@ const InHouseOrder = () => {
                         <circle cx={4} cy={12} r={2} data-original="#000000" />
                         <circle cx={20} cy={12} r={2} data-original="#000000" />
                       </svg> */}
-                    </td>
+                      </td>
                     </tr>
                   );
                 })}
@@ -142,10 +154,10 @@ const InHouseOrder = () => {
               Show 1 to 5 of 100 entries
             </p>
             <div className="flex items-center max-md:mt-4">
-              <p className="text-sm text-gray-400">Display</p>
+              <p className="text-sm text-gray-800">Display</p>
               <select
                 onChange={(e: any) => handelLimitchane(e.target.value)}
-                className="text-sm text-gray-400 border border-gray-400 rounded h-7 mx-4 outline-none"
+                className="text-sm text-black border border-gray-500 rounded h-7 mx-4 outline-none"
               >
                 <option>5</option>
                 <option>10</option>

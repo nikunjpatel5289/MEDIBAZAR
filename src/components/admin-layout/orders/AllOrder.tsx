@@ -51,7 +51,7 @@ const AllOrder = () => {
   return (
     <>
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white font-[sans-serif]">
+        <table className="min-w-full bg-gray-200 font-[sans-serif] rounded-xl">
           <thead className="whitespace-nowrap">
             <tr>
               <th className="px-6 py-4 text-left text-sm font-semibold text-black">
@@ -88,7 +88,7 @@ const AllOrder = () => {
               const day = String(date.getDate()).padStart(2, "0");
               const formattedDate = `${day}/${month}/${year}`;
               return (
-                <tr className="odd:bg-blue-50" key={index}>
+                <tr className="odd:bg-gray-50" key={index}>
                   <td className="px-6 py-4 text-sm">{i++}</td>
                   <td className="px-6 py-4 text-sm">{item.paymentId}</td>
                   <td className="px-6 py-4 text-sm">
@@ -127,10 +127,10 @@ const AllOrder = () => {
           Show 1 to 5 of 100 entries
         </p>
         <div className="flex items-center max-md:mt-4">
-          <p className="text-sm text-gray-400">Display</p>
+          <p className="text-sm text-gray-800">Display</p>
           <select
             onChange={(e: any) => handelLimitchane(e.target.value)}
-            className="text-sm text-gray-400 border border-gray-400 rounded h-7 mx-4 outline-none"
+            className="text-sm text-black border border-gray-500 rounded h-7 mx-4 outline-none"
           >
             <option>5</option>
             <option>10</option>
