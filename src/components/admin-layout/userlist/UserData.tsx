@@ -78,7 +78,7 @@ const UserData = (prop: prop) => {
       <tbody className="whitespace-nowrap">
         {data?.map((item: any) => {
           return (
-            <tr className="odd:bg-blue-50" key={item._id}>
+            <tr className="odd:bg-gray-50" key={item._id}>
               <td className="pl-6 w-8">{i++}</td>
               <td className="px-6 py-3 text-sm">
                 <div className="flex items-center cursor-pointer">

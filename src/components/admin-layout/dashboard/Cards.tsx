@@ -44,24 +44,24 @@ const Cards = () => {
   return (
     <>
       <Card
-        title="Total User's"
+        title="Total User"
         totalCount={data ? data.totalUser : null}
         link="/admin/users"
       />
       <Card
-        title="Total Venders"
+        title="Total Vender"
         totalCount={data ? data.totalVender : null}
         extraTitle="Total Active Vender"
         extraTotalCount={data ? data.totalActiveVender : null}
         link="/admin/venders"
       />
       <Card
-        title="Total Product's"
+        title="Total Product"
         totalCount={data ? data.totalOurProduct : null}
         link="/admin/products/all"
       />
       <Card
-        title="In-house Sales"
+        title="In-House Sales"
         totalCount={orderTotal ? `Rs. ${orderTotal.total}` : null}
         extraTitle="Total Sales"
         extraTotalCount={data ? `Rs. ${orderTotal.finalTotal}` : null}

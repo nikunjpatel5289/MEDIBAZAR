@@ -1,6 +1,3 @@
-"use client";
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -19,10 +16,12 @@ ChartJS.register(
   Tooltip
 );
 
-const DayChart = () => {
-  const [val, setVal] = useState<any>([]);
+interface prop {
+  val: [any];
+}
 
-  let data;
+const VenderDayChart = ({ val }: prop) => {
+  // console.info(val)
   let options = {
     scales: {
       y: {
@@ -30,36 +29,7 @@ const DayChart = () => {
       },
     },
   };
-
-  const getValue = async () => {
-    try {
-      const token = JSON.parse(localStorage.getItem("token") || "");
-      let config = {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      };
-
-      const response = await axios.get(
-        "http://127.0.0.1:3000/order/daySellingChart",
-        config
-      );
-      if (response) {
-        // console.info(
-        //   response.data[0].dailyTotals.map((item: any) => item.total)
-        // );
-        setVal(response.data[0].dailyTotals);
-      }
-    } catch (error: any) {
-      console.info(error.response);
-    }
-  };
-
-  useEffect(() => {
-    getValue();
-  }, []);
-
-  data = {
+  let data = {
     labels: val?.map((item: any) => {
       return item.day;
     }),
@@ -85,4 +55,4 @@ const DayChart = () => {
   );
 };
 
-export default DayChart;
+export default VenderDayChart;

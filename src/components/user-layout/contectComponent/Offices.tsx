@@ -1,6 +1,6 @@
 const Offices = () => {
   return (
-    <div className="site-section bg-primary">
+    <div className="site-section bg-gradient-to-r from-cyan-400 to-blue-500">
       <div className="container">
         <div className="row">
           <div className="col-12">

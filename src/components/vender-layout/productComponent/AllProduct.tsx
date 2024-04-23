@@ -11,6 +11,7 @@ const AllProduct = () => {
   const [data, setData] = useState<any>([]);
   const [limit, setLimit] = useState<number>(5);
   const [page, setPage] = useState(1);
+  const [sort,setSort] = useState("")
 
   const getTokenData = () => {
     const token = JSON.parse(localStorage.getItem("token") || "");
@@ -27,7 +28,7 @@ const AllProduct = () => {
     try {
       const { config, USERID } = getTokenData();
       const resposen = await axios.get(
-        `http://127.0.0.1:3000/product/own/${USERID}?keyword=${search}&limit=${limit}&page=${page}`,
+        `http://127.0.0.1:3000/product/own/${USERID}?keyword=${search}&limit=${limit}&page=${page}&sort=${sort}`,
         config
       );
       if (resposen) {
@@ -40,14 +41,14 @@ const AllProduct = () => {
     }
   };
 
-  const handellimitChane = (val : any) => {
-    setLimit(val)
-    setPage(1)
-  }
+  const handellimitChane = (val: any) => {
+    setLimit(val);
+    setPage(1);
+  };
 
   useEffect(() => {
     getOwnProduct();
-  }, [limit, page]);
+  }, [limit, page, sort]);
 
   const handleRemoveProduct = async (prodID: string) => {
     try {
@@ -88,7 +89,7 @@ const AllProduct = () => {
       <div className="overflow-x-auto py-8">
         {data.length > 0 ? (
           <>
-            <table className="min-w-full bg-gray-200 font-[sans-serif]">
+            <table className="min-w-full rounded-xl bg-gray-200 font-[sans-serif]">
               <thead className="whitespace-nowrap">
                 <tr>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-black">
@@ -97,11 +98,31 @@ const AllProduct = () => {
                   <th className="px-6 py-4 text-left text-sm font-semibold text-black">
                     Category
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-black">
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-black cursor-pointer" onClick={() => setSort("prodQty")}>
                     Stock
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-3 h-3 fill-gray-400 inline ml-1"
+                      viewBox="0 0 401.998 401.998"
+                    >
+                      <path
+                        d="M73.092 164.452h255.813c4.949 0 9.233-1.807 12.848-5.424 3.613-3.616 5.427-7.898 5.427-12.847s-1.813-9.229-5.427-12.85L213.846 5.424C210.232 1.812 205.951 0 200.999 0s-9.233 1.812-12.85 5.424L60.242 133.331c-3.617 3.617-5.424 7.901-5.424 12.85 0 4.948 1.807 9.231 5.424 12.847 3.621 3.617 7.902 5.424 12.85 5.424zm255.813 73.097H73.092c-4.952 0-9.233 1.808-12.85 5.421-3.617 3.617-5.424 7.898-5.424 12.847s1.807 9.233 5.424 12.848L188.149 396.57c3.621 3.617 7.902 5.428 12.85 5.428s9.233-1.811 12.847-5.428l127.907-127.906c3.613-3.614 5.427-7.898 5.427-12.848 0-4.948-1.813-9.229-5.427-12.847-3.614-3.616-7.899-5.42-12.848-5.42z"
+                        data-original="#000000"
+                      />
+                    </svg>
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-black">
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-black cursor-pointer" onClick={() => setSort("prodPrice")}>
                     Amount
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-3 h-3 fill-gray-400 inline ml-1"
+                      viewBox="0 0 401.998 401.998"
+                    >
+                      <path
+                        d="M73.092 164.452h255.813c4.949 0 9.233-1.807 12.848-5.424 3.613-3.616 5.427-7.898 5.427-12.847s-1.813-9.229-5.427-12.85L213.846 5.424C210.232 1.812 205.951 0 200.999 0s-9.233 1.812-12.85 5.424L60.242 133.331c-3.617 3.617-5.424 7.901-5.424 12.85 0 4.948 1.807 9.231 5.424 12.847 3.621 3.617 7.902 5.424 12.85 5.424zm255.813 73.097H73.092c-4.952 0-9.233 1.808-12.85 5.421-3.617 3.617-5.424 7.898-5.424 12.847s1.807 9.233 5.424 12.848L188.149 396.57c3.621 3.617 7.902 5.428 12.85 5.428s9.233-1.811 12.847-5.428l127.907-127.906c3.613-3.614 5.427-7.898 5.427-12.848 0-4.948-1.813-9.229-5.427-12.847-3.614-3.616-7.899-5.42-12.848-5.42z"
+                        data-original="#000000"
+                      />
+                    </svg>
                   </th>
                   <th className="px-6 py-4 text-left text-sm font-semibold text-black">
                     Action
@@ -112,7 +133,7 @@ const AllProduct = () => {
               <tbody className="whitespace-nowrap">
                 {data.map((item: any) => {
                   return (
-                    <tr className="odd:bg-blue-50">
+                    <tr className="odd:bg-gray-50">
                       <td className="px-6 py-3 text-sm">
                         <div className="flex items-center cursor-pointer">
                           <img
@@ -120,7 +141,7 @@ const AllProduct = () => {
                             className="w-10 h-10 rounded-md shrink-0"
                           />
                           <div className="ml-4">
-                            <p className="text-lg text-black">
+                            <p className="text-m text-black font-bold">
                               {item.prodName}
                             </p>
                             {/* h-16 overflow-y-scroll */}
@@ -233,12 +254,12 @@ const AllProduct = () => {
               </tr> */}
               </tbody>
             </table>
-            <div className="md:flex mt-4 px-6">
+            <div className="md:flex mt-4 px-6 float-end">
               <div className="flex items-center max-md:mt-4">
-                <p className="text-sm text-gray-500">Display</p>
+                <p className="text-sm text-gray-800">Display</p>
                 <select
                   onChange={(e: any) => handellimitChane(e.target.value)}
-                  className="text-sm text-gray-500 border border-gray-500 rounded h-7 mx-4 outline-none"
+                  className="text-sm text-black border border-gray-500 rounded h-7 mx-4 outline-none"
                 >
                   <option>5</option>
                   <option>10</option>
@@ -304,7 +325,13 @@ const AllProduct = () => {
           </>
         ) : (
           <div className="text-center text-xl">
-            Create Produt and Start your Journey... <Link className="text-blue-700 hover:underline" href={'/vender/product/add'}>Click Hear</Link>
+            Create Produt and Start your Journey...{" "}
+            <Link
+              className="text-blue-700 hover:underline"
+              href={"/vender/product/add"}
+            >
+              Click Hear
+            </Link>
           </div>
         )}
       </div>

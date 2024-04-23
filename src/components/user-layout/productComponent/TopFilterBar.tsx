@@ -8,11 +8,14 @@ const TopFilterBar = ({handleSearchData}:prop) => {
   const [search, setSearch] = useState("");
   const onSearchChange = (e: any) => {
     setSearch(e.target.value);
+    setTimeout(() => {
+      handleSearchData(search)
+    }, 800);
   };
 
-  const handleSearch = () => {
-      handleSearchData(search)
-  }
+  // const handleSearch = () => {
+  //     handleSearchData(search)
+  // }
 
   return (
     <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
@@ -46,7 +49,7 @@ const TopFilterBar = ({handleSearchData}:prop) => {
                 onChange={onSearchChange}
               />
             </div>
-            <button
+            {/* <button
               type="button"
               onClick={() => handleSearch()}
               className="p-2.5 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -66,8 +69,7 @@ const TopFilterBar = ({handleSearchData}:prop) => {
                   d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
                 />
               </svg>
-              {/* <span className="sr-only">Search</span> */}
-            </button>
+            </button> */}
           </form>
         </div>
       </div>

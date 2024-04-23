@@ -67,7 +67,7 @@ const Users = () => {
       ) : (
         <>
           <div className="overflow-x-auto py-5">
-            <table className="min-w-full bg-gray-200 font-[sans-serif]">
+            <table className="min-w-full bg-gray-200 font-[sans-serif] rounded-xl">
               <thead className="whitespace-nowrap">
                 <tr>
                   <th className="pl-6 w-8">Index</th>
@@ -85,7 +85,7 @@ const Users = () => {
               <tbody className="whitespace-nowrap">
                 {data.map((item: any) => {
                   return (
-                    <tr className="odd:bg-blue-50">
+                    <tr className="odd:bg-gray-50">
                       <td className="pl-6 w-8">{i++}</td>
                       <td className="px-6 py-3 text-sm">
                         <div className="flex items-center cursor-pointer">
