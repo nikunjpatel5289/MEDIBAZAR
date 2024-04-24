@@ -71,7 +71,7 @@ const ProductList = ({ data, MAXCOUNT, handlePgination }: prop) => {
                   <li>
                     <button
                       onClick={() => decrement()}
-                      className="m-2 p-2 hover:cursor-pointer text-black text-xl bg-slate-400 rounded-lg hover:bg-slate-500"
+                      className="m-2 p-2 hover:cursor-pointer outline-none text-black text-xl bg-slate-400 rounded-lg hover:bg-slate-500"
                     >
                       &lt;Previous
                     </button>
@@ -81,7 +81,7 @@ const ProductList = ({ data, MAXCOUNT, handlePgination }: prop) => {
                     {/* bg-slate-400 rounded-lg hover:bg-slate-500 */}
                     <button
                       onClick={() => increment()}
-                      className="m-2 p-2 hover:cursor-pointer text-black text-xl bg-slate-400 rounded-lg hover:bg-slate-500"
+                      className="m-2 p-2 hover:cursor-pointer outline-none text-black text-xl bg-slate-400 rounded-lg hover:bg-slate-500"
                     >
                       Next&gt;
                     </button>

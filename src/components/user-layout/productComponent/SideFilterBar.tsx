@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 
 interface prop {
   handelCateSearch: (data?: string) => void;
+  setOrder: number | any
 }
 
-const SideFilterBar = ({ handelCateSearch }: prop) => {
+const SideFilterBar = ({ handelCateSearch, setOrder }: prop) => {
   const [catData, setCatData] = useState<Array<any>>([]);
   const handelCategoryGet = async () => {
     try {
@@ -27,7 +28,7 @@ const SideFilterBar = ({ handelCateSearch }: prop) => {
       <h3 className="mb-3">Categories</h3>
       <ul
         role="list"
-        className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900"
+        className="space-y-4 border-b border-gray-500 pb-6 text-sm font-medium text-gray-900"
       >
         {catData.map((item: any) => {
           return (
@@ -43,6 +44,31 @@ const SideFilterBar = ({ handelCateSearch }: prop) => {
         })}
       </ul>
 
+      <div className="border-b border-gray-500 py-6">
+        <h3 className="-my-3 flow-root">
+          <span className="font-medium text-gray-500 mb-3">Sort Price</span>
+        </h3>
+        <div className="pt-6" id="filter-section-0">
+          <div className="space-y-4">
+            <div className="flex items-center">
+              <span
+                onClick={()=> setOrder(1)}
+                className=" text-m text-black hover:cursor-pointer hover:text-gray-600"
+              >
+                By Price : Low To High
+              </span>
+            </div>
+            <div className="flex items-center">
+              <span
+                onClick={()=> setOrder(-1)}
+                className=" text-m text-black hover:cursor-pointer hover:text-gray-600"
+              >
+                By Price : High To Low
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
       {/* <div className="border-b border-gray-200 py-6">
         <h3 className="-my-3 flow-root">
           <span className="font-medium text-gray-900 mb-3">Color</span>

@@ -162,12 +162,12 @@ export default function Header() {
             )}
             {!islogin && ( //islogin
               <>
-                <Link href={{ pathname: "/login", query: { param: "value" } }}>
+                <Link href={{ pathname: "/login"}}>
                   {/* <span className="ms-4">LogIn |</span> */}LogIn |
                 </Link>
                 <Link
                   className="ms-1"
-                  href={{ pathname: "/signup", query: { param: "value" } }}
+                  href={{ pathname: "/signup" }}
                 >
                   {/* <span className="ms-1">Register</span> */}Register
                 </Link>

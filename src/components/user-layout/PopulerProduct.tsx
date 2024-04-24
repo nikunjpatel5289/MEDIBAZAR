@@ -16,7 +16,7 @@ const PopulerProduct = () => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
       };
       const result = await axios.get(
-        `http://127.0.0.1:3000/product?cat=&keyword=&page=${randomNumber(1, 2)}&limit=6`
+        `http://127.0.0.1:3000/product?cat=&sort=1&keyword=&page=${randomNumber(1, 2)}&limit=6`
       );
 
       if (result) {
@@ -44,14 +44,14 @@ const PopulerProduct = () => {
         </div>
 
         <div className="row">
-          {prodData?.map((item: any) => {
+          {prodData?.map((item: any,idx:number) => {
             return (
               <>
-                <div className="col-sm-6 col-lg-4 text-center item mb-4 h-[auto]">
+                <div className="col-sm-6 col-lg-4 text-center item mb-4 h-[auto]" key={idx}>
                   {/* <span className="tag">Sale</span> */}
                   <Link href={`/products/${item._id}`}>
                     <img
-                      src={item.images[1]}
+                      src={item.images[0]}
                       className="ms-7 h-[250px]"
                       alt={item.prodName}
                       width={"300px"}
