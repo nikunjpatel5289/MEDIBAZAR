@@ -15,6 +15,7 @@ const page = () => {
   const [search, setSearch] = useState<any>("");
   const [max, setMax] = useState<number>(0);
   const [page, setPage] = useState<number>(1);
+  const [order,setOrder] = useState<number>(1)
 
   const handleSearchData = (data?: string) => {
     setPage(1)
@@ -33,7 +34,7 @@ const page = () => {
   const handelGetProductData = async () => {
     try {
       const result = await axios.get(
-        `http://127.0.0.1:3000/product?cat=${cat}&keyword=${search}&page=${page}`
+        `http://127.0.0.1:3000/product?cat=${cat}&sort=${order}&keyword=${search}&page=${page}`
       );
       if (result) {
         // console.info(result.data);
@@ -48,7 +49,7 @@ const page = () => {
 
   useEffect(() => {
     handelGetProductData();
-  }, [search, cat, page]);
+  }, [search, cat, page, order]);
 
   return (
     <Container>
@@ -58,7 +59,7 @@ const page = () => {
             <TopFilterBar handleSearchData={handleSearchData} />
             <section aria-labelledby="products-heading" className="pb-24 pt-6">
               <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
-                <SideFilterBar handelCateSearch={handelCateSearch} />
+                <SideFilterBar handelCateSearch={handelCateSearch} setOrder={setOrder}/>
                 <div className="lg:col-span-3">
                   <ProductList
                     data={data}
