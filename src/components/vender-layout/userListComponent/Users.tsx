@@ -7,7 +7,7 @@ const Users = () => {
   const [load, setLoad] = useState(false);
   const [data, setData] = useState<any>([]);
   const [search, setSearch] = useState<string>("");
-  const [limit, setlimit] = useState(2);
+  const [limit, setlimit] = useState<number>(2);
   const [page, setPage] = useState(1);
   let i = 1;
 
@@ -122,10 +122,10 @@ const Users = () => {
               Showind 1 to 5 of 100 entries
             </p>
             <div className="flex items-center max-md:mt-4">
-              <p className="text-sm text-gray-400">Display</p>
+              <p className="text-sm text-gray-800">Display</p>
               <select
                 onChange={(e: any) => setlimit(e.target.value)}
-                className="text-sm text-gray-400 border border-gray-400 rounded h-7 mx-4 outline-none"
+                className="text-sm text-black border border-gray-800 rounded h-7 mx-4 outline-none"
               >
                 <option>2</option>
                 <option>5</option>

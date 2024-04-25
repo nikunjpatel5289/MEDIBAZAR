@@ -36,7 +36,7 @@ const page = () => {
     try {
       const token = localStorage.getItem("token") || "";
       if (token === "") {
-        toast("Fist LogIn Then Add To Cart...");
+        toast.warn("Fist LogIn Then Add To Cart...");
       } else {
         const TOKEN = JSON.parse(token);
         let config = {
@@ -53,7 +53,7 @@ const page = () => {
         );
 
         if (response) {
-          toast("Product Added Into Cart...");
+          toast.success("Product Added Into Cart...");
         }
         // console.info(JSON.parse(token));
 

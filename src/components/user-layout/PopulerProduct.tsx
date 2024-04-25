@@ -47,7 +47,7 @@ const PopulerProduct = () => {
           {prodData?.map((item: any,idx:number) => {
             return (
               <>
-                <div className="col-sm-6 col-lg-4 text-center item mb-4 h-[auto]" key={idx}>
+                <div className="col-sm-6 shadow-xl col-lg-4 text-center item mb-4 h-[auto]" key={idx}>
                   {/* <span className="tag">Sale</span> */}
                   <Link href={`/products/${item._id}`}>
                     <img

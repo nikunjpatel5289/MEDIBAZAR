@@ -47,7 +47,7 @@ const page = () => {
         }
       }
     } catch (err: any) {
-      toast(err);
+      toast.warn(err);
     }
   };
 

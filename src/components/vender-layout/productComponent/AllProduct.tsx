@@ -37,7 +37,7 @@ const AllProduct = () => {
       }
     } catch (error: any) {
       // console.info(error.response.data);
-      toast(error.response.data.message);
+      toast.warn(error.response.data.message);
     }
   };
 
@@ -58,11 +58,11 @@ const AllProduct = () => {
         config
       );
       if (reponse) {
-        toast("Product Removed...");
+        toast.success("Product Removed...");
         getOwnProduct();
       }
     } catch (error: any) {
-      toast(error.response.data.message);
+      toast.warn(error.response.data.message);
     }
   };
   return (
