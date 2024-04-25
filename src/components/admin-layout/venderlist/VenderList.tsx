@@ -2,6 +2,7 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 const VenderList = () => {
   const [data, setData] = useState<any>([]);
@@ -37,7 +38,9 @@ const VenderList = () => {
   };
 
   useEffect(() => {
-    getVenderData()
+    // setTimeout(() => {
+      getVenderData()
+    // }, 300);
   },[])
 
   const handleVenderActivation = async (venderId: string) => {
@@ -48,12 +51,13 @@ const VenderList = () => {
         getVenderData()
       }
     } catch (error : any) {
-      console.info(error.response.data)
+      toast.error(error.response.data)
     } 
   }
  
   return (
     <>
+      <ToastContainer />
       <div className="flex border border-black overflow-hidden max-w-md mx-auto font-[sans-serif]">
         <input
           type="email"

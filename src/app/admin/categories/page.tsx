@@ -31,7 +31,7 @@ const page = () => {
         setCatData(result.data.data);
       }
     } catch (error: any) {
-      toast(error.response.data)
+      toast.warn(error.response.data)
       // console.info(error.response.data);
     }
   };
@@ -46,12 +46,12 @@ const page = () => {
       const response = await axios.delete(`http://127.0.0.1:3000/category/${id}`, config)
       
       if(response.data.status) {
-        toast("Category Removed....")
+        toast.success("Category Removed....")
         getCategoryData()
       }
 
     } catch (error : any) {
-      toast(error.response.data.message)
+      toast.warn(error.response.data.message)
     }
   }
 
@@ -66,7 +66,7 @@ const page = () => {
             <span className="font-semibold">Add Categories</span>
           </div>
         </div>
-        <AddCategories getCategoryData={getCategoryData} getTokenData={getTokenData} toast={toast}/>
+        <AddCategories getCategoryData={getCategoryData} getTokenData={getTokenData} toast={toast.success}/>
         <hr />
         <AllCategories catData={catData} removeCategory={handeRemoveCategory}/>
       </div>

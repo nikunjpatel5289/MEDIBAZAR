@@ -11,7 +11,7 @@ const Card = (prop: prop) => {
   // console.log("PROP",prop.count);
 
   return (
-    <div className="max-w-screen-md p-6 border-2 bg-white border-gray-200 rounded-lg shadow dark:bg-gray-200 dark:border-gray-800">
+    <div className="max-w-screen-md p-6 border-2 bg-white border-gray-200 rounded-lg shadow-2xl dark:bg-gray-200 dark:border-gray-800">
       {prop.title === "Total Product" ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -17,7 +17,7 @@ const Card = ({
   link,
 }: prop) => {
   return (
-    <div className="max-w-screen-md border-2 p-6 bg-white border-gray-200 rounded-lg shadow dark:bg-gray-200 dark:border-gray-800">
+    <div className="max-w-screen-md border-2 shadow-2xl p-6 bg-white border-gray-200 rounded-lg dark:bg-gray-200 dark:border-gray-800">
       {title === "Total Product" ? (
         <svg
         xmlns="http://www.w3.org/2000/svg"

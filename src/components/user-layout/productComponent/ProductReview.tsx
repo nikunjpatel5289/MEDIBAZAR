@@ -26,7 +26,7 @@ const ProductReview = () => {
         setReviews(result.data.data)
       }
     } catch (error: any) {
-        console.info(error.response.data);
+        // console.info(error.response.data);
     }
   }
 
@@ -39,7 +39,7 @@ const ProductReview = () => {
       //   console.info(rating, "<- Rating Comment ->", comment, " Parma->", param.id);
       try {
         if (userToken.token === null) {
-          toast("Login Your Self Then Give Review...");
+          toast.warn("Login Your Self First...");
         } else {
           const token = JSON.parse(localStorage.getItem("token") || "");
           let config = {

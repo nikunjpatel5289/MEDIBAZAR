@@ -78,7 +78,7 @@ const DayChart = () => {
 
   return (
     <div className=" mt-4">
-      <div className="p-6 bg-white border-2 border-gray-200 rounded-lg shadow dark:bg-gray-200 dark:border-gray-800">
+      <div className="p-6 bg-white border-2 shadow-2xl border-gray-200 rounded-lg dark:bg-gray-200 dark:border-gray-800">
         <Line data={data} options={options} />
       </div>
     </div>

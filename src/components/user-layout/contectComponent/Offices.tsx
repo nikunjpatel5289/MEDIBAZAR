@@ -21,9 +21,7 @@ const Offices = () => {
               <span className="d-block text-black h6 text-uppercase">
                 London
               </span>
-              <p className="mb-0">
-                203 Fake St. Mountain View, San Francisco, California, USA
-              </p>
+              <p className="mb-0">17 Wmbaly, Weast Coast. North London, UK</p>
             </div>
           </div>
           <div className="col-lg-4">
@@ -31,9 +29,7 @@ const Offices = () => {
               <span className="d-block text-black h6 text-uppercase">
                 Canada
               </span>
-              <p className="mb-0">
-                203 Fake St. Mountain View, San Francisco, California, USA
-              </p>
+              <p className="mb-0">90, Navas Cocia, New city Orlando, Canada</p>
             </div>
           </div>
         </div>

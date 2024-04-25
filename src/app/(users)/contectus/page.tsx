@@ -6,6 +6,7 @@ import Offices from "@/components/user-layout/contectComponent/Offices";
 const page = () => {
   return (
     <Container>
+      <title>MediBazar | Contect Us</title>
       <div className="site-section">
         <div className="container">
           <div className="row">

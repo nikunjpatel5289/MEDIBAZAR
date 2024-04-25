@@ -27,7 +27,7 @@ const ContectUs = () => {
         values
       );
 
-      toast("Your response has Submited...");
+      toast.success("Your response has Submited...");
 
       formik.values.firstName = "";
       formik.values.lastName = "";
@@ -35,7 +35,7 @@ const ContectUs = () => {
       formik.values.email = "";
     } catch (error: any) {
       // console.info(error);
-      toast("Somthig Wrong Try Again...");
+      toast.warn("Somthig Wrong Try Again...");
     }
   };
 

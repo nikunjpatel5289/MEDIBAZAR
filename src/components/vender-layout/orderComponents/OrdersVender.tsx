@@ -77,11 +77,11 @@ const OrdersVender = () => {
             </thead>
             <tbody className="whitespace-nowrap">
               {orderData.map((item: any, index: number) => {
-                 const date = new Date(item.orderDate);
-                 const year = date.getFullYear();
-                 const month = String(date.getMonth() + 1).padStart(2, "0");
-                 const day = String(date.getDate()).padStart(2, "0");
-                 const formattedDate = `${day}/${month}/${year}`;
+                const date = new Date(item.orderDate);
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, "0");
+                const day = String(date.getDate()).padStart(2, "0");
+                const formattedDate = `${day}/${month}/${year}`;
                 return (
                   <tr className="odd:bg-gray-50" key={index}>
                     <td className="px-6 py-4 text-sm">{i++}</td>
@@ -113,14 +113,14 @@ const OrdersVender = () => {
                         Invoice
                       </Link>
                       {/* <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-7 h-7 cursor-pointer fill-gray-400"
-                        viewBox="0 0 24 24"
-                      >
-                        <circle cx={12} cy={12} r={2} data-original="#000000" />
-                        <circle cx={4} cy={12} r={2} data-original="#000000" />
-                        <circle cx={20} cy={12} r={2} data-original="#000000" />
-                      </svg> */}
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-7 h-7 cursor-pointer fill-gray-400"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle cx={12} cy={12} r={2} data-original="#000000" />
+                          <circle cx={4} cy={12} r={2} data-original="#000000" />
+                          <circle cx={20} cy={12} r={2} data-original="#000000" />
+                        </svg> */}
                     </td>
                   </tr>
                 );
@@ -130,13 +130,13 @@ const OrdersVender = () => {
         </div>
         <div className="md:flex mt-4 px-6">
           <p className="text-sm text-gray-400 flex-1">
-            Show 1 to 5 of 100 entries
+            {/* Show 1 to 5 of 100 entries */}
           </p>
           <div className="flex items-center max-md:mt-4">
-            <p className="text-sm text-gray-400">Display</p>
+            <p className="text-sm text-gray-800">Display</p>
             <select
               onChange={(e: any) => setlimit(e.target.value)}
-              className="text-sm text-gray-400 border border-gray-400 rounded h-7 mx-4 outline-none"
+              className="text-sm text-black border border-gray-800 rounded h-7 mx-4 outline-none"
             >
               <option>5</option>
               <option>10</option>
