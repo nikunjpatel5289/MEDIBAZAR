@@ -67,7 +67,7 @@ const page = () => {
           </div>
         </div>
         <AddCategories getCategoryData={getCategoryData} getTokenData={getTokenData} toast={toast.success}/>
-        <hr />
+        {/* <hr /> */}
         <AllCategories catData={catData} removeCategory={handeRemoveCategory}/>
       </div>
     </>

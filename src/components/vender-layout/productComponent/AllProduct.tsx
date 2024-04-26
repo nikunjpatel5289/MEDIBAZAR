@@ -11,7 +11,10 @@ const AllProduct = () => {
   const [data, setData] = useState<any>([]);
   const [limit, setLimit] = useState<number>(5);
   const [page, setPage] = useState(1);
-  const [sort,setSort] = useState("")
+  const [sort, setSort] = useState("");
+  const [order, setOrder] = useState<number>(1);
+  const [showDel, setShowDel] = useState(false);
+  const [val, setVal] = useState<string>("");
 
   const getTokenData = () => {
     const token = JSON.parse(localStorage.getItem("token") || "");
@@ -28,7 +31,7 @@ const AllProduct = () => {
     try {
       const { config, USERID } = getTokenData();
       const resposen = await axios.get(
-        `http://127.0.0.1:3000/product/own/${USERID}?keyword=${search}&limit=${limit}&page=${page}&sort=${sort}`,
+        `http://127.0.0.1:3000/product/own/${USERID}?keyword=${search}&limit=${limit}&page=${page}&sort=${sort}&order=${order}`,
         config
       );
       if (resposen) {
@@ -48,7 +51,7 @@ const AllProduct = () => {
 
   useEffect(() => {
     getOwnProduct();
-  }, [limit, page, sort]);
+  }, [limit, page, sort, order]);
 
   const handleRemoveProduct = async (prodID: string) => {
     try {
@@ -68,6 +71,53 @@ const AllProduct = () => {
   return (
     <>
       <ToastContainer />
+      <div
+        className={`${
+          showDel ? "" : "hidden"
+        } fixed inset-0 p-4 flex flex-wrap justify-center items-center w-full h-full z-[1000] before:fixed before:inset-0 before:w-full before:h-full before:bg-[rgba(0,0,0,0.5)] overflow-auto font-[sans-serif]`}
+      >
+        <div className="w-full max-w-lg bg-white shadow-lg rounded-md p-6 relative">
+          <div className="my-8 text-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-16 fill-red-500 inline"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1Zm1-3h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z"
+                data-original="#000000"
+              />
+              <path
+                d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Zm4 0v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z"
+                data-original="#000000"
+              />
+            </svg>
+            <h4 className="text-lg font-semibold mt-6">
+              Are you sure you want to delete this Product?
+            </h4>
+          </div>
+          <div className="text-center space-x-4">
+            <button
+              type="button"
+              onClick={() => setShowDel(!showDel)}
+              className="px-6 py-2.5 rounded-md text-black text-sm font-semibold border-none outline-none bg-gray-200 hover:bg-gray-300 active:bg-gray-200"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                handleRemoveProduct(val);
+                setShowDel(!showDel);
+              }}
+              className="px-6 py-2.5 rounded-md text-white text-sm font-semibold border-none outline-none bg-red-600 hover:bg-red-700 active:bg-red-600"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+
       {data.length > 0 && (
         <div className="flex border border-black overflow-hidden max-w-md mx-auto font-[sans-serif]">
           <input
@@ -89,16 +139,54 @@ const AllProduct = () => {
       <div className="overflow-x-auto py-8">
         {data.length > 0 ? (
           <>
-            <table className="min-w-full rounded-xl bg-gray-200 font-[sans-serif]">
+            <table className="min-w-full rounded-xl bg-gray-200 font-[sans-serif] shadow-xl">
               <thead className="whitespace-nowrap">
                 <tr>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-black">
+                  <th
+                    className="px-6 py-4 text-left text-sm font-semibold text-black"
+                    onClick={() => {
+                      setSort("prodName");
+                      setOrder(order === 1 ? -1 : 1);
+                    }}
+                  >
                     Product Name
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-3 h-3 fill-gray-400 inline ml-1"
+                      viewBox="0 0 401.998 401.998"
+                    >
+                      <path
+                        d="M73.092 164.452h255.813c4.949 0 9.233-1.807 12.848-5.424 3.613-3.616 5.427-7.898 5.427-12.847s-1.813-9.229-5.427-12.85L213.846 5.424C210.232 1.812 205.951 0 200.999 0s-9.233 1.812-12.85 5.424L60.242 133.331c-3.617 3.617-5.424 7.901-5.424 12.85 0 4.948 1.807 9.231 5.424 12.847 3.621 3.617 7.902 5.424 12.85 5.424zm255.813 73.097H73.092c-4.952 0-9.233 1.808-12.85 5.421-3.617 3.617-5.424 7.898-5.424 12.847s1.807 9.233 5.424 12.848L188.149 396.57c3.621 3.617 7.902 5.428 12.85 5.428s9.233-1.811 12.847-5.428l127.907-127.906c3.613-3.614 5.427-7.898 5.427-12.848 0-4.948-1.813-9.229-5.427-12.847-3.614-3.616-7.899-5.42-12.848-5.42z"
+                        data-original="#000000"
+                      />
+                    </svg>
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-black">
+                  <th
+                    className="px-6 py-4 text-left text-sm font-semibold text-black"
+                    onClick={() => {
+                      setSort("categoryId");
+                      setOrder(order === 1 ? -1 : 1);
+                    }}
+                  >
                     Category
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-3 h-3 fill-gray-400 inline ml-1"
+                      viewBox="0 0 401.998 401.998"
+                    >
+                      <path
+                        d="M73.092 164.452h255.813c4.949 0 9.233-1.807 12.848-5.424 3.613-3.616 5.427-7.898 5.427-12.847s-1.813-9.229-5.427-12.85L213.846 5.424C210.232 1.812 205.951 0 200.999 0s-9.233 1.812-12.85 5.424L60.242 133.331c-3.617 3.617-5.424 7.901-5.424 12.85 0 4.948 1.807 9.231 5.424 12.847 3.621 3.617 7.902 5.424 12.85 5.424zm255.813 73.097H73.092c-4.952 0-9.233 1.808-12.85 5.421-3.617 3.617-5.424 7.898-5.424 12.847s1.807 9.233 5.424 12.848L188.149 396.57c3.621 3.617 7.902 5.428 12.85 5.428s9.233-1.811 12.847-5.428l127.907-127.906c3.613-3.614 5.427-7.898 5.427-12.848 0-4.948-1.813-9.229-5.427-12.847-3.614-3.616-7.899-5.42-12.848-5.42z"
+                        data-original="#000000"
+                      />
+                    </svg>
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-black cursor-pointer" onClick={() => setSort("prodQty")}>
+                  <th
+                    className="px-6 py-4 text-left text-sm font-semibold text-black cursor-pointer"
+                    onClick={() => {
+                      setSort("prodQty");
+                      setOrder(order === 1 ? -1 : 1);
+                    }}
+                  >
                     Stock
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +199,13 @@ const AllProduct = () => {
                       />
                     </svg>
                   </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-black cursor-pointer" onClick={() => setSort("prodPrice")}>
+                  <th
+                    className="px-6 py-4 text-left text-sm font-semibold text-black cursor-pointer"
+                    onClick={() => {
+                      setSort("prodPrice");
+                      setOrder(order === 1 ? -1 : 1);
+                    }}
+                  >
                     Amount
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -145,7 +239,7 @@ const AllProduct = () => {
                               {item.prodName}
                             </p>
                             {/* h-16 overflow-y-scroll */}
-                            <p className="text-xs text-gray-600 text-wrap ">
+                            <p className="text-xs text-gray-600 text-wrap h-16 overflow-y-auto">
                               {item.prodDescription}
                             </p>
                           </div>
@@ -167,7 +261,11 @@ const AllProduct = () => {
                         </Link>
                         <button
                           className="mr-4"
-                          onClick={() => handleRemoveProduct(item._id)}
+                          onClick={() => {
+                            // handleRemoveProduct(item._id)
+                            setShowDel((prev) => !prev);
+                            setVal(item._id);
+                          }}
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -269,9 +367,9 @@ const AllProduct = () => {
                 </select>
                 <ul className="flex space-x-1 ml-2">
                   <li
-                    className={`flex items-center justify-center ${
+                    className={`flex items-center justify-center w-20 ${
                       page > 1 ? "cursor-pointer bg-gray-300 " : "bg-gray-100"
-                    }w-20 h-7 rounded`}
+                    } h-7 rounded`}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -293,11 +391,11 @@ const AllProduct = () => {
                   </li>
 
                   <li
-                    className={`${
+                    className={`flex items-center justify-center w-20 h-7 rounded ${
                       data.length < limit
                         ? "bg-gray-100"
                         : "cursor-pointer  bg-gray-300"
-                    } flex items-center justify-center w-20 h-7 rounded`}
+                    } `}
                   >
                     <span
                       onClick={() =>

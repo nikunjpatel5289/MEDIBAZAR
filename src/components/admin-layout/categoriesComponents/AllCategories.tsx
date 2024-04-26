@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-// import { useState } from "react";
+import { useState } from "react";
 
 interface prop {
   catData: [];
@@ -9,10 +9,11 @@ interface prop {
 
 const AllCategories = ({ catData, removeCategory }: prop) => {
   let i = 1;
-  // const [showDel, setShowDel] = useState(false);
+  const [showDel, setShowDel] = useState(false);
+  const [val, setVal] = useState<string>("");
   return (
     <>
-      {/* <div
+      <div
         className={`${
           showDel ? "" : "hidden"
         } fixed inset-0 p-4 flex flex-wrap justify-center items-center w-full h-full z-[1000] before:fixed before:inset-0 before:w-full before:h-full before:bg-[rgba(0,0,0,0.5)] overflow-auto font-[sans-serif]`}
@@ -47,15 +48,19 @@ const AllCategories = ({ catData, removeCategory }: prop) => {
             </button>
             <button
               type="button"
+              onClick={() => {
+                removeCategory(val);
+                setShowDel(!showDel);
+              }}
               className="px-6 py-2.5 rounded-md text-white text-sm font-semibold border-none outline-none bg-red-600 hover:bg-red-700 active:bg-red-600"
             >
               Delete
             </button>
           </div>
         </div>
-      </div> */}
+      </div>
 
-      <div className="overflow-x-auto text-center mx-44">
+      <div className="overflow-x-auto text-center mx-44 shadow-2xl">
         <table className="mt-6 min-w-[600px] rounded-xl bg-gray-200 font-[sans-serif]">
           <thead className=" whitespace-nowrap">
             <tr>
@@ -99,7 +104,11 @@ const AllCategories = ({ catData, removeCategory }: prop) => {
                     <button
                       className="mr-4"
                       // title="Delete"
-                      onClick={() => removeCategory(item._id)}
+                      // onClick={() => removeCategory(item._id)}
+                      onClick={() => {
+                        setShowDel((prev) => !prev);
+                        setVal(item._id);
+                      }}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

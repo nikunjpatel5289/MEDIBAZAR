@@ -81,7 +81,7 @@ const Contect = () => {
       </div>
       <div className="overflow-x-auto py-8">
         <ToastContainer />
-        <table className="min-w-full rounded-xl bg-gray-200 font-[sans-serif]">
+        <table className="min-w-full rounded-xl bg-gray-200 font-[sans-serif] shadow-xl">
           <thead className="whitespace-nowrap">
             <tr>
               <th className="px-6 py-4 text-left text-sm font-semibold text-black">
