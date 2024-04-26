@@ -45,8 +45,8 @@ const OrdersVender = () => {
     <>
       {/* {orderData.length > 0 ? ( */}
       <>
-        <div className="overflow-x-auto">
-          <table className="min-w-full bg-gray-200 font-[sans-serif] rounded-xl">
+        <div className="overflow-x-auto pb-4">
+          <table className="min-w-full bg-gray-200 font-[sans-serif] rounded-xl shadow-xl">
             <thead className="whitespace-nowrap">
               <tr>
                 <th className="px-6 py-4 text-left text-sm font-semibold text-black">

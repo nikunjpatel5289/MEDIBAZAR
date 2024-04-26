@@ -152,7 +152,7 @@ export default function Header() {
                   </div> */}
                 </Link>
                 <span
-                  className="ms-2 mt-[11px] cursor-pointer border-none outline-none"
+                  className="ms-2 mt-[11px] text-black cursor-pointer border-none outline-none"
                   // type="button"
                   onClick={handleLogOut}
                 >

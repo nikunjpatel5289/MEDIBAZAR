@@ -54,7 +54,7 @@ const Footer = () => {
                 {/* <script>document.write(new Date().getFullYear());</script>  */}
                 All rights reserved |
                 <i className="ms-1 icon-heart" aria-hidden="true"></i> by
-                <Link href="/" target="_blank" className="text-orange-600 ms-1">
+                <Link href="/" className="text-orange-600 ms-1">
                   MediBazar
                 </Link>
               </p>

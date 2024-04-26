@@ -171,7 +171,7 @@ const AddProduct = () => {
               value={formik.values.prodName}
               onChange={formik.handleChange}
               className={
-                "px-2 pt-5 pb-2 bg-white w-full text-sm border-b-2 border-gray-100 focus:border-[#333] outline-none"
+                "px-2 pt-5 pb-2 bg-white w-full text-sm border-b-2 border-gray-300 focus:border-[#333] outline-none"
               }
             />
           </div>
@@ -312,7 +312,7 @@ const AddProduct = () => {
               type="text"
               name="prodFlavour"
               placeholder="Enter Product Flavour"
-              className="px-2 pt-5 pb-2 bg-white w-full text-sm border-b-2 border-gray-100 focus:border-[#333] outline-none"
+              className="px-2 pt-5 pb-2 bg-white w-full text-sm border-b-2 border-gray-300 focus:border-[#333] outline-none"
               value={formik.values.prodFlavour}
               onChange={formik.handleChange}
             />
@@ -325,7 +325,7 @@ const AddProduct = () => {
               type="text"
               name="prodSize"
               placeholder="Enter Product Sizes"
-              className="px-2 pt-5 pb-2 bg-white w-full text-sm border-b-2 border-gray-100 focus:border-[#333] outline-none"
+              className="px-2 pt-5 pb-2 bg-white w-full text-sm border-b-2 border-gray-300 focus:border-[#333] outline-none"
               value={formik.values.prodSize}
               onChange={formik.handleChange}
             />
@@ -345,7 +345,7 @@ const AddProduct = () => {
               type="number"
               placeholder="Enter Product Quentity"
               name="prodQty"
-              className="px-2 pt-5 pb-2 bg-white w-full text-sm border-b-2 border-gray-100 focus:border-[#333] outline-none"
+              className="px-2 pt-5 pb-2 bg-white w-full text-sm border-b-2 border-gray-300 focus:border-[#333] outline-none"
               value={formik.values.prodQty}
               onChange={formik.handleChange}
             />
@@ -364,7 +364,7 @@ const AddProduct = () => {
               type="number"
               name="prodPrice"
               placeholder="Enter Product Price"
-              className="px-2 pt-5 pb-2 bg-white w-full text-sm border-b-2 border-gray-100 focus:border-[#333] outline-none"
+              className="px-2 pt-5 pb-2 bg-white w-full text-sm border-b-2 border-gray-300 focus:border-[#333] outline-none"
               value={formik.values.prodPrice}
               onChange={formik.handleChange}
             />

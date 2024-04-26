@@ -50,8 +50,8 @@ const AllOrder = () => {
 
   return (
     <>
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-gray-200 font-[sans-serif] rounded-xl">
+      <div className="overflow-x-auto py-4">
+        <table className="min-w-full bg-gray-200 font-[sans-serif] rounded-xl shadow-xl">
           <thead className="whitespace-nowrap">
             <tr>
               <th className="px-6 py-4 text-left text-sm font-semibold text-black">
@@ -124,7 +124,7 @@ const AllOrder = () => {
       </div>
       <div className="md:flex mt-4 px-6">
         <p className="text-sm text-gray-400 flex-1">
-          Show 1 to 5 of 100 entries
+          {/* Show 1 to 5 of 100 entries */}
         </p>
         <div className="flex items-center max-md:mt-4">
           <p className="text-sm text-gray-800">Display</p>

@@ -49,7 +49,7 @@ const AddPromo = () => {
       );
 
       if (response) {
-        toast("PromoCode Are Generated...");
+        toast.success("PromoCode Are Generated...");
         formik.values.promcodename = "";
         formik.values.promotype = "";
         formik.values.promocodeamount = "" as any;
@@ -60,9 +60,11 @@ const AddPromo = () => {
     } catch (error: any) {
       // console.info(error.response.data.message);
       if (error.response.data.message.match(/E11000/gi)) {
-        toast("Promo Code Already Generatedd With This Name... Try New One");
+        toast.warn(
+          "Promo Code Already Generatedd With This Name... Try New One"
+        );
       } else {
-        toast(error.response.data.message);
+        toast.error(error.response.data.message);
       }
     }
   };
@@ -83,7 +85,8 @@ const AddPromo = () => {
     <>
       <div>
         <div className="text-end text-gray-600 font-sans text-4xl mb-4">
-          <Link href={"/admin/promocode/all"}
+          <Link
+            href={"/admin/promocode/all"}
             className="px-6 py-2.5 rounded text-white text-sm tracking-wider font-semibold border-none outline-none bg-[#333] hover:bg-[#222] active:bg-[#333]"
           >
             Show All Promo Code
@@ -99,7 +102,9 @@ const AddPromo = () => {
           <div className="relative flex items-center ">
             <label
               className={`text-[13px] absolute top-[-10px] left-0 font-semibold ${
-                formik.touched.promcodename && formik.errors.promcodename && "text-red-600"
+                formik.touched.promcodename &&
+                formik.errors.promcodename &&
+                "text-red-600"
               }`}
             >
               PromoCode name *
@@ -108,7 +113,7 @@ const AddPromo = () => {
               type="text"
               placeholder="Enter Promocode name"
               name="promcodename"
-              className="px-2 pt-5 pb-2 bg-white w-full text-sm border-b-2 border-gray-100 focus:border-[#333] outline-none"
+              className="px-2 pt-5 pb-2 bg-white w-full text-sm border-b-2 border-gray-300 focus:border-[#333] outline-none"
               value={formik.values.promcodename}
               onChange={formik.handleChange}
             />
@@ -117,7 +122,9 @@ const AddPromo = () => {
           <div className="relative flex items-center ">
             <label
               className={`text-[13px] absolute top-[-10px] left-0 font-semibold ${
-                formik.touched.promotype && formik.errors.promotype && "text-red-600"
+                formik.touched.promotype &&
+                formik.errors.promotype &&
+                "text-red-600"
               }`}
             >
               Promo Code Type *
@@ -126,7 +133,7 @@ const AddPromo = () => {
               name="promotype"
               value={formik.values.promotype}
               onChange={formik.handleChange}
-              className="py-3 mt-3 px-4 pe-9 block w-full bg-gray-100 border-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-100 dark:border-transparent dark:text-gray-500 dark:focus:ring-gray-600"
+              className="py-3 mt-3 px-4 pe-9 block w-full bg-gray-100 border-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-100 dark:border-transparent dark:text-gray-700 dark:focus:ring-gray-600"
             >
               <option>Select type</option>
               <option>Percent (%)</option>
@@ -137,7 +144,9 @@ const AddPromo = () => {
             <div className="relative flex items-center sm:col-span-2">
               <label
                 className={`text-[13px] absolute top-[-10px] left-0 font-semibold ${
-                  formik.touched.promocodeamount && formik.errors.promocodeamount && "text-red-600"
+                  formik.touched.promocodeamount &&
+                  formik.errors.promocodeamount &&
+                  "text-red-600"
                 }`}
               >
                 Promocode Percentage Amount *
@@ -156,7 +165,9 @@ const AddPromo = () => {
             <div className="relative flex items-center sm:col-span-2">
               <label
                 className={`text-[13px] absolute top-[-10px] left-0 font-semibold ${
-                  formik.touched.promocodeamount && formik.errors.promocodeamount && "text-red-600"
+                  formik.touched.promocodeamount &&
+                  formik.errors.promocodeamount &&
+                  "text-red-600"
                 }`}
               >
                 Promocode Diascount Amount *
@@ -174,7 +185,9 @@ const AddPromo = () => {
           <div className="relative flex items-center sm:col-span-2">
             <label
               className={`text-[13px] absolute top-[-10px] left-0 font-semibold ${
-                formik.touched.startDate && formik.errors.startDate && "text-red-600"
+                formik.touched.startDate &&
+                formik.errors.startDate &&
+                "text-red-600"
               }`}
             >
               Promocode Start-Date *
@@ -191,7 +204,9 @@ const AddPromo = () => {
           <div className="relative flex items-center sm:col-span-2">
             <label
               className={`text-[13px] absolute top-[-10px] left-0 font-semibold ${
-                formik.touched.endDate && formik.errors.endDate && "text-red-600"
+                formik.touched.endDate &&
+                formik.errors.endDate &&
+                "text-red-600"
               }`}
             >
               Promocode End-Date *
@@ -222,7 +237,7 @@ const AddPromo = () => {
               type="number"
               name="noUse"
               placeholder="Enter Promocode Number Use"
-              className="px-2 pt-5 bg-white w-full text-sm border-b-2 border-gray-100 focus:border-[#333] outline-none"
+              className="px-2 pt-5 bg-white w-full text-sm border-b-2 border-gray-300 focus:border-[#333] outline-none"
               value={formik.values.noUse}
               onChange={formik.handleChange}
             />

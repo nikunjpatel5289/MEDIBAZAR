@@ -73,7 +73,7 @@ const VenderList = () => {
         </button>
       </div>
       <div className="overflow-x-auto py-5">
-        <table className="min-w-full bg-gray-200 font-[sans-serif] rounded-xl">
+        <table className="min-w-full bg-gray-200 font-[sans-serif] rounded-xl shadow-xl">
           <thead className="whitespace-nowrap">
             <tr>
               <th className="pl-6 w-8">Index</th>
