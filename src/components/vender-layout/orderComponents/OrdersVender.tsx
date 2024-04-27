@@ -37,6 +37,18 @@ const OrdersVender = () => {
       console.info(error.response.data);
     }
   };
+
+  const handelOrderStatusChange = async (id :string) => {
+    try {
+      const config = tokenData();
+      const result = await axios.patch(`http://127.0.0.1:3000/order/orderStatus/${id}`,null,config)
+      if(result.status === 200) {
+        getOrderData()
+      }
+    } catch (error : any) {
+      console.info(error.response.data.message)
+    } 
+  }
   useEffect(() => {
     getOrderData();
   }, [limit, page]);
@@ -86,7 +98,7 @@ const OrdersVender = () => {
                   <tr className="odd:bg-gray-50" key={index}>
                     <td className="px-6 py-4 text-sm">{i++}</td>
                     <td className="px-6 py-4 text-sm">{item.paymentId}</td>
-                    <td className="px-6 py-4 text-sm">
+                    <td className="px-6 py-4 text-sm text-center">
                       {item.orderProducts.length}
                     </td>
                     <td className="px-6 py-4 text-sm">{item.name}</td>
@@ -94,9 +106,22 @@ const OrdersVender = () => {
                     <td className="px-6 py-4 text-sm">
                       <div className="flex items-center cursor-pointer">
                         <div className="ml-2">
-                          <p className="text-sm text-black">
+                          <div
+                            className={`mx-auto px-3 py-1 ${
+                              item.orderStatus == "In Process"
+                                ? "bg-yellow-400"
+                                : item.orderStatus == "Confirmed"
+                                ? "bg-orange-600"
+                                : item.orderStatus == "Delivered" &&
+                                  "bg-green-400"
+                            } w-max text-black rounded`}
+                            onClick={()=> {item.orderStatus == "Delivered" ? "" : handelOrderStatusChange(item._id)}}
+                          >
                             {item.orderStatus}
-                          </p>
+                          </div>
+                          {/* <p className="text-sm text-black">
+                            {item.orderStatus}
+                          </p> */}
                         </div>
                       </div>
                     </td>

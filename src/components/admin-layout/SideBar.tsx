@@ -259,7 +259,7 @@ const SideBar = () => {
               href="/admin/contect"
               className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" className="w-[18px] h-[18px]"
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" className="w-[18px] h-[18px] mr-2"
               viewBox="0 0 682.667 682.667">
               <defs>
                 <clipPath id="b" clipPathUnits="userSpaceOnUse">

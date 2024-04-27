@@ -36,7 +36,7 @@ const page = () => {
     try {
       const token = localStorage.getItem("token") || "";
       if (token === "") {
-        toast.warn("Fist LogIn Then Add To Cart...");
+        toast.warn("Please Login as a customer to add products to the Cart.");
       } else {
         const TOKEN = JSON.parse(token);
         let config = {

@@ -198,7 +198,7 @@ const History = () => {
                             </h3>
 
                             <div className="rounded-lg bg-gray-200 px-4 pt-6 sm:flex sm:items-center sm:justify-between sm:space-x-6 sm:px-6 lg:space-x-8">
-                              <dl className="flex-auto space-y-6 divide-y divide-gray-200 text-sm text-gray-600 sm:grid sm:grid-cols-3 sm:gap-x-6 sm:space-y-0 sm:divide-y-0 lg:w-1/2 lg:flex-none lg:gap-x-8">
+                              <dl className="flex-auto space-y-6 divide-y divide-gray-200 text-sm text-gray-900 sm:grid sm:grid-cols-3 sm:gap-x-6 sm:space-y-0 sm:divide-y-0 lg:w-1/2 lg:flex-none lg:gap-x-8">
                                 <div className="flex justify-between sm:block">
                                   <dt className="font-medium text-gray-900">
                                     Date placed
@@ -239,7 +239,7 @@ const History = () => {
 
                             <table className="mt-4 w-full text-gray-500 sm:mt-6">
                               {/* <caption className="sr-only">Products</caption> */}
-                              <thead className="text-left text-sm text-gray-500 sm:not-sr-only">
+                              <thead className="text-left text-sm text-black sm:not-sr-only">
                                 <tr>
                                   <th
                                     scope="col"
@@ -293,13 +293,13 @@ const History = () => {
                                         </div>
                                       </div>
                                     </td>
-                                    <td className="hidden py-6 pr-8 sm:table-cell">
+                                    <td className="hidden py-6 pr-8 sm:table-cell text-gray-900">
                                       Rs. {product.productId.prodPrice}
                                     </td>
-                                    <td className="hidden py-6 pr-8 sm:table-cell">
+                                    <td className="hidden py-6 pr-8 sm:table-cell text-gray-900">
                                       {product.qty}
                                     </td>
-                                    <td className="hidden py-6 pr-8 sm:table-cell">
+                                    <td className="hidden py-6 pr-8 sm:table-cell text-gray-900">
                                       {item.orderStatus}
                                     </td>
                                     <td className="whitespace-nowrap py-6 text-right font-medium">
