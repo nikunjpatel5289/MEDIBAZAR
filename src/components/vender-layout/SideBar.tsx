@@ -154,7 +154,7 @@ const SideBar = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
                   stroke="currentColor"
-                  className="w-[18px] h-[18px]"
+                  className="w-[18px] h-[18px] mr-2"
                   viewBox="0 0 682.667 682.667"
                 >
                   <defs>
