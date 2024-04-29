@@ -139,7 +139,7 @@ const AllProduct = () => {
           <thead className="whitespace-nowrap">
             <tr>
               <th
-                className="px-6 py-4 text-left text-sm font-semibold text-black"
+                className="px-6 py-4 text-left text-sm font-semibold text-black cursor-pointer"
                 onClick={() => {
                   setSort("prodName");
                   setOrder(order === 1 ? -1 : 1);
@@ -158,7 +158,7 @@ const AllProduct = () => {
                 </svg>
               </th>
               <th
-                className="px-6 py-4 text-left text-sm font-semibold text-black"
+                className="px-6 py-4 text-left text-sm font-semibold text-black cursor-pointer"
                 onClick={() => {
                   setSort("categoryName");
                   setOrder(order === 1 ? -1 : 1);
