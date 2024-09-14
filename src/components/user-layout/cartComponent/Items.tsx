@@ -28,9 +28,9 @@ const Items = ({ data, handelInc, handelDec, handelRemoveProduct }: prop) => {
                 </tr>
               </thead>
               <tbody>
-                {data.map((item: any) => {
+                {data.map((item: any, idx : number) => {
                   return (
-                    <tr>
+                    <tr key={idx}>
                       <td className="product-thumbnail">
                         <img
                           // src="images/product_02.png"

@@ -222,7 +222,7 @@ const AllProduct = () => {
           <tbody className="whitespace-nowrap">
             {data.map((item: any) => {
               return (
-                <tr className="odd:bg-gray-50">
+                <tr className="odd:bg-gray-50" key={item._id}>
                   <td className="px-6 py-3 text-sm">
                     <div className="flex items-center cursor-pointer">
                       <img

@@ -106,7 +106,7 @@ const Contect = () => {
               const day = String(date.getDate()).padStart(2, "0");
               const formattedDate = `${year}/${month}/${day}`;
               return (
-                <tr className="odd:bg-gray-50">
+                <tr className="odd:bg-gray-50" key={item._id}>
                   <td className="px-6 py-3 text-sm">{i++}</td>
                   <td className="px-6 py-3 text-sm">
                     <div className="flex items-center cursor-pointer">

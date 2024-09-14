@@ -15,7 +15,7 @@ interface FormValues {
   password: string;
 }
 
-const page = () => {
+const Page = () => {
   const route = useRouter();
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const response = useSelector((state: any) => state.user);
@@ -175,4 +175,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

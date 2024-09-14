@@ -4,7 +4,7 @@ import Cards from "@/components/admin-layout/dashboard/Cards";
 import DayChart from "@/components/admin-layout/dashboard/DayChart";
 import MonthChart from "@/components/admin-layout/dashboard/MonthChart";
 
-const page = () => {
+const Page = () => {
   return (
     <>
       <NavBar />
@@ -61,4 +61,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -4,7 +4,7 @@ import SideBar from "@/components/admin-layout/SideBar";
 import EditProduct from "@/components/admin-layout/productsComponent/EditProduct";
 import { useParams } from "next/navigation";
 
-const page = () => {
+const Page = () => {
   const param = useParams();
   return (
     <>
@@ -15,4 +15,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -5,7 +5,7 @@ import Header from "@/components/user-layout/Header";
 // import { useParams } from "next/navigation";
 import React, { useState } from "react";
 
-const page = () => {
+const Page = () => {
   const [val, setVal] = useState(1);
 
   const handleINC = () => setVal(val+1);
@@ -133,4 +133,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
