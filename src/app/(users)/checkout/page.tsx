@@ -22,7 +22,7 @@ interface FormValues {
   zip: number;
 }
 
-const page = () => {
+const Page = () => {
   const [cartData, setCartData] = useState<any>([]);
   const [subtotal, setSubTotal] = useState<number>(0);
   const [finalTotal, setFinalTotal] = useState<number>(0);
@@ -172,4 +172,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

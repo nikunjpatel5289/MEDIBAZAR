@@ -17,8 +17,8 @@ const Services = () => {
             <div className="text">
               <h2>Free Shipping</h2>
               <p>
-                Enjoy free shipping on all orders today! No minimum purchase
-                required. Hurry, this offer won't last long. Shop now!
+                {`Enjoy free shipping on all orders today! No minimum purchase
+                required. Hurry, this offer won't last long. Shop now!`}
               </p>
             </div>
           </div>

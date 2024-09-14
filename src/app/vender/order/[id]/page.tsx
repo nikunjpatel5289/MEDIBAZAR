@@ -4,7 +4,7 @@ import SideBar from "@/components/vender-layout/SideBar";
 import InvoiceShow from "@/components/vender-layout/orderComponents/InvoiceShow";
 import { useParams } from "next/navigation";
 
-const page = () => {
+const Page = () => {
   const params = useParams();
   const ID: any = params.id;
   return (
@@ -24,4 +24,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

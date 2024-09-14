@@ -9,7 +9,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 // import FilterSideBar from '@/components/user-layout/productComponent/FilterSideBar'
 
-const page = () => {
+const Page = () => {
   const [data, setData] = useState<any>([]);
   const [cat, setCat] = useState<any>("");
   const [search, setSearch] = useState<any>("");
@@ -165,4 +165,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

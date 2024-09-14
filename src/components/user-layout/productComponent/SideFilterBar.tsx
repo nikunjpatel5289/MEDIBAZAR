@@ -32,7 +32,7 @@ const SideFilterBar = ({ handelCateSearch, setOrder }: prop) => {
       >
         {catData.map((item: any) => {
           return (
-            <li>
+            <li key={item.id}>
               <span
                 onClick={() => handelCateSearch(item.id)}
                 className="hover:cursor-pointer hover:text-slate-500"

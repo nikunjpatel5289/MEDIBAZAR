@@ -52,7 +52,7 @@ const PopulerProduct = () => {
                   <Link href={`/products/${item._id}`}>
                     <img
                       src={item.images[0]}
-                      className="ms-7 h-[250px]"
+                      className="ms-7 h-[250px] m-auto"
                       alt={item.prodName}
                       width={"300px"}
                     />

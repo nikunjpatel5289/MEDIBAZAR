@@ -4,7 +4,7 @@ import SideBar from "@/components/admin-layout/SideBar";
 import AllOrderInvoice from "@/components/admin-layout/orders/AllOrderInvoice";
 import { useParams } from "next/navigation";
 
-const page = () => {
+const Page = () => {
   const param = useParams();
   const ID: any = param.id;
   return (
@@ -23,4 +23,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

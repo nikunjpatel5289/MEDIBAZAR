@@ -260,14 +260,14 @@ const ProductReviewDisplay = ({ handelReviewGet, data }: prop) => {
                 <h2 className=" text-3xl text-black mb-8 text-center">
                   Our customer reviews
                 </h2>
-                {data.map((item: any) => {
+                {data.map((item: any,idx:number) => {
                   const date = new Date(item.createdAt);
                   const year = date.getFullYear();
                   const month = String(date.getMonth() + 1).padStart(2, "0");
                   const day = String(date.getDate()).padStart(2, "0");
                   const formattedDate = `${year}-${month}-${day}`;
                   return (
-                    <div className="pt-10 pb-8 border-b border-gray-100 max-xl:max-w-2xl max-xl:mx-auto">
+                    <div className="pt-10 pb-8 border-b border-gray-100 max-xl:max-w-2xl max-xl:mx-auto" key={idx}>
                       <div className="flex items-center gap-3 mb-4">
                         {Array.from({ length: item.rate }, (_, index) => (
                           <svg

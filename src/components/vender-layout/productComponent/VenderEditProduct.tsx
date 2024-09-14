@@ -337,11 +337,12 @@ const VenderEditProduct = ({ID}:prop) => {
           <br />
 
           <div className="flex">
-            {prodData?.images?.map((item: any) => {
+            {prodData?.images?.map((item: any, idx: number) => {
               return (
                 <img
                   className="w-20 h-20 rounded"
                   src={item}
+                  key={idx}
                   alt="Previous Images"
                 ></img>
               );

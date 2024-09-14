@@ -13,7 +13,7 @@ interface FormValues {
   id:string;
 }
 
-const page = () => {
+const Page = () => {
   const reoute = useRouter()
   const [data,setData] = useState<any>([])
   const param = useParams();
@@ -136,4 +136,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

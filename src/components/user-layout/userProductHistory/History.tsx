@@ -257,7 +257,7 @@ const History = () => {
                                     scope="col"
                                     className="hidden w-1/5 py-3 pr-8 font-normal sm:table-cell"
                                   >
-                                    Quentity
+                                    Quantity
                                   </th>
                                   <th
                                     scope="col"

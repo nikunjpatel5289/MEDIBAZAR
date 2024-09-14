@@ -5,7 +5,7 @@ import Items from "@/components/user-layout/cartComponent/Items";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const page = () => {
+const Page = () => {
   const [cdata, setCdata] = useState<any>([]);
   const [total, setTotal] = useState<number>(0);
   // const [finalTotal, setFinalTotal] = useState<number>(0);
@@ -161,4 +161,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

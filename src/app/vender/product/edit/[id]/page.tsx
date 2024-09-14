@@ -5,7 +5,7 @@ import VenderEditProduct from "@/components/vender-layout/productComponent/Vende
 // import EditProduct from "@/components/vender-layout/productComponent/EditProduct";
 import { useParams } from "next/navigation";
 
-const page = () => {
+const Page = () => {
   const param = useParams();
 
   return (
@@ -130,4 +130,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

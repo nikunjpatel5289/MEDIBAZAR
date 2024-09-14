@@ -7,7 +7,7 @@ import VenderDayChart from "@/components/vender-layout/dashboardComponent/Vender
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const page = () => {
+const Page = () => {
   const [data, setData] = useState<any>([]);
   const [orderTotal, setOrderToala] = useState<any>([]);
   const [salseData, setSalseData] = useState<any>([]);
@@ -98,4 +98,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

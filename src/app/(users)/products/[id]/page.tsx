@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const page = () => {
+const Page = () => {
   const param = useParams();
   const [data, setData] = useState<any>([]);
   const [val, setVal] = useState(1);
@@ -191,4 +191,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

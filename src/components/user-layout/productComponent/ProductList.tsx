@@ -47,7 +47,7 @@ const ProductList = ({ data, MAXCOUNT, handlePgination }: prop) => {
                     <Link href={`/products/${item._id}`}>
                       <img
                         src={item.images[0]}
-                        className="ms-6 h-[230px]"
+                        className="ms-6 h-[230px] m-auto rounded"
                         width={"250px"}
                         alt={item.prodName}
                       />
